@@ -7,7 +7,8 @@ namespace CUSTOR.OTRLS.Core.Helpers
         {
             public ApplicationMappingProfile()
             {
-                CreateMap<ApplicationUserProfile, ApplicationUserProfileDTO>().ReverseMap();
+                CreateMap<CustomerProfile, CustomerProfileDTO>().ReverseMap();
+                CreateMap<CustomerProfile, CustomerNameProfileResponseDTO>().ReverseMap();
             }
         }
     

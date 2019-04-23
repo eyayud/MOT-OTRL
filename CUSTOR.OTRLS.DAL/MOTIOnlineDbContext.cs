@@ -6,8 +6,7 @@ using Microsoft.EntityFrameworkCore.Metadata;
 
 namespace CUSTOR.OTRLS.Core
 {
-    public partial class OTRLSDbContext :  IdentityDbContext<ApplicationUser, IdentityRole<int>, int>
-    {
+    public partial class OTRLSDbContext:DbContext {
         public OTRLSDbContext()
         {
         }
@@ -17,16 +16,20 @@ namespace CUSTOR.OTRLS.Core
         {
         }
 
-        public virtual DbSet<ApplicationUserProfile> UserProfiles { get; set; }
+      
         public virtual DbSet<Kebele> Kebele { get; set; }
         public virtual DbSet<LookUpType> LookUpType { get; set; }
         public virtual DbSet<Lookup> Lookup { get; set; }
         public virtual DbSet<Manager> Manager { get; set; }
+        
         public virtual DbSet<Nationality> Nationality { get; set; }
         public virtual DbSet<Region> Region { get; set; }
         public virtual DbSet<Woreda> Woreda { get; set; }
         public virtual DbSet<Zone> Zone { get; set; }
         public virtual DbSet<Address> Address { get; set; }
+        public virtual DbSet<CustomerProfile> CustomerProfile { get; set; }
+        
+        
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
@@ -432,11 +435,9 @@ namespace CUSTOR.OTRLS.Core
                     .OnDelete(DeleteBehavior.ClientSetNull);
             });
             
-            modelBuilder.Entity<ApplicationUser>().ToTable("Users");
-            modelBuilder.Entity<ApplicationUser>().HasOne(u => u.ApplicationUserProfile).WithOne(u => u.User);
-
-            modelBuilder.Entity<ApplicationUserProfile>().ToTable("UserProfiles");
-            modelBuilder.Entity<ApplicationUserProfile>().HasOne(p => p.User).WithOne(u => u.ApplicationUserProfile);
+           
+            modelBuilder.Entity<CustomerProfile>().ToTable("CustomerProfiles");
+           
 
             base.OnModelCreating(modelBuilder);
         }

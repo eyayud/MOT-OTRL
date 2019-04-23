@@ -37,51 +37,37 @@ namespace CUSTOR.OTRLS.API
 
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
             services.AddMvc(options =>
-            {
-                options.Filters.Add(typeof(ModelValidationAttribute)); // add global modelstate filter
-            })
-           .AddJsonOptions(opt =>
-           {
-               // Set default json serialization
-               var resolver = opt.SerializerSettings.ContractResolver;
-               opt.SerializerSettings.ReferenceLoopHandling = ReferenceLoopHandling.Ignore;
-               if (resolver != null)
-               {
-                   var res = resolver as DefaultContractResolver;
-                   res.NamingStrategy = null;
-               }
-           });
-            
+                {
+                    options.Filters.Add(typeof(ModelValidationAttribute)); // add global modelstate filter
+                })
+                .AddJsonOptions(opt =>
+                {
+                    // Set default json serialization
+                    var resolver = opt.SerializerSettings.ContractResolver;
+                    opt.SerializerSettings.ReferenceLoopHandling = ReferenceLoopHandling.Ignore;
+                    if (resolver != null)
+                    {
+                        var res = resolver as DefaultContractResolver;
+                        res.NamingStrategy = null;
+                    }
+                });
+
             var connectionString = Configuration["ConnectionStrings:DefaultConnection"];
             var migrationsAssembly = typeof(Startup).GetTypeInfo().Assembly.GetName().Name;
 
             services.AddDbContext<OTRLSDbContext>(options =>
-              options.UseSqlServer(connectionString, b => b.MigrationsAssembly(migrationsAssembly)));
-            //Add Asp.net Identity support
-            
-         
-            services.AddIdentity<ApplicationUser, IdentityRole<int>>(
-                    options =>
-                    {
-                        options.Password.RequireDigit = true;
-                        options.Password.RequireLowercase = true;
-                        options.Password.RequireUppercase = true;
-                        options.Password.RequireNonAlphanumeric = false;
-                        options.Password.RequireNonAlphanumeric = false;
-
-                    })
-                .AddEntityFrameworkStores<OTRLSDbContext>();
+                options.UseSqlServer(connectionString, b => b.MigrationsAssembly(migrationsAssembly)));
             services.AddCors(options =>
             {
                 options.AddPolicy("CorsPolicy",
-                  builder => builder
-                    .AllowAnyOrigin()
-                    .AllowAnyMethod()
-                    .AllowAnyHeader()
-                    .AllowCredentials());
+                    builder => builder
+                        .AllowAnyOrigin()
+                        .AllowAnyMethod()
+                        .AllowAnyHeader()
+                        .AllowCredentials());
             });
-            
-            
+
+
             // add auto mapper
             var config = new AutoMapper.MapperConfiguration(cfg =>
             {
@@ -98,8 +84,7 @@ namespace CUSTOR.OTRLS.API
             services.AddScoped<ZoneRepository>();
             services.AddScoped<WoredaRepository>();
             services.AddScoped<KebeleRepository>();
-            services.AddScoped<ApplicationUserProfileRepository>();
-
+            services.AddScoped<CustomerProfileRepository>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -109,30 +94,28 @@ namespace CUSTOR.OTRLS.API
             {
                 app.UseDeveloperExceptionPage();
             }
+
             //Configure Cors
             app.UseCors("CorsPolicy");
             app.UseMvc();
             app.UseDefaultFiles();
             app.UseStaticFiles();
 
-            //create a service scope to get an application db context instance using dependency injection 
-
-            using (var serviceScope = app.ApplicationServices.GetRequiredService<IServiceScopeFactory>().CreateScope())
+            //create a service scope to get an ApplicationDbContext instance using DI
+            using (var serviceScope =
+                app.ApplicationServices.GetRequiredService<IServiceScopeFactory>().CreateScope())
             {
-                var dbContext = serviceScope.ServiceProvider.GetService<OTRLSDbContext>();
-                var roleManager = serviceScope.ServiceProvider.GetService<RoleManager<IdentityRole<int>>>();
-                var userManager = serviceScope.ServiceProvider.GetService <UserManager<ApplicationUser>>();
+                var dbContext =
+                    serviceScope.ServiceProvider.GetService<OTRLSDbContext>();
+               
+                //create the db if it doesn't exist
+               
+                    dbContext.Database.Migrate();
+                    DbSeeder.Seed(dbContext);
                 
                
-                
-                //create db
-                dbContext.Database.Migrate();
-                
-                //seed db
-                DbSeeder.Seed(dbContext,roleManager,userManager);
-                
-                
             }
         }
     }
 }
+
