@@ -13,6 +13,8 @@ using CUSTOR.API.ExceptionFilter;
 using CUSTOR.API.ModelValidationAttribute;
 using System.Reflection;
 using CUSTOR.OTRLS.Core;
+using CUSTOR.OTRLS.Core.Helpers;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Serialization;
@@ -55,7 +57,20 @@ namespace CUSTOR.OTRLS.API
 
             services.AddDbContext<OTRLSDbContext>(options =>
               options.UseSqlServer(connectionString, b => b.MigrationsAssembly(migrationsAssembly)));
+            //Add Asp.net Identity support
+            
+         
+            services.AddIdentity<ApplicationUser, IdentityRole<int>>(
+                    options =>
+                    {
+                        options.Password.RequireDigit = true;
+                        options.Password.RequireLowercase = true;
+                        options.Password.RequireUppercase = true;
+                        options.Password.RequireNonAlphanumeric = false;
+                        options.Password.RequireNonAlphanumeric = false;
 
+                    })
+                .AddEntityFrameworkStores<OTRLSDbContext>();
             services.AddCors(options =>
             {
                 options.AddPolicy("CorsPolicy",
@@ -65,7 +80,15 @@ namespace CUSTOR.OTRLS.API
                     .AllowAnyHeader()
                     .AllowCredentials());
             });
-
+            
+            
+            // add auto mapper
+            var config = new AutoMapper.MapperConfiguration(cfg =>
+            {
+                cfg.AddProfile(new ApplicationMappingProfile());
+            });
+            var mapper = config.CreateMapper();
+            services.AddSingleton(mapper);
             services.AddScoped<ModelValidationAttribute>();
             services.AddScoped<ApiExceptionFilter>();
             services.AddScoped<ManagerRepository>();
@@ -75,6 +98,7 @@ namespace CUSTOR.OTRLS.API
             services.AddScoped<ZoneRepository>();
             services.AddScoped<WoredaRepository>();
             services.AddScoped<KebeleRepository>();
+            services.AddScoped<ApplicationUserProfileRepository>();
 
         }
 
@@ -91,6 +115,24 @@ namespace CUSTOR.OTRLS.API
             app.UseDefaultFiles();
             app.UseStaticFiles();
 
+            //create a service scope to get an application db context instance using dependency injection 
+
+            using (var serviceScope = app.ApplicationServices.GetRequiredService<IServiceScopeFactory>().CreateScope())
+            {
+                var dbContext = serviceScope.ServiceProvider.GetService<OTRLSDbContext>();
+                var roleManager = serviceScope.ServiceProvider.GetService<RoleManager<IdentityRole<int>>>();
+                var userManager = serviceScope.ServiceProvider.GetService <UserManager<ApplicationUser>>();
+                
+               
+                
+                //create db
+                dbContext.Database.Migrate();
+                
+                //seed db
+                DbSeeder.Seed(dbContext,roleManager,userManager);
+                
+                
+            }
         }
     }
 }
