@@ -14,18 +14,7 @@ jobs:
           command:
             dotnet build
 
-  "angular":
-    docker:
-      - image: circleci/node:8-browsers
-    working_directory: ~/CUSTOR.OTRLS.WEB
-    steps:
-      - checkout
-      - run:
-          name: Install Packages
-          command:  npm install
-      - run:
-        name: Build App
-        command: ng build
+  
 
  
 
@@ -33,5 +22,15 @@ workflows:
   version: 2
   build:
     jobs:
-      - "asp.net.core"
-      - "angular"
+      "angular":
+        docker:
+          - image: circleci/node:8-browsers
+        working_directory: ~/CUSTOR.OTRLS.WEB
+        steps:
+          - checkout
+          - run:
+              name: Install Packages
+              command:  npm install
+          - run:
+            name: Build App
+            command: ng build
