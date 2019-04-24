@@ -110,8 +110,8 @@ namespace CUSTOR.OTRLS.API
                
                 //create the db if it doesn't exist
                
-                    dbContext.Database.Migrate();
-                    DbSeeder.Seed(dbContext);
+                    /*dbContext.Database.Migrate();
+                    DbSeeder.Seed(dbContext);*/
                 
                
             }
