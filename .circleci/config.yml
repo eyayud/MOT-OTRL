@@ -13,10 +13,10 @@ jobs:
           name: Build App
           command:
             dotnet build
-  #      - run:
-  #          name: Run App
-  #          command:
-  #            dotnet run
+    #      - run:
+    #          name: Run App
+    #          command:
+    #            dotnet run
 
     tagged-build:
       jobs:
