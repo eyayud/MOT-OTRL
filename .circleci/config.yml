@@ -17,7 +17,6 @@ jobs:
   "angular":
     docker:
       - image: circleci/node:8-browsers
-    working_directory: ~/OTRL/CUSTOR.OTRLS.Web
     steps:
       - checkout
       - run:
