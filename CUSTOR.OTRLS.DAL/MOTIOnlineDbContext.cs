@@ -436,7 +436,7 @@ namespace CUSTOR.OTRLS.Core
             });
             
            
-            modelBuilder.Entity<CustomerProfile>().ToTable("CustomerProfiles");
+            modelBuilder.Entity<CustomerProfile>().ToTable("CustomerProfile");
            
 
             base.OnModelCreating(modelBuilder);

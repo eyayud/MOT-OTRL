@@ -161,7 +161,7 @@ namespace CUSTOR.OTRLS.API.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("CustomerProfiles");
+                    b.ToTable("CustomerProfile");
                 });
 
             modelBuilder.Entity("CUSTOR.OTRLS.Core.Kebele", b =>

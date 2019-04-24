@@ -10,7 +10,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace CUSTOR.OTRLS.API.Migrations
 {
     [DbContext(typeof(OTRLSDbContext))]
-    [Migration("20190423195211_initial")]
+    [Migration("20190424063430_initial")]
     partial class initial
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -163,7 +163,7 @@ namespace CUSTOR.OTRLS.API.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("CustomerProfiles");
+                    b.ToTable("CustomerProfile");
                 });
 
             modelBuilder.Entity("CUSTOR.OTRLS.Core.Kebele", b =>
