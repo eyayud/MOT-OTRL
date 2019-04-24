@@ -106,14 +106,14 @@ namespace CUSTOR.OTRLS.API
         }
         
         //create a service scope to get an ApplicationDbContext instance using DI
-        private static void Initialize(IServiceProvider service)
+        private static async void Initialize(IServiceProvider service)
         {
             using (var serviceScope = service.CreateScope())
             {
                 var scopeServiceProvider = serviceScope.ServiceProvider;
                 var db = scopeServiceProvider.GetService<OTRLSDbContext>();
-                db.Database.Migrate();
-                DbSeeder.Seed(db);
+                /*db.Database.Migrate();
+                await DbSeeder.Seed(db);*/
             }
         }
     }
