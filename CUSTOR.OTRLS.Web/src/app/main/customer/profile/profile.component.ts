@@ -173,13 +173,13 @@ export class ProfileComponent implements OnInit {
   private handleError(error) {
 
     this.loadingIndicator = false;
-    const errList = Utilities.getHttpResponseMessage(error);
+    // const errList = Utilities.getHttpResponseMessage(error);
     if (error.status === 400) { // bad request (validation)
-      this.errors = errList;
+      // this.errors = errList;
       this.toastr.error('Please fix the listed errors', 'Error');
     } else {
       this.errors = [];
-      this.toastr.error(error.status + ':' + errList[0].toString(), 'Error');
+      // this.toastr.error(error.status + ':' + errList[0].toString(), 'Error');
     }
   }
   get Tin(){
