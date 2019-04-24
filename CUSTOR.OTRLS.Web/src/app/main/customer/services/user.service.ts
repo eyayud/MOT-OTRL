@@ -12,7 +12,7 @@ import { map, catchError } from 'rxjs/operators';
 export class UserService extends EndpointFactory {
     private lang: string;
     user: UserProfile = new UserProfile();
-    private readonly _userProfileUrl: string = 'api/manager/GetManagerByCustomerId';
+    private readonly _userProfileUrl: string = '/api/customerProfile/';
     get userProfileUrl() { return this.config.baseUrl + this._userProfileUrl; }
     // constructor(private configService: ConfigurationService, private httpClient: HttpClient) {
     //     this.lang = this.configService.language;
@@ -22,11 +22,25 @@ export class UserService extends EndpointFactory {
         injector: Injector) {
         super(httpClient, config, injector);
     }
+     getUserProfile(userId: any) {
+        //  const endpointUrl = `${this.userProfileUrl}${userId}`;
+        const endpointUrl ="http://localhost:60330/api/customerProfile/2"
+        console.log(endpointUrl);
+         return this.httpClient.get<UserProfile>(endpointUrl).pipe(
+                map(usr => {
+                    this.user = usr;
+                    console.log(this.user)
+                    return this.user;
+                }),
+            );
+    }
+   
     saveProfile(user: UserProfile){
         console.log(user);
         console.log(this.userProfileUrl);
-        // return;
-        return this.httpClient.post<UserProfile>(this.userProfileUrl, user, this.getRequestHeaders())
+        const endpointUrl = "http://localhost:60330/api/customerProfile"
+       // return;
+        return this.httpClient.put<UserProfile>(endpointUrl, user)
             .pipe(
                 map(usr => {
                     this.user = usr;
