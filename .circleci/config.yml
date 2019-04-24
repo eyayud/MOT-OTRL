@@ -28,7 +28,7 @@ jobs:
         command: ng build
 workflows:
  version: 2
-  build:
-    jobs:
-      - "asp.net.core"
-      - "angular"
+ build:
+  jobs:
+    - "asp.net.core"
+    - "angular"
