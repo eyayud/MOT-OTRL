@@ -21,6 +21,9 @@ jobs:
     steps:
       - checkout
       - run:
+          name: Install Angular
+          command: npm i @angular/cli -g
+      - run:
           name: Install Packages
           command:
             npm install
