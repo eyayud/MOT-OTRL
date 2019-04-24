@@ -50,6 +50,9 @@ namespace CUSTOR.OTRLS.Core
 
 
         public int AddressId { get; set; }
+        
+        public bool? IsActive { get; set; }
+        public bool? IsDeleted { get; set; }
 
         public int IdentificationId { get; set; }
 
@@ -115,19 +118,17 @@ namespace CUSTOR.OTRLS.Core
         #endregion
     }
 
-    public class CustomerNameProfileResponseDTO
+    public class CustomerNameProfileDTO
     {
         #region Constructor
 
-        public CustomerNameProfileResponseDTO()
+        public CustomerNameProfileDTO()
         {
         }
 
         #endregion
 
         #region Properties
-
-        public int Id { get; set; }
 
         public string FirstName { get; set; }
 
