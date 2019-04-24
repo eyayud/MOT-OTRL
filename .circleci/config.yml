@@ -3,7 +3,7 @@ jobs:
   "asp.net core":
     docker:
       - image: mcr.microsoft.com/dotnet/core/sdk:2.2
-      steps:
+      - steps:
         - checkout
         - run:
             name: Restore packages
@@ -16,7 +16,7 @@ jobs:
 
   "angular":
     docker:
-      - image:  circleci/node:8-browsers
+      - image: circleci/node:8-browsers
     working_directory: ~/CUSTOR.OTRLS.WEB
     steps:
       - checkout
