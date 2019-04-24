@@ -4,14 +4,16 @@ using CUSTOR.OTRLS.Core;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace CUSTOR.OTRLS.API.Migrations
 {
     [DbContext(typeof(OTRLSDbContext))]
-    partial class OTRLSDbContextModelSnapshot : ModelSnapshot
+    [Migration("20190424082128_add isActive and IsDeleted column on CustomerProfile table")]
+    partial class addisActiveandIsDeletedcolumnonCustomerProfiletable
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -131,25 +133,19 @@ namespace CUSTOR.OTRLS.API.Migrations
 
                     b.Property<DateTime>("CreatedDate");
 
-                    b.Property<string>("FatherName")
-                        .HasMaxLength(30);
+                    b.Property<string>("FatherName");
 
-                    b.Property<string>("FatherNameEng")
-                        .HasMaxLength(30);
+                    b.Property<string>("FatherNameEng");
 
-                    b.Property<string>("FirstName")
-                        .HasMaxLength(30);
+                    b.Property<string>("FirstName");
 
-                    b.Property<string>("FirstNameEng")
-                        .HasMaxLength(30);
+                    b.Property<string>("FirstNameEng");
 
                     b.Property<int>("Gender");
 
-                    b.Property<string>("GrandName")
-                        .HasMaxLength(30);
+                    b.Property<string>("GrandName");
 
-                    b.Property<string>("GrandNameEng")
-                        .HasMaxLength(30);
+                    b.Property<string>("GrandNameEng");
 
                     b.Property<int>("IdentificationId");
 
@@ -157,11 +153,9 @@ namespace CUSTOR.OTRLS.API.Migrations
 
                     b.Property<bool?>("IsDeleted");
 
-                    b.Property<string>("MotherName")
-                        .HasMaxLength(30);
+                    b.Property<string>("MotherName");
 
-                    b.Property<string>("MotherNameEng")
-                        .HasMaxLength(30);
+                    b.Property<string>("MotherNameEng");
 
                     b.Property<int>("Nationality");
 

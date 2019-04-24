@@ -101,19 +101,19 @@ namespace CUSTOR.OTRLS.API
             app.UseDefaultFiles();
             app.UseStaticFiles();
 
-            //create a service scope to get an ApplicationDbContext instance using DI
-            using (var serviceScope =
-                app.ApplicationServices.GetRequiredService<IServiceScopeFactory>().CreateScope())
+           
+            Initialize(app.ApplicationServices);
+        }
+        
+        //create a service scope to get an ApplicationDbContext instance using DI
+        private static void Initialize(IServiceProvider service)
+        {
+            using (var serviceScope = service.CreateScope())
             {
-                var dbContext =
-                    serviceScope.ServiceProvider.GetService<OTRLSDbContext>();
-               
-                //create the db if it doesn't exist
-               
-                    /*dbContext.Database.Migrate();
-                    DbSeeder.Seed(dbContext);*/
-                
-               
+                var scopeServiceProvider = serviceScope.ServiceProvider;
+                var db = scopeServiceProvider.GetService<OTRLSDbContext>();
+                db.Database.Migrate();
+                DbSeeder.Seed(db);
             }
         }
     }

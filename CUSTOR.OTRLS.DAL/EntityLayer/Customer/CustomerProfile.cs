@@ -1,4 +1,5 @@
 using System;
+using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using Microsoft.EntityFrameworkCore.Metadata.Internal;
@@ -19,28 +20,22 @@ namespace CUSTOR.OTRLS.Core
 
         [Key] public int Id { get; set; }
 
-
         public string Tin { get; set; }
 
         public int? Title { get; set; }
 
-        public string FirstName { get; set; }
-
-        public string FirstNameEng { get; set; }
-
-        public string FatherName { get; set; }
-
-        public string FatherNameEng { get; set; }
-
-
-        public string GrandName { get; set; }
-
-        public string GrandNameEng { get; set; }
-
-        public string MotherName { get; set; }
-
-        public string MotherNameEng { get; set; }
-
+        [MaxLength(30)] public string FirstName { get; set; }
+        
+        [MaxLength(30)] public string FirstNameEng { get; set; }
+        
+        [MaxLength(30)] public string FatherName { get; set; }
+        
+        [MaxLength(30)] public string FatherNameEng { get; set; }
+        
+        [MaxLength(30)] public string GrandName { get; set; }
+        [MaxLength(30)] public string GrandNameEng { get; set; }
+        [MaxLength(30)] public string MotherName { get; set; }
+        [MaxLength(30)] public string MotherNameEng { get; set; }
 
         public DateTime BirthDate { get; set; }
 
@@ -48,11 +43,11 @@ namespace CUSTOR.OTRLS.Core
 
         public int Nationality { get; set; }
 
-
         public int AddressId { get; set; }
         
-        public bool? IsActive { get; set; }
-        public bool? IsDeleted { get; set; }
+        [DefaultValue(true)] public bool? IsActive { get; set; }
+
+        [DefaultValue(false)] public bool? IsDeleted { get; set; }
 
         public int IdentificationId { get; set; }
 
@@ -62,7 +57,7 @@ namespace CUSTOR.OTRLS.Core
 
         #endregion
     }
-    
+
     public class CustomerProfileDTO
     {
         #region Constructor
@@ -111,8 +106,6 @@ namespace CUSTOR.OTRLS.Core
 
         public int IdentificationId { get; set; }
 
-        public DateTime CreatedDate { get; set; }
-
         public DateTime UpdatedDate { get; set; }
 
         #endregion
@@ -137,7 +130,6 @@ namespace CUSTOR.OTRLS.Core
         public string FatherName { get; set; }
 
         public string FatherNameEng { get; set; }
-
 
         public string GrandName { get; set; }
 
