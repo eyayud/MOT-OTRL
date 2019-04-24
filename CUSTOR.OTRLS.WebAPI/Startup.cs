@@ -101,10 +101,16 @@ namespace CUSTOR.OTRLS.API
             app.UseDefaultFiles();
             app.UseStaticFiles();
 
-            //create a service scope to get an ApplicationDbContext instance using DI
-            using (var serviceScope =
-                app.ApplicationServices.GetRequiredService<IServiceScopeFactory>().CreateScope())
+           
+            Initialize(app.ApplicationServices);
+        }
+        
+        //create a service scope to get an ApplicationDbContext instance using DI
+        private static async void Initialize(IServiceProvider service)
+        {
+            using (var serviceScope = service.CreateScope())
             {
+<<<<<<< HEAD
                 var dbContext =
                     serviceScope.ServiceProvider.GetService<OTRLSDbContext>();
                
@@ -114,6 +120,12 @@ namespace CUSTOR.OTRLS.API
                    // DbSeeder.Seed(dbContext);
                 
                
+=======
+                var scopeServiceProvider = serviceScope.ServiceProvider;
+                var db = scopeServiceProvider.GetService<OTRLSDbContext>();
+                /*db.Database.Migrate();
+                await DbSeeder.Seed(db);*/
+>>>>>>> 65e1e8c48114bab506c50c838236a5af5febe8dd
             }
         }
     }
