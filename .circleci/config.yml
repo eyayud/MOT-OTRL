@@ -22,7 +22,7 @@ jobs:
       - checkout
       - run:
           name: Install Angular
-          command: npm i @angular/cli -g
+          command: sudo npm i @angular/cli -g
       - run:
           name: Install Packages
           command:
