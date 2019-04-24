@@ -30,7 +30,7 @@ jobs:
       - run:
           name: Build App
           command:
-            npm build
+            ng build
 workflows:
  version: 2
  build:
