@@ -125,6 +125,7 @@ export class ProfileComponent implements OnInit {
   getUserProfileData() {
     const formModel = this.ProfileForm.value;
     return {
+      Id: 2,
       FirstName: formModel.FirstName,
       FatherName: formModel.FatherName,
       GrandName: formModel.GrandName,

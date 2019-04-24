@@ -110,22 +110,11 @@ namespace CUSTOR.OTRLS.API
         {
             using (var serviceScope = service.CreateScope())
             {
-<<<<<<< HEAD
-                var dbContext =
-                    serviceScope.ServiceProvider.GetService<OTRLSDbContext>();
-               
-                //create the db if it doesn't exist
-               
-                    //dbContext.Database.Migrate();
-                   // DbSeeder.Seed(dbContext);
-                
-               
-=======
+
                 var scopeServiceProvider = serviceScope.ServiceProvider;
                 var db = scopeServiceProvider.GetService<OTRLSDbContext>();
                 /*db.Database.Migrate();
                 await DbSeeder.Seed(db);*/
->>>>>>> 65e1e8c48114bab506c50c838236a5af5febe8dd
             }
         }
     }

@@ -1,12 +1,8 @@
 using System;
 using System.Linq;
-<<<<<<< HEAD
 
 using System.Threading.Tasks;
 
-=======
-using System.Threading.Tasks;
->>>>>>> 65e1e8c48114bab506c50c838236a5af5febe8dd
 using Microsoft.EntityFrameworkCore.ChangeTracking;
 
 namespace CUSTOR.OTRLS.Core
