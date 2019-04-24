@@ -16,19 +16,22 @@ import {ManagerService} from './services/manager.service';
 import {AngConfirmDialogModule} from '@custor/components/confirm-dialog/confirm-dialog.module';
 import {BreadcrumbComponent} from '@custor/components/breadcrumb/breadcrumb.component';
 import { ProfileComponent } from './profile/profile.component';
+import { BusinessComponent } from './business/business.component';
 
 export const routes = [
     { path: '', redirectTo: 'manager-list', pathMatch: 'full'},
     { path: 'manager-list', component: ManagerListComponent},
     { path: 'manager/:id', component: ManagerComponent},
     { path: 'profile', component: ProfileComponent},
+    { path: 'business', component: BusinessComponent},
   ];
 @NgModule({
     declarations: [
         ManagerComponent,
         ManagerListComponent,
         BreadcrumbComponent,
-        ProfileComponent
+        ProfileComponent,
+        BusinessComponent
         // BusinessComponent,
         // BusinessListComponent
     ],
