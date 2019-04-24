@@ -25,9 +25,9 @@ jobs:
           command:
             npm install
       - run:
-        name: Build App
-        command:
-          ng build
+          name: Build App
+          command:
+            ng build
 workflows:
  version: 2
  build:
