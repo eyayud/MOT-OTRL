@@ -374,7 +374,8 @@
       "MainOfficeAddressRegional": "የውና መ/ቤት አድራሻ ከኢትዮጲያ ውጪ(በክልል ቋንቋ)",
       "MainOfficeCountryNameAmharic": "የተቋቋመበት አገር",
       "MainOfficeCountryNameEnglish": "የተቋቋመበት አገር(በእንግሊዝኛ)",
-      "MainOfficeCountryNameRegional": "የተቋቋመበት አገር(በክልል ቋንቋ)"
+      "MainOfficeCountryNameRegional": "የተቋቋመበት አገር(በክልል ቋንቋ)",
+       "CreatedDate": "የምዝገባ ቀን"
     }
   },
   "registrationAddress": {
