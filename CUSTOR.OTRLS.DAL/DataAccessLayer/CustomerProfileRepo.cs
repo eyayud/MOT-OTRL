@@ -71,7 +71,7 @@ namespace CUSTOR.OTRLS.Core
 
                 //handle the update with auto-mapper
                 customerProfile =
-                    mapper.Map<CustomerProfileDTO, CustomerProfile>(model,customerProfile);
+                    mapper.Map(model,customerProfile);
                 
                 //properties set from server
                 
