@@ -32,13 +32,34 @@ namespace CUSTOR.OTRLS.Core
         /// Retrieves the user profile with the given {id} 
         /// </summary>
         /// <returns>the user profile with the given id</returns>
-        public async Task<CustomerProfile> GetUserProfile(int id)
+        public async Task<CustomerProfileDTO> GetUserProfile(int id)
         {
             try
             {
                 var userProfile = await dbContext.CustomerProfile.FirstOrDefaultAsync(p => p.Id == id);
 
-                return mapper.Map<CustomerProfile>(userProfile);
+                return mapper.Map<CustomerProfileDTO>(userProfile);
+
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e);
+                throw;
+            }
+            
+        }
+        
+        /// <summary>
+        /// Retrieves the user name  from  profile with the given {id} 
+        /// </summary>
+        /// <returns>the user name with the given id</returns>
+        public async Task<CustomerNameProfileDTO> GetUserNames(int id)
+        {
+            try
+            {
+                var userProfile = await dbContext.CustomerProfile.FirstOrDefaultAsync(p => p.Id == id);
+
+                return mapper.Map<CustomerNameProfileDTO>(userProfile);
 
             }
             catch (Exception e)

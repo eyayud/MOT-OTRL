@@ -333,6 +333,7 @@ export class ManagerComponent implements OnInit {
     const add = this.managerForm.get('address').value;
     this.customerId = 1; // hard coded for now
     return {
+     
       ManagerId: this.isNewManager ? 0 : this.manager.ManagerId,
       CustomerId: this.customerId,
       FirstName: formModel.cFirstName,

@@ -31,9 +31,21 @@ namespace CUSTOR.OTRLS.API.Controllers
        
         /// <returns>the user profile </returns>
         [HttpGet("{id}")]
-        public async Task<CustomerProfile> GetProfileByUserId(int id)
+        public async Task<CustomerProfileDTO> GetProfileByUserId(int id)
         {
             return await _customerProfileRepository.GetUserProfile(id);
+        }
+        
+        /// <summary>
+        /// Get:api/customerProfile/{id}
+        /// Retrieves user profile with given user id
+        /// </summary>
+       
+        /// <returns>the user profile </returns>
+        [HttpGet("name/{id}")]
+        public async Task<CustomerNameProfileDTO> GetNameFromProfileByUserId(int id)
+        {
+            return await _customerProfileRepository.GetUserNames(id);
         }
 
         

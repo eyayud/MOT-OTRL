@@ -19,7 +19,8 @@ export class LookUpService extends EndpointFactory  {
 get lookupByParentUrl() {return this.config.baseUrl + this._lookupByParentUrl; }
 
 getLookupByParentId(lang: string, id: string): Observable<StaticData[]> {
-    const endpointUrl = `${this.lookupByParentUrl}/${lang}/${id}`;
+  const endpointUrl = `${this.lookupByParentUrl}/${lang}/${id}`;
+  console.log(endpointUrl)
     return this.httpClient.get<StaticData[]>(endpointUrl, this.getRequestHeaders()).pipe(
       map(result => {
         return result;
