@@ -17,7 +17,6 @@ jobs:
   "angular":
     docker:
       - image: circleci/node:8-browsers
-    working_directory: ~/project/CUSTOR.OTRLS.Web
     steps:
       - checkout
       - run:
@@ -26,7 +25,7 @@ jobs:
       - run:
           name: Install Packages
           command:
-            npm install
+           cd CUSTOR.OTRLS.Web && npm install
       - run:
           name: Build App
           command:
