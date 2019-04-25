@@ -33,6 +33,6 @@ workflows:
      only:
        - master
        - develop
-   jobs:
-    - "asp.net.core"
-    - "angular"
+ jobs:
+  - "asp.net.core"
+  - "angular"
