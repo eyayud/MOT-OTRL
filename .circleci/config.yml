@@ -1,5 +1,10 @@
 version: 2
 jobs:
+  branches:
+    only:
+      - master
+      - develop
+      - /rc-.*/
   "asp.net.core":
     docker:
       - image: mcr.microsoft.com/dotnet/core/sdk:2.2
