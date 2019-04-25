@@ -1,8 +1,8 @@
 version: 2
 jobs:
+  "asp.net.core":
     docker:
       - image: mcr.microsoft.com/dotnet/core/sdk:2.2
-      - image: circleci/node:8-browsers
     steps:
       - checkout
       - run:
@@ -13,29 +13,22 @@ jobs:
           name: Build App
           command:
             dotnet build
+
+  "angular":
+    docker:
+      - image: circleci/node:8-browsers
+    steps:
+      - checkout
       - run:
           name: Install Angular
           command: sudo npm i @angular/cli -g
       - run:
           name: Install Packages
           command:
-            cd CUSTOR.OTRLS.Web && npm install && ng build
-
-#  "angular":
-#    docker:
-#      - image: circleci/node:8-browsers
-#    steps:
-#      - checkout
-#      - run:
-#          name: Install Angular
-#          command: sudo npm i @angular/cli -g
-#      - run:
-#          name: Install Packages
-#          command:
-#           cd CUSTOR.OTRLS.Web && npm install && ng build
-#workflows:
-# version: 2
-# build:
-#  jobs:
-#    - "asp.net.core"
-#    - "angular"
+           cd CUSTOR.OTRLS.Web && npm install && ng build
+workflows:
+ version: 2
+ build:
+  jobs:
+    - "asp.net.core"
+    - "angular"
