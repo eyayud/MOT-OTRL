@@ -1,6 +1,6 @@
 version: 2
 jobs:
-  "asp.net.core":
+  asp.net.core:
     docker:
       - image: mcr.microsoft.com/dotnet/core/sdk:2.2
     steps:
@@ -14,7 +14,7 @@ jobs:
           command:
             dotnet build
 
-  "angular":
+  angular:
     docker:
       - image: circleci/node:8-browsers
     steps:
@@ -30,10 +30,10 @@ workflows:
  version: 2
  build:
   jobs:
-    - "asp.net.core"
-    - "angular"
-      filters:
-        branches:
-          only:
-            - master
-            - develop
+    - asp.net.core
+    - angular:
+        filters:
+          branches:
+            only:
+              - master
+              - develop
