@@ -1,22 +1,27 @@
 using System;
 using System.Linq;
 
+using System.Threading.Tasks;
+
 using Microsoft.EntityFrameworkCore.ChangeTracking;
 
 namespace CUSTOR.OTRLS.Core
 {
     public static class DbSeeder
     {
+        
+        
+        
         #region Public Methods
 
-        public static void Seed(OTRLSDbContext dbContext)
+        public static async Task Seed(OTRLSDbContext dbContext)
         {
             //create default Users (if there are none)
 
            
 
-            //create default organization (if there are none) together with warehouse and items
-            if (!dbContext.CustomerProfile.Any()) CreateUserProfiles(dbContext);
+            //create default customer profile (if there are none) 
+            if (!dbContext.CustomerProfile.Any()) await CreateUserProfiles(dbContext);
         }
 
         #endregion
@@ -24,14 +29,14 @@ namespace CUSTOR.OTRLS.Core
         #region Seed Methods
 
 
-        private static void CreateUserProfiles(OTRLSDbContext dbContext)
+        private static async Task CreateUserProfiles(OTRLSDbContext dbContext)
         {
             //local variables
-            DateTime createdDate = new DateTime(2016, 03, 01, 12, 30, 00);
-            DateTime updatedDate = DateTime.Now;
+            var createdDate = new DateTime(2016, 03, 01, 12, 30, 00);
+            var updatedDate = DateTime.Now;
 
        
-            EntityEntry<CustomerProfile> e = dbContext.CustomerProfile.Add(new CustomerProfile()
+            var e = dbContext.CustomerProfile.Add(new CustomerProfile()
             {
                
                 Tin = "524354254",
@@ -46,11 +51,13 @@ namespace CUSTOR.OTRLS.Core
                 MotherNameEng = "Amina",
                 Nationality = 49,
                 AddressId = 1,
+                IsActive = true,
+                IsDeleted = false,
                 CreatedDate = createdDate,
                 UpdatedDate = updatedDate,
             });
             //persist changes to Database
-            dbContext.SaveChangesAsync();
+            await  dbContext.SaveChangesAsync();
         }
 
         #endregion

@@ -51,6 +51,7 @@
               {{ menuItem.title | translate }}
             </mat-panel-title>
           </mat-expansion-panel-header>
+
           <mat-list dense class="mat-expansion-panel-body">
             <a *ngFor="let subMenu of menuItem.children" mat-list-item routerLinkActive="active" [routerLink]="subMenu.path">
               <mat-icon color="primary" class="mat-18">{{subMenu.iconType}}</mat-icon>

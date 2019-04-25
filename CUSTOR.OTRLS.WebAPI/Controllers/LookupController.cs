@@ -28,7 +28,7 @@ namespace CUSTOR.OTRLS.API.Controllers
         [HttpGet("{lang}/{id}")]
         public async Task<IEnumerable<StaticData>> Getlookup(string lang, int id)
         {
-            
+           
             return await lRepository.GetLookups(lang, id);
         }
 

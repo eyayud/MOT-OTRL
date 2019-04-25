@@ -56,7 +56,7 @@ export class ManagerService extends EndpointFactory {
       );
   }
 
-  deleteManager(id: number): Observable<any> {
+  deleteManager(id: number) {
     const endpointUrl = `${this.managerUrl}/${id}`;
     return this.httpClient.delete<boolean>(endpointUrl, this.getRequestHeaders()).pipe(
       map(result => {
