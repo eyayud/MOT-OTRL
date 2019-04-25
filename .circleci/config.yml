@@ -1,13 +1,12 @@
 version: 2
 jobs:
-  branches:
-    only:
-      - master
-      - develop
-      - /rc-.*/
   "asp.net.core":
     docker:
       - image: mcr.microsoft.com/dotnet/core/sdk:2.2
+    branches:
+      only:
+        - master
+        - develop
     steps:
       - checkout
       - run:
@@ -22,6 +21,10 @@ jobs:
   "angular":
     docker:
       - image: circleci/node:8-browsers
+    branches:
+      only:
+        - master
+        - develop    
     steps:
       - checkout
       - run:
