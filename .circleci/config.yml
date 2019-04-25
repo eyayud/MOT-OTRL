@@ -1,6 +1,5 @@
 version: 2
 jobs:
-  "asp.net.core":
     docker:
       - image: mcr.microsoft.com/dotnet/core/sdk:2.2
       - image: circleci/node:8-browsers
