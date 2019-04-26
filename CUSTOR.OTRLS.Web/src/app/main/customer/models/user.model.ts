@@ -1,32 +1,62 @@
 export class UserProfile {
-    constructor() {
-    }
-       public  Tin?: string;
+  constructor() {
+  }
 
-       public  Title?: string;
+  public Tin?: string;
 
-       public  FirstName ?: string;
+  public Title?: string;
 
-       public  FirstNameEng ?: string;
+  public FirstName ?: string;
 
-       public  FatherName ?: string;
+  public FirstNameEng ?: string;
 
-       public  FatherNameEng ?: string;
+  public FatherName ?: string;
 
-       public  GrandName ?: string;
+  public FatherNameEng ?: string;
 
-       public  GrandNameEng?: string;
+  public GrandName ?: string;
 
-       public  MotherName?: string;
+  public GrandNameEng?: string;
 
-       public  MotherNameEng?: string;
+  public MotherName?: string;
 
-       public  IdentificationNumber?: string;
+  public MotherNameEng?: string;
 
-       public  BirthDate?: string;
+  public IdentificationNumber?: string;
 
-       public  Gender?: string;
+  public BirthDate?: string;
 
-       public  Nationality?: string;
+  public Gender?: string;
+
+  public Nationality?: string;
+
+}
+
+
+export class UserNameDTO {
+  public FirstName: string;
+
+  public FirstNameEng: string;
+
+  public FirstNameRegion: string;
+
+  public FatherName: string;
+
+  public FatherNameEng: string;
+
+  public FatherNameRegion: string;
+
+  public GrandName: string;
+
+  public GrandNameEng: string;
+
+  public GrandNameRegion: string;
+
+  public MotherName: string;
+
+  public MotherNameEng: string;
+
+  public MotherNameRegion: string;
+
 
 }

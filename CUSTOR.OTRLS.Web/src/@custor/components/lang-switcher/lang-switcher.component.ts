@@ -30,7 +30,6 @@ export class LangSwitcher {
 
   setLang(lang: string) {
     if (lang) {
-      alert (this.config.language);
       this.config.language = lang;
       this.selectedLanguage = lang;
       this.selectedLanguageName = this.getLangName(lang);

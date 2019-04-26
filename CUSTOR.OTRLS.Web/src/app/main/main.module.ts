@@ -14,6 +14,7 @@ import {AccountEndpoint} from '@custor/services/security/account-endpoint.servic
 // import { LocalStoreManager } from '@custor/services/storeManager.service';
 import {AuthService} from '@custor/services/security/auth.service';
 import {LangSwitcherModule} from '@custor/components/lang-switcher/lang-switcher.component';
+import {ProgressBarComponent} from "../../@custor/components/progress-bar/progress-bar.component";
 
 
 export const routes = [
@@ -31,6 +32,7 @@ export const routes = [
   declarations: [
     // GroupByPipe,
     MainComponent,
+    ProgressBarComponent
     
    ],
   imports: [
