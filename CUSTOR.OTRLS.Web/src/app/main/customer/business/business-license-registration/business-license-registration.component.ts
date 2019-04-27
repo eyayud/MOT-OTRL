@@ -13,6 +13,8 @@ import {
 import {UserNameDTO} from '../../models/user.model';
 import {UserService} from '../../services/user.service';
 import {ConfigurationService} from "../../../../../@custor/services/configuration.service";
+import {MovingDirection, WizardStepComponent} from "angular-archwizard";
+import {Observable} from "rxjs";
 
 @Component({
   selector: 'app-business-license-registration',
@@ -33,6 +35,10 @@ export class BusinessLicenseRegistrationComponent implements OnInit {
   licenseRegistrationForm: FormGroup;
   // declare manger for getting default company name
   customerName: UserNameDTO;
+
+
+  // testing arc-wizard
+  stepOneExit: boolean;
 
   constructor(
     private translationService: AppTranslationService,
@@ -276,13 +282,32 @@ export class BusinessLicenseRegistrationComponent implements OnInit {
 
   }
 
-  onSubmit(application) {
+
+  canExitStepOne: (MovingDirection) => boolean = (direction) => {
+    console.log(direction);
     this.progressBarService.triggerProgressBar(true);
-    console.log(application);
-    this.apiService.saveApplication(application).subscribe(res => {
+    console.log(this.licenseRegistrationForm.value);
+    this.apiService.saveApplication(this.licenseRegistrationForm.value).subscribe(res => {
       this.progressBarService.triggerProgressBar(false);
+      return true;
     });
+    return false;
+
+  };
+
+
+  // testing arc-wizard features
+  test(event: MovingDirection) {
+    console.log("hello");
   }
 
+  test2() {
+    return true;
+  }
+
+  test3(event: MovingDirection) {
+    console.log(event);
+
+  }
 
 }

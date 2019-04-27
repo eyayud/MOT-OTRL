@@ -19,6 +19,7 @@ import {ProfileComponent} from './profile/profile.component';
 import {BusinessLicenseRegistrationComponent} from './business/business-license-registration/business-license-registration.component';
 import {BusinessApiService} from './services/business.api.service';
 import {LangSwitcherModule} from '../../../@custor/components/lang-switcher/lang-switcher.component';
+import {ArchwizardModule} from "angular-archwizard";
 
 export const routes = [
   {path: '', redirectTo: 'manager-list', pathMatch: 'full'},
@@ -52,7 +53,8 @@ export const routes = [
       }
     }),
     LangSwitcherModule,
-    AngConfirmDialogModule
+    AngConfirmDialogModule,
+    ArchwizardModule
   ],
   providers: [AppTranslationService, LookUpService, AddressService, ManagerService, BusinessApiService]
 
