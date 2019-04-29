@@ -366,7 +366,8 @@
   },
   "registration": {
     "management": {
-      "RegistrationName": "Trade Information"
+      "RegistrationName": "Trade Information",
+      "GeneralInformation" : "General Information"
     },
     "editor": {
       "LegalStatus": "Legal Status",

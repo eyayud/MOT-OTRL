@@ -346,7 +346,8 @@
   },
   "registration": {
     "management": {
-      "RegistrationName": "የ ነጋዴው መረጃ"
+      "RegistrationName": "የ ነጋዴው መረጃ",
+      "GeneralInformation" : "ጠቅላላ መረጃ"
     },
     "editor": {
       "LegalStatus": "ህጋዊ አቋም",
@@ -380,7 +381,7 @@
   },
   "registrationAddress": {
     "management": {
-      "RegistrationAddressName": "Address"
+      "RegistrationAddressName": "አድራሻ"
     },
     "editor": {
       "Region": "ክልል",

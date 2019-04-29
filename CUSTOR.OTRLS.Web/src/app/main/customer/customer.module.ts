@@ -20,6 +20,8 @@ import {BusinessLicenseRegistrationComponent} from './business/business-license-
 import {BusinessApiService} from './services/business.api.service';
 import {LangSwitcherModule} from '../../../@custor/components/lang-switcher/lang-switcher.component';
 import {ArchwizardModule} from "angular-archwizard";
+import { GeneralInformationComponent } from './business/general-information/general-information.component';
+import { WorkAddressComponent } from './business/work-address/work-address.component';
 
 export const routes = [
   {path: '', redirectTo: 'manager-list', pathMatch: 'full'},
@@ -35,7 +37,9 @@ export const routes = [
     ManagerListComponent,
     BreadcrumbComponent,
     ProfileComponent,
-    BusinessLicenseRegistrationComponent
+    BusinessLicenseRegistrationComponent,
+    GeneralInformationComponent,
+    WorkAddressComponent
     // BusinessComponent,
     // BusinessListComponent
   ],
