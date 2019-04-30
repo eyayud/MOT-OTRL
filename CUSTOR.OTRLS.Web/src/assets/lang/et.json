@@ -400,6 +400,7 @@
     }
   },
   "payment": {
+    "Header": "ክፍያ",
     "investorName": "ስም",
     "paymentDate": "የክፍያ ቀን",
     "no": "ተ.ቁ",

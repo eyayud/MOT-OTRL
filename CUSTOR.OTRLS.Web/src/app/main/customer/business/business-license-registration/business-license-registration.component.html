@@ -1,31 +1,60 @@
 <div fxLayout="row" class="p-5 mt-5">
   <mat-card fxFlex="100" class="mt-5">
     <mat-card-header>
-      {{exitStepOne}}
       <div mat-card-avatar></div>
       <mat-card-title>{{'pageHeader.businessLicense' | translate}}</mat-card-title>
       <mat-card-subtitle>{{'subTitle.fillInformation' | translate}}</mat-card-subtitle>
     </mat-card-header>
 
+<!--    wizard for implementing business license registration. components except the first step component are initialized-->
+<!--    whenever the preceding ones are done with their logic-->
+
     <aw-wizard #step  [navBarLayout]="'large-empty-symbols'">
+<!--      step where customer fills basic information like company name, capital and sector-->
       <aw-wizard-step stepTitle="Title of step 1">
         <ng-template awWizardStepTitle>
           <span>{{'registration.management.GeneralInformation'| translate }}</span>
         </ng-template>
         <ng-template awWizardStepSymbol>
-          <mat-icon>account_circle</mat-icon>
+          <mat-icon class="mt-2" >account_circle</mat-icon>
         </ng-template>
-        <app-general-information [wizard]="step" (exitStepOne)="exited($event)"></app-general-information>
+        <app-general-information [wizard]="step" (exitStepOne)="canExitStepOne($event)"></app-general-information>
 
       </aw-wizard-step>
-      <aw-wizard-step stepTitle="Title of step 2" >
+
+<!--      step where customer selects address that are registered during trade registration-->
+      <aw-wizard-step  >
         <ng-template awWizardStepTitle>
           <span>{{'registrationAddress.management.RegistrationAddressName'| translate }}</span>
         </ng-template>
         <ng-template awWizardStepSymbol>
-          <mat-icon>location_on</mat-icon>
+          <mat-icon class="mt-2">location_on</mat-icon>
         </ng-template>
-        <app-work-address *ngIf="exitStepOne"></app-work-address>
+        <app-work-address *ngIf="exitStepOne" ></app-work-address>
+      </aw-wizard-step>
+
+
+
+    <!--      step where customer uploads required documents-->
+    <aw-wizard-step  >
+      <ng-template awWizardStepTitle>
+        <span>{{'servicePrerequsite.Header'| translate }}</span>
+      </ng-template>
+      <ng-template awWizardStepSymbol>
+        <mat-icon class="mt-2">file_copy</mat-icon>
+      </ng-template>
+      <app-required-documents></app-required-documents>
+    </aw-wizard-step>
+
+      <!--      step where customer gets payment info-->
+      <aw-wizard-step  >
+        <ng-template awWizardStepTitle>
+          <span>{{'payment.Header'| translate }}</span>
+        </ng-template>
+        <ng-template awWizardStepSymbol>
+          <mat-icon class="mt-2">attach_money</mat-icon>
+        </ng-template>
+        <app-payment></app-payment>
       </aw-wizard-step>
     </aw-wizard>
   </mat-card>

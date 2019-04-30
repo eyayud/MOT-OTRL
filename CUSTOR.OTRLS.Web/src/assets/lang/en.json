@@ -421,6 +421,7 @@
     }
   },
   "payment": {
+    "Header": "Payment",
     "investorName": "Investor Name",
     "paymentDate": "Payment Date",
     "no": "No",
@@ -461,6 +462,9 @@
     "DescriptionAlias": "Description Alias",
     "DescriptionEnglish": "Description English",
     "DescriptionEnglishAlias": "Description English Alias"
+  },
+  "classificationLens": {
+    "header": "Classification Lens"
   },
   "activity": {
     "Sector": "Sector",

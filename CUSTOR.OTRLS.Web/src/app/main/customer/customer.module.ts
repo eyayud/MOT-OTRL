@@ -22,6 +22,8 @@ import {LangSwitcherModule} from '../../../@custor/components/lang-switcher/lang
 import {ArchwizardModule} from "angular-archwizard";
 import { GeneralInformationComponent } from './business/general-information/general-information.component';
 import { WorkAddressComponent } from './business/work-address/work-address.component';
+import { RequiredDocumentsComponent } from './business/required-documents/required-documents.component';
+import { PaymentComponent } from './business/payment/payment.component';
 
 export const routes = [
   {path: '', redirectTo: 'manager-list', pathMatch: 'full'},
@@ -39,7 +41,9 @@ export const routes = [
     ProfileComponent,
     BusinessLicenseRegistrationComponent,
     GeneralInformationComponent,
-    WorkAddressComponent
+    WorkAddressComponent,
+    RequiredDocumentsComponent,
+    PaymentComponent
     // BusinessComponent,
     // BusinessListComponent
   ],

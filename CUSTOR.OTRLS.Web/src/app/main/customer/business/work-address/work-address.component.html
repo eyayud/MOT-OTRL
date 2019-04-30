@@ -1,3 +1,87 @@
-<p>
-  work-address works!
-</p>
+<mat-table [dataSource]="addresses" class="mat-elevation-z2 mt-6" fxFlexAlign="center">
+
+  <!-- Checkbox Column -->
+  <ng-container matColumnDef="Select">
+    <mat-header-cell *matHeaderCellDef>
+      <mat-checkbox (change)="$event ? masterToggle() : null"
+                    [checked]="selection.hasValue() && isAllSelected()"
+                    [indeterminate]="selection.hasValue() && !isAllSelected()"
+                    [aria-label]="checkboxLabel()">
+      </mat-checkbox>
+    </mat-header-cell>
+    <mat-cell *matCellDef="let row">
+      <mat-checkbox (click)="$event.stopPropagation()"
+                    (change)="$event ? selection.toggle(row) : null"
+                    [checked]="selection.isSelected(row)"
+                    [aria-label]="checkboxLabel(row)">
+      </mat-checkbox>
+    </mat-cell>
+  </ng-container>
+
+  <!-- Phone Column -->
+  <ng-container matColumnDef="IsMainOffice">
+    <mat-header-cell *matHeaderCellDef></mat-header-cell>
+    <mat-cell *matCellDef="let row">
+      <button mat-button mat-raised-button color="primary"
+              *ngIf="row.IsMainOffice">{{'registrationAddress.editor.IsMainOffice'|translate}}</button>
+    </mat-cell>
+  </ng-container>
+  <!-- Phone Column -->
+  <ng-container matColumnDef="CellPhoneNo">
+    <mat-header-cell *matHeaderCellDef> {{'registrationAddress.editor.PhoneMobile'|translate}}</mat-header-cell>
+    <mat-cell *matCellDef="let element"> {{element.CellPhoneNo}} </mat-cell>
+  </ng-container>
+
+  <!-- Tele No. Column -->
+  <ng-container matColumnDef="TeleNo">
+    <mat-header-cell *matHeaderCellDef> {{'registrationAddress.editor.PhoneDirect'|translate}}</mat-header-cell>
+    <mat-cell *matCellDef="let element"> {{element.TeleNo}} </mat-cell>
+  </ng-container>
+
+  <!-- Email Column -->
+  <ng-container matColumnDef="Email">
+    <mat-header-cell *matHeaderCellDef> {{'registrationAddress.editor.Email'|translate}}</mat-header-cell>
+    <mat-cell *matCellDef="let element"> {{element.Email}} </mat-cell>
+  </ng-container>
+
+  <!-- Region Column -->
+  <ng-container matColumnDef="Region">
+    <mat-header-cell *matHeaderCellDef> {{'registrationAddress.editor.Region'|translate}}</mat-header-cell>
+    <mat-cell *matCellDef="let element"> {{element.Region}} </mat-cell>
+  </ng-container>
+
+  <!-- Zone Column -->
+  <ng-container matColumnDef="Zone">
+    <mat-header-cell *matHeaderCellDef> {{'registrationAddress.editor.Zone'|translate}}</mat-header-cell>
+    <mat-cell *matCellDef="let element"> {{element.Zone}} </mat-cell>
+  </ng-container>
+
+  <!-- Woreda Column -->
+  <ng-container matColumnDef="Woreda">
+    <mat-header-cell *matHeaderCellDef> {{'registrationAddress.editor.Woreda'|translate}}</mat-header-cell>
+    <mat-cell *matCellDef="let element"> {{element.Woreda}} </mat-cell>
+  </ng-container>
+
+  <!-- Kebele Column -->
+  <ng-container matColumnDef="Kebele">
+    <mat-header-cell *matHeaderCellDef> {{'registrationAddress.editor.Kebele'|translate}}</mat-header-cell>
+    <mat-cell *matCellDef="let element"> {{element.Kebele}} </mat-cell>
+  </ng-container>
+
+  <!-- HouseNo Column -->
+  <ng-container matColumnDef="HouseNo">
+    <mat-header-cell *matHeaderCellDef> {{'registrationAddress.editor.HouseNo'|translate}}</mat-header-cell>
+    <mat-cell *matCellDef="let element"> {{element.HouseNo}} </mat-cell>
+  </ng-container>
+
+
+  <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+  <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+</mat-table>
+
+<div fxLayout="row" fxLayoutAlign="end" fxLayoutGap="10px" class="mt-3">
+  <button mat-raised-button color="warn" awPreviousStep>  {{'common.commands.Back' | translate}}</button>
+  <button [disabled]="false" type="button" mat-raised-button
+          color="primary">{{'common.commands.Next' | translate}}</button>
+</div>
+

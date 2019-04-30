@@ -1,7 +1,7 @@
-import {AfterContentInit, Component, Input, OnChanges, OnInit, SimpleChanges, ViewChild} from '@angular/core';
+import {Component} from '@angular/core';
 import {AppTranslationService} from '../../../../../@custor/services/translation.service';
 import {ConfigurationService} from '../../../../../@custor/services/configuration.service';
-import {WizardComponent, WizardStepComponent} from "angular-archwizard";
+
 
 
 @Component({
@@ -20,11 +20,8 @@ export class BusinessLicenseRegistrationComponent {
     this.translationService.changeLanguage(this.configService.language);
   }
 
-  canExitStepOne: (MovingDirection) => boolean = (direction) => {
-    return this.exitStepOne;
-  }
-
-  exited(event) {
+  // check if step one can be exited so that it can load the second step
+  canExitStepOne(event) {
     this.exitStepOne = event;
   }
 

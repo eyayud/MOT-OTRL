@@ -26,10 +26,14 @@ import {MovingDirection, WizardComponent, WizardStepComponent} from 'angular-arc
   templateUrl: './general-information.component.html',
   styleUrls: ['./general-information.component.scss']
 })
-export class GeneralInformationComponent implements OnInit, AfterContentInit, OnChanges {
+export class GeneralInformationComponent implements OnChanges {
 
+  // load instance of wizard component for programmatically do navigation
   @Input() wizard: WizardComponent;
+
+  // output boolean to notify parent that step one can be exited
   @Output() exitStepOne = new EventEmitter();
+
   // declare variable for dummy sectors
   dummySectorsData: any;
   sectorsList: any;
@@ -69,23 +73,14 @@ export class GeneralInformationComponent implements OnInit, AfterContentInit, On
 
   }
 
-  // check if wizard component instance  is well recieved
+  // check if wizard component instance  is well received
   ngOnChanges(changes: SimpleChanges) {
-
     if (typeof changes.wizard !== 'undefined') {
-      console.log(this.wizard.navigation);
+      console.log('wizard well received');
     }
   }
 
-  ngOnInit() {
-    // console.log(this.it.navigation.goToNextStep());
-  }
-
-  ngAfterContentInit() {
-    console.log(this.wizard);
-    console.log(this.wizard.navigation);
-  }
-
+  // initialize form
   initForm() {
     this.licenseRegistrationForm = this.formBuilder.group({
       companyNameAmharic: ['', [Validators.required, Validators.minLength(3), Validators.pattern(ET_ALPHABET_WITHSPACE_REGEX)]],
@@ -100,6 +95,7 @@ export class GeneralInformationComponent implements OnInit, AfterContentInit, On
     });
   }
 
+  // get customer name for default company name
   getCustomerName(id) {
     this.progressBarService.triggerProgressBar(true);
     this.userService
@@ -128,9 +124,6 @@ export class GeneralInformationComponent implements OnInit, AfterContentInit, On
     this.licenseRegistrationForm.patchValue({companyNameEnglish: fullEnglishName});
     this.licenseRegistrationForm.patchValue({companyNameRegional: fullRegionalName});
   }
-
-  // setter methods for license registration form controllers
-
 
   // getter methods for license registration form controllers
 
