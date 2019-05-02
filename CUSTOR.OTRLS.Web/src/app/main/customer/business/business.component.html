@@ -1,0 +1,115 @@
+<div class="page-content">
+  <mat-card [hidden]="hideService" class="mat-elevation-z8">
+    <mat-card-header>
+      <mat-card-title>{{'investors.editor.Service register' | translate}}</mat-card-title>
+    </mat-card-header>
+    <mat-card-content>
+      <form [formGroup]="serviceForm" novalidate (ngSubmit)="onSubmit()" fxLayout="column" autocomplete="off">
+        <div fxLayout="row wrap" fxLayoutAlign="" fxLayoutGap="2em">
+          <mat-form-field>
+            <!-- <mat-label>{{'registration.editor.ServiceNumber' | translate}}</mat-label> -->
+            <mat-label>Legal Status</mat-label>
+            <mat-select formControlName="LegalStatus" required>
+              <mat-option value="0">PLC</mat-option>
+              <mat-option value="1">Personal</mat-option>
+            </mat-select>
+          </mat-form-field>
+          <mat-form-field *ngIf="serviceForm.value.LegalStatus==1">
+            <mat-label>Tin Number</mat-label>
+            <input matInput id="Tin" formControlName="Tin" placeholder="Tin Number" />
+          </mat-form-field>
+        </div>
+        <div fxLayout="row wrap" fxLayoutGap="2em" *ngIf="serviceForm.value.LegalStatus==0">
+          <mat-form-field>
+            <mat-label>Company Name</mat-label>
+            <input matInput id="CompanyName" formControlName="CompanyName" placeholder="Company Name" />
+          </mat-form-field>
+          <mat-form-field>
+            <mat-label>Company Name English</mat-label>
+            <input matInput id="CompanyNameEng" formControlName="CompanyNameEng" placeholder="Company Name English" />
+          </mat-form-field>
+        </div>
+        <div fxLayout="row wrap" fxLayoutGap="2em" *ngIf="serviceForm.value.LegalStatus==1">
+          <!--- Name In Amharic Form Section-->
+          <div fxLayout="row wrap" fxLayoutAlign="" fxLayoutGap="2em" class="profile-registration">
+            <mat-form-field>
+              <!-- <mat-label>{{'investors.editor.Name' | translate}}</mat-label> -->
+              <mat-label>FirstName (Amh)</mat-label>
+              <input matInput id="FirstName" formControlName="FirstName" required placeholder="Name" />
+            </mat-form-field>
+
+            <mat-form-field>
+              <!-- <mat-label>{{'investors.editor.FatherName' | translate}}</mat-label> -->
+              <input matInput id="FatherName" formControlName="FatherName" required placeholder="Father's Name" />
+            </mat-form-field>
+            <mat-form-field>
+              <!-- <mat-label>{{'investors.editor.GrandName' | translate}}</mat-label> -->
+              <input matInput id="GrandName" formControlName="GrandName" required placeholder="Grand Father's Name" />
+            
+            </mat-form-field>
+            <mat-form-field>
+              <!-- <mat-label>{{'investors.editor.MotherName' | translate}}</mat-label> -->
+              <input matInput id="MotherName" formControlName="MotherName" required placeholder="Mother's Name" />
+            </mat-form-field>
+          </div>
+          <!---END OF Name In Amharic Form Section-->
+          <!--- NAME In ENGLISH SECTION-->
+          <div fxLayout="row wrap" fxLayoutAlign="" fxLayoutGap="2em" class="profile-registration">
+            <mat-form-field>
+              <!-- <mat-label>{{'investors.editor.FirstNameEng' | translate }}(English)</mat-label> -->
+             <mat-label>FirstName (Eng)</mat-label>
+              <input matInput id="FirstNameEng" formControlName="FirstNameEng" required placeholder="Name" />
+            </mat-form-field>
+            <mat-form-field>
+              <!-- <mat-label> {{'investors.editor.FatherNameEng' | translate }}(English) </mat-label> -->
+              <input matInput id="FatherNameEng" formControlName="FatherNameEng" required placeholder="Father's Name" />
+              
+            </mat-form-field>
+            <mat-form-field>
+              <!-- <mat-label> {{'investors.editor.GrandNameEng' | translate }}(English) </mat-label> -->
+              <input matInput id="GrandNameEng" formControlName="GrandNameEng" required
+                placeholder="Grand Father's Name" />
+             
+            </mat-form-field>
+            <mat-form-field>
+              <!-- <mat-label>{{'investors.editor.MotherNameEng' | translate}} (English) </mat-label> -->
+              <input matInput id="MotherNameEng" formControlName="MotherNameEng" required placeholder="Mother's Name" />
+            </mat-form-field>
+          </div>
+
+              <div fxLayout="row wrap" fxLayoutAlign="" fxLayoutGap="2em" class="profile-registration-region">
+                <mat-form-field>
+                  <!-- <mat-label>{{'investors.editor.FirstNameEng' | translate }}(English)</mat-label> -->
+                  <mat-label>First Name (Region)</mat-label>
+                  <input matInput id="FirstNameEng" formControlName="FirstNameRegion" required placeholder="Name" />
+
+                </mat-form-field>
+                <mat-form-field>
+                  <!-- <mat-label> {{'investors.editor.FatherNameRegion' | translate }}(Regionlish) </mat-label> -->
+                  <input matInput id="FatherNameRegion" formControlName="FatherNameRegion" required
+                    placeholder="Father's Name" />
+
+                </mat-form-field>
+                <mat-form-field>
+                  <!-- <mat-label> {{'investors.editor.GrandNameRegion' | translate }}(Regionlish) </mat-label> -->
+                  <input matInput id="GrandNameRegion" formControlName="GrandNameRegion" required
+                    placeholder="Grand Father's Name" />
+
+                </mat-form-field>
+                <mat-form-field>
+                  <!-- <mat-label>{{'investors.editor.MotherNameRegion' | translate}} (Regionlish) </mat-label> -->
+                  <input matInput id="MotherNameRegion" formControlName="MotherNameRegion" required
+                    placeholder="Mother's Name" />
+                </mat-form-field>
+              </div>
+        </div>
+
+      </form>
+
+    </mat-card-content>
+   <mat-card-actions fxLayoutAlign="center end">
+     <button mat-raised-button color="primary" (click)="saveServiceInfo()">Save</button>
+     <button mat-raised-button color="warn" (cancel)="cancel()">Cancel</button>
+   </mat-card-actions>
+  </mat-card>
+</div>

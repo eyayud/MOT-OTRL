@@ -39,3 +39,6 @@ mat-divider {
 .green-top-border{
   border-top: 3px solid #349f92 !important;
 }
+.mat-tab-body.mat-tab-body-active {
+  min-height: 300px;
+}

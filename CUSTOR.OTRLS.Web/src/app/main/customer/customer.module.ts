@@ -28,47 +28,48 @@ import {FileUploadDialogModule} from "../../../@custor/components/file-upload-di
 
 
 export const routes = [
-  {path: '', redirectTo: 'manager-list', pathMatch: 'full'},
-  {path: 'manager-list', component: ManagerListComponent},
-  {path: 'manager/:id', component: ManagerComponent},
-  {path: 'profile', component: ProfileComponent},
-  {path: 'businessLicenseRegistration', component: BusinessLicenseRegistrationComponent},
-];
-
+    { path: '', redirectTo: 'manager-list', pathMatch: 'full'},
+    { path: 'manager-list', component: ManagerListComponent},
+    { path: 'manager/:id', component: ManagerComponent},
+    { path: 'profile', component: ProfileComponent},
+    { path: 'business', component: BusinessComponent},
+    { path: 'tab', component: RegistrationTabComponent},
+{path: 'businessLicenseRegistration', component: BusinessLicenseRegistrationComponent},
+  ];
 @NgModule({
-  declarations: [
-    ManagerComponent,
-    ManagerListComponent,
-    BreadcrumbComponent,
-    ProfileComponent,
-    BusinessLicenseRegistrationComponent,
-    GeneralInformationComponent,
-    WorkAddressComponent,
-    RequiredDocumentsComponent,
-    PaymentComponent,
-    // BusinessComponent,
-    // BusinessListComponent
-  ],
-  imports: [
-    RouterModule.forChild(routes),
-    SharedModule,
-    CommonModule,
-    FlexLayoutModule,
-    FormsModule,
-    ReactiveFormsModule,
-    TranslateModule.forChild({
-      loader: {
-        provide: TranslateLoader,
-        useClass: TranslateLanguageLoader
-      }
-    }),
-    LangSwitcherModule,
-    AngConfirmDialogModule,
-    FileUploadDialogModule,
-    ArchwizardModule
-  ],
-  providers: [AppTranslationService, LookUpService, AddressService, ManagerService, BusinessApiService]
+    declarations: [
+        ManagerComponent,
+        ManagerListComponent,
+        BreadcrumbComponent,
+        ProfileComponent,
+        BusinessComponent,
+        RegistrationTabComponent,
+        RegistrationDocumentComponent,
+        PaymentComponent,
+        GeneralComponent,
+        // BusinessComponent,
+        // BusinessListComponent
+    ],
+    imports: [
+        RouterModule.forChild(routes),
+        SharedModule,
+        CommonModule,
+        FlexLayoutModule,
+        FormsModule,
+        ReactiveFormsModule,
+        TranslateModule.forRoot({
+          loader: {
+            provide: TranslateLoader,
+            useClass: TranslateLanguageLoader
+          }
+        }),
+        AngConfirmDialogModule
+      ],
+     providers: [AppTranslationService,
+                 LookUpService, 
+                 AddressService,
+                 ManagerService,
+                 ]
 
-})
-export class CustomerModule {
-}
+  })
+  export class CustomerModule { }

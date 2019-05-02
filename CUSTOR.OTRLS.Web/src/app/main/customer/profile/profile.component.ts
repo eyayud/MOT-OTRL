@@ -1,12 +1,14 @@
 import { Component, OnInit ,Input } from '@angular/core';
-import { FormGroup, FormBuilder, Validators } from '@angular/forms';
+import { FormGroup, FormBuilder, Validators, FormControl } from '@angular/forms';
 import { LookUpService } from '../../../common/services/look-up.service';
 import { UserProfile } from '../models/user.model';
 import { UserService } from '../services/user.service';
+import { AddressService } from '../../../common/services/address.service';
 import { ConfigurationService } from '../../../../@custor/services/configuration.service';
 import { Gender, LegalStatus, Lookup } from '../../../common/models/lookup.model';
 import { ALPHABET_WITHSPACE_REGEX, GENDERS, LEGAL_STATUSES } from '../../../common/constants/consts';
 import { ToastrService } from 'ngx-toastr';
+import { StaticData, StaticData2 } from '../../../common/models/static-data.model';
 
 @Component({
   selector: 'app-profile',
@@ -17,16 +19,26 @@ export class ProfileComponent implements OnInit {
   ProfileForm: FormGroup;
   currentLang = 'en';
   user: UserProfile;
+  AllowCascading = true;
   countryList=[];
   titleList =[];
   genders: Gender[] = [];
-  @Input() errors: string[] = [];
+  regions: StaticData2[] = [];
+  zones: StaticData2[] = [];
+  filteredZones: StaticData2[] = [];
+  woredas: StaticData2[] = [];
+  filteredWoredas: StaticData2[] = [];
+  kebeles: StaticData2[] = [];
+  filteredKebeles: StaticData2[] = [];
+  // @Input() errors: string[] = [];
+
   userProfile = "";
   isNewUser :boolean;
   loadingIndicator :boolean;
   constructor(private fb: FormBuilder, private lookUpService: LookUpService,
     private configService: ConfigurationService,
     private userService: UserService,
+    private addressService: AddressService,
     private toastr: ToastrService) {
 
 
@@ -81,10 +93,106 @@ export class ProfileComponent implements OnInit {
 
   ngOnInit() {
     this.createForm();
+    this.fillAddressLookups();
     this.initStaticData(this.currentLang);
   
 
   }
+  fillAddressLookups() {
+    const countryLookupType = 8;
+    const titleLookupType = 89;
+    // to-do
+    // bring all in one go
+    // caching
+    this.getRegions();
+    this.getAllZones();
+    this.getAllWoredas();
+    this.getTitles(titleLookupType);
+    this.getCountries(countryLookupType);
+  }
+  getRegions() {
+    this.addressService.getRegionsByLang(this.currentLang)
+      .subscribe(result => {
+        console.log(result);
+        this.regions = result;
+      },
+        error => {
+          return this.toastr.error(error);
+        });
+  }
+
+  getAllZones() {
+    this.addressService.getAllZonesByLang(this.currentLang)
+      .subscribe(z => {
+        this.zones = z;
+        if (this.zones) {
+          this.filterRegion('');
+        }
+      },
+        error => this.toastr.error(error));
+  }
+
+  getAllWoredas() {
+    this.addressService.getAllWoredasByLang(this.currentLang)
+      .subscribe(result => {
+        this.woredas = result;
+        // alert (result.length);
+        if (this.woredas) {
+          this.filterZone('');
+        }
+      },
+        error => this.toastr.error(error));
+  }
+
+  // very expensive!
+  getAllKebeles() {
+    this.addressService.getAllKebelesByLang(this.currentLang)
+      .subscribe(result => {
+        this.kebeles = result;
+        if (this.kebeles) {
+          this.filterWoreda('');
+        }
+      },
+        error => this.toastr.error(error));
+  }
+  filterRegion(regionCode: string) {
+    if (!regionCode || !this.AllowCascading) {
+      return;
+    }
+    this.filteredKebeles = null;
+    this.filteredWoredas = null;
+    if (!this.zones) {
+      return;
+    }
+    this.filteredZones = this.zones.filter((item) => {
+      return item.ParentId === regionCode;
+    });
+  }
+
+  filterZone(zoneCode: string) {
+    if (!zoneCode || !this.AllowCascading) {
+      return;
+    }
+    this.filteredKebeles = null;
+    this.filteredWoredas = this.woredas.filter((item) => {
+      return item.ParentId === zoneCode;
+    });
+  }
+
+  filterWoreda(woredaCode: string) {
+    if (!woredaCode || !this.AllowCascading) {
+      return;
+    }
+    this.getKebeleByWoredaId(woredaCode);
+  }
+  getKebeleByWoredaId(woredaId: any) {
+    this.addressService.getKebelesByWoreda(this.configService.language, woredaId)
+      .subscribe(result => {
+        // this.kebeles = result;
+        this.filteredKebeles = result;
+      });
+  }
+
   createForm() {
     this.ProfileForm = this.fb.group({
       Tin: ['', [Validators.required, Validators.minLength(10), Validators.maxLength(13)]],
@@ -103,6 +211,22 @@ export class ProfileComponent implements OnInit {
       Gender: ['', [Validators.required]],
       CreatedDate: [''],
       BirthDate: ['',[Validators.required]],
+      address: new FormGroup({
+        ParentId: new FormControl(),
+        RegionId: new FormControl(),
+        ZoneId: new FormControl(),
+        WoredaId: new FormControl(),
+        KebeleId: new FormControl(),
+        OtherAddress: new FormControl(),
+        CellPhoneNo: new FormControl(),
+        // SpecificAreaName: new FormControl(),
+        HouseNo: new FormControl(),
+        TeleNo: new FormControl(),
+        Fax: new FormControl(),
+        Pobox: new FormControl(),
+        Email: new FormControl(),
+        Remark: new FormControl()
+      })
     })
   }
   updateForm(){
@@ -121,9 +245,23 @@ export class ProfileComponent implements OnInit {
       Gender: this.user.Gender == null ? '' : this.user.Gender.toString(),
       Title: this.user.Title || '',
     });
+    this.ProfileForm.get('address').patchValue({
+      // RegionId: this.user.RegionId == null ? '' : this.user.RegionId.toString(),
+      // ZoneId: this.user.ZoneId == null ? '' : this.user.ZoneId.toString(),
+      // WoredaId: this.user.WoredaId == null ? '' : this.user.WoredaId.toString(),
+      // KebeleId: this.user.KebeleId == null ? '' : this.user.KebeleId.toString(),
+      // HouseNo: this.user.HouseNo || '',
+      // TeleNo: this.user.TeleNo || '',
+      // Pobox: this.user.Pobox || '',
+      // Fax: this.user.Fax || '',
+      // CellPhoneNo: this.user.CellPhoneNo || '',
+      // Email: this.user.Email || '',
+      // OtherAddress: this.user.OtherAddress || ''
+    });
   }
   getUserProfileData() {
     const formModel = this.ProfileForm.value;
+    const add = this.ProfileForm.get('address').value;
     return {
       Id: 2,
       FirstName: formModel.FirstName,
@@ -139,6 +277,17 @@ export class ProfileComponent implements OnInit {
       Tin: formModel.Tin,
       Title: formModel.Title,
       BirthDate: formModel.BirthDate,
+      RegionId: add.RegionId,
+      ZoneId: add.ZoneId,
+      WoredaId: add.WoredaId,
+      KebeleId: add.KebeleId,
+      HouseNo: add.HouseNo,
+      TeleNo: add.TeleNo,
+      Pobox: add.Pobox,
+      Fax: add.Fax,
+      CellPhoneNo: add.CellPhoneNo,
+      Email: add.Email,
+      OtherAddress: add.OtherAddress,
     }
   }
   updateProfile() {
@@ -179,7 +328,7 @@ export class ProfileComponent implements OnInit {
       // this.errors = errList;
       this.toastr.error('Please fix the listed errors', 'Error');
     } else {
-      this.errors = [];
+      // this.errors = [];
       // this.toastr.error(error.status + ':' + errList[0].toString(), 'Error');
     }
   }
