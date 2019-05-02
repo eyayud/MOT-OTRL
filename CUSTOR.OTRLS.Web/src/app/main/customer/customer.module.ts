@@ -8,8 +8,6 @@ import {TranslateModule, TranslateLoader} from '@ngx-translate/core';
 import {AppTranslationService, TranslateLanguageLoader} from '@custor/services/translation.service';
 import {ManagerComponent} from './manager/manager.component';
 import {ManagerListComponent} from './manager-list/manager-list.component';
-// import {BusinessComponent} from './business/business.component';
-// import {BusinessListComponent} from './business-list/Business-list.component';
 import {LookUpService} from '../../common/services/look-up.service';
 import {AddressService} from '../../common/services/address.service';
 import {ManagerService} from './services/manager.service';
@@ -18,58 +16,76 @@ import {BreadcrumbComponent} from '@custor/components/breadcrumb/breadcrumb.comp
 import {ProfileComponent} from './profile/profile.component';
 import {BusinessLicenseRegistrationComponent} from './business/business-license-registration/business-license-registration.component';
 import {BusinessApiService} from './services/business.api.service';
-import {LangSwitcherModule} from '../../../@custor/components/lang-switcher/lang-switcher.component';
-import {ArchwizardModule} from "angular-archwizard";
-import { GeneralInformationComponent } from './business/general-information/general-information.component';
-import { WorkAddressComponent } from './business/work-address/work-address.component';
-import { RequiredDocumentsComponent } from './business/required-documents/required-documents.component';
-import { PaymentComponent } from './business/payment/payment.component';
-import {FileUploadDialogModule} from "../../../@custor/components/file-upload-dialog/file-upload-dialog.module";
+import {ArchwizardModule} from 'angular-archwizard';
+import {GeneralInformationComponent} from './business/general-information/general-information.component';
+import {WorkAddressComponent} from './business/work-address/work-address.component';
+import {RequiredDocumentsComponent} from './business/required-documents/required-documents.component';
+import {FileUploadDialogModule} from '../../../@custor/components/file-upload-dialog/file-upload-dialog.module';
+import {BusinessComponent} from './business/business.component';
+import {RegistrationTabComponent} from './registration-tab/registration-tab.component';
+import {RegistrationDocumentComponent} from './registration-document/registration-document.component';
+import {GeneralComponent} from './general/general.component';
+import {PaymentComponent} from './business/payment/payment.component';
+import {PaymentDialogModule} from '../../../@custor/components/payment-dialog/payment-dialog.module';
+import { FinalWizardStepComponent } from './business/final-wizard-step/final-wizard-step.component';
+// import {PaymentComponent} from "./payment/payment.component";
 
 
 export const routes = [
-    { path: '', redirectTo: 'manager-list', pathMatch: 'full'},
-    { path: 'manager-list', component: ManagerListComponent},
-    { path: 'manager/:id', component: ManagerComponent},
-    { path: 'profile', component: ProfileComponent},
-    { path: 'business', component: BusinessComponent},
-    { path: 'tab', component: RegistrationTabComponent},
-{path: 'businessLicenseRegistration', component: BusinessLicenseRegistrationComponent},
-  ];
-@NgModule({
-    declarations: [
-        ManagerComponent,
-        ManagerListComponent,
-        BreadcrumbComponent,
-        ProfileComponent,
-        BusinessComponent,
-        RegistrationTabComponent,
-        RegistrationDocumentComponent,
-        PaymentComponent,
-        GeneralComponent,
-        // BusinessComponent,
-        // BusinessListComponent
-    ],
-    imports: [
-        RouterModule.forChild(routes),
-        SharedModule,
-        CommonModule,
-        FlexLayoutModule,
-        FormsModule,
-        ReactiveFormsModule,
-        TranslateModule.forRoot({
-          loader: {
-            provide: TranslateLoader,
-            useClass: TranslateLanguageLoader
-          }
-        }),
-        AngConfirmDialogModule
-      ],
-     providers: [AppTranslationService,
-                 LookUpService, 
-                 AddressService,
-                 ManagerService,
-                 ]
+  {path: '', redirectTo: 'manager-list', pathMatch: 'full'},
+  {path: 'manager-list', component: ManagerListComponent},
+  {path: 'manager/:id', component: ManagerComponent},
+  {path: 'profile', component: ProfileComponent},
+  {path: 'business', component: BusinessComponent},
+  {path: 'tab', component: RegistrationTabComponent},
+  {path: 'businessLicenseRegistration', component: BusinessLicenseRegistrationComponent},
+];
 
-  })
-  export class CustomerModule { }
+@NgModule({
+  declarations: [
+    ManagerComponent,
+    ManagerListComponent,
+    BreadcrumbComponent,
+    ProfileComponent,
+    BusinessComponent,
+    RegistrationTabComponent,
+    RegistrationDocumentComponent,
+    PaymentComponent,
+    GeneralComponent,
+
+    // business license registration components
+    BusinessLicenseRegistrationComponent,
+    GeneralInformationComponent,
+    // PaymentComponent,
+    RequiredDocumentsComponent,
+    WorkAddressComponent,
+    FinalWizardStepComponent,
+  ],
+  imports: [
+    RouterModule.forChild(routes),
+    SharedModule,
+    CommonModule,
+    FlexLayoutModule,
+    FormsModule,
+    ReactiveFormsModule,
+    TranslateModule.forChild({
+      loader: {
+        provide: TranslateLoader,
+        useClass: TranslateLanguageLoader
+      }
+    }),
+    AngConfirmDialogModule,
+    FileUploadDialogModule,
+    PaymentDialogModule,
+    ArchwizardModule,
+  ],
+  providers: [AppTranslationService,
+    LookUpService,
+    AddressService,
+    ManagerService,
+    BusinessApiService,
+  ]
+
+})
+export class CustomerModule {
+}

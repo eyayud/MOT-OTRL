@@ -19,6 +19,7 @@ import {
   NUMERIC_WITHPERIOD_REGEX
 } from '../../../../common/constants/consts';
 import {MovingDirection, WizardComponent, WizardStepComponent} from 'angular-archwizard';
+import {ArcWizardService} from "../../services/arc-wizard/arc-wizard.service";
 
 
 @Component({
@@ -26,13 +27,12 @@ import {MovingDirection, WizardComponent, WizardStepComponent} from 'angular-arc
   templateUrl: './general-information.component.html',
   styleUrls: ['./general-information.component.scss']
 })
-export class GeneralInformationComponent implements OnChanges {
+export class GeneralInformationComponent  implements OnChanges{
 
   // load instance of wizard component for programmatically do navigation
   @Input() wizard: WizardComponent;
 
-  // output boolean to notify parent that step one can be exited
-  @Output() exitStepOne = new EventEmitter();
+
 
   // declare variable for dummy sectors
   dummySectorsData: any;
@@ -44,6 +44,7 @@ export class GeneralInformationComponent implements OnChanges {
   selectedClassificationLenses = [];
 
   licenseRegistrationForm: FormGroup;
+
   // declare manger for getting default company name
   customerName: UserNameDTO;
 
@@ -55,7 +56,8 @@ export class GeneralInformationComponent implements OnChanges {
     private userService: UserService,
     private progressBarService: ProgressBarService,
     private toasterService: ToastrService,
-    public configService: ConfigurationService,
+    private configService: ConfigurationService,
+    private arcWizardService: ArcWizardService
   ) {
     this.translationService.changeLanguage(this.configService.language);
 
@@ -73,10 +75,11 @@ export class GeneralInformationComponent implements OnChanges {
 
   }
 
-  // check if wizard component instance  is well received
+ // check if wizard component instance  is well received and pass it to service
   ngOnChanges(changes: SimpleChanges) {
     if (typeof changes.wizard !== 'undefined') {
       console.log('wizard well received');
+      this.arcWizardService.addWizard(this.wizard);
     }
   }
 
@@ -297,13 +300,12 @@ export class GeneralInformationComponent implements OnChanges {
 
   onSubmit(value) {
 
-    this.wizard.navigation.goToNextStep();
+    // this.wizard.navigation.goToNextStep();
     this.apiService.saveApplication(value).subscribe(res => {
       this.progressBarService.triggerProgressBar(false);
-      this.wizard.navigation.goToNextStep();
     });
 
-    this.exitStepOne.emit(true);
+    this.arcWizardService.triggerExitStepOne(true);
   }
 
 

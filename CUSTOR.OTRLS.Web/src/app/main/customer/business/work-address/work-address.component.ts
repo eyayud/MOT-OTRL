@@ -1,6 +1,10 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, Input, OnInit} from '@angular/core';
 import {AddressListDTO} from '../../models/address.model';
-import {SelectionModel} from "@angular/cdk/collections";
+import {SelectionModel} from '@angular/cdk/collections';
+import {ArcWizardService} from '../../services/arc-wizard/arc-wizard.service';
+import {WizardComponent} from 'angular-archwizard';
+import {BusinessApiService} from '../../services/business.api.service';
+import {ProgressBarService} from '../../../../../@custor/services/progress-bar/progress-bar.service';
 
 @Component({
   selector: 'app-work-address',
@@ -8,12 +12,17 @@ import {SelectionModel} from "@angular/cdk/collections";
   styleUrls: ['./work-address.component.scss']
 })
 export class WorkAddressComponent implements OnInit {
-
+  // load instance of wizard component for programmatically do navigation
+  @Input() wizard: WizardComponent;
   addresses: AddressListDTO[];
-  displayedColumns: string[] = ['Select', 'IsMainOffice', 'CellPhoneNo', 'TeleNo', 'Email', 'Region', 'Zone', 'Woreda', 'Kebele', 'HouseNo' ];
+  displayedColumns: string[] = ['Select', 'IsMainOffice', 'CellPhoneNo', 'TeleNo', 'Email', 'Region', 'Zone', 'Woreda', 'Kebele', 'HouseNo'];
   selection = new SelectionModel<AddressListDTO>(true, []);
 
-  constructor() {
+
+  constructor(
+    private arcWizardService: ArcWizardService,
+    private apiService: BusinessApiService,
+    private progressBarService: ProgressBarService) {
   }
 
   ngOnInit() {
@@ -80,5 +89,15 @@ export class WorkAddressComponent implements OnInit {
       return `${this.isAllSelected() ? 'select' : 'deselect'} all`;
     }
     return `${this.selection.isSelected(row) ? 'deselect' : 'select'} row ${row.AddressId + 1}`;
+  }
+
+  saveAddresses(value) {
+    // TODO: pass selected address to api
+    this.apiService.saveApplication(value).subscribe(res => {
+      this.progressBarService.triggerProgressBar(false);
+      this.arcWizardService.triggerExitStepTwo(true);
+    });
+
+    this.arcWizardService.triggerExitStepTwo(true);
   }
 }

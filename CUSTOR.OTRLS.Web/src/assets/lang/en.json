@@ -16,12 +16,15 @@
       "Start": "Start",
       "Close": "Close",
       "End": "End",
+      "Finish": "Finish",
       "Stop": "Stop",
       "Approve": "Approve",
       "Select": "Select",
       "Unselect": "Unselect",
       "Send": "Send",
-      "Exit": "Exit"
+      "Exit": "Exit",
+      "Upload": "Upload",
+      "UploadFile": "Upload File"
     },
     "validation": {
       "IsRequired": "{{fieldName}} is required",
@@ -431,7 +434,9 @@
     "checkNo": "Check No",
     "totalAmount": "Total Amount",
     "totalAmountdescription": "Amount Description",
-    "cashierName": "Cashier Name"
+    "cashierName": "Cashier Name",
+    "goToPayment": "Go To Payment",
+    "pay" : "Pay"
   },
   "sector": {
     "header": "Sector Editor",
@@ -546,6 +551,9 @@
   },
   "subTitle":{
     "fillInformation":"Fill Information "
+  },
+  "wizard": {
+    "confirmation": "Confirmation"
   }
 }
 

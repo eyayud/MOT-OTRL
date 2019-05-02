@@ -1,0 +1,34 @@
+<div style="margin: -25px; width:400px">
+  <form [formGroup]="paymentForm">
+    <mat-toolbar color="primary">
+      <mat-toolbar-row>
+        <span>{{'payment.Header' | translate}}</span>
+      </mat-toolbar-row>
+    </mat-toolbar>
+    <div mat-dialog-content style="font-size: 14px;margin: 20px;">
+
+      <mat-form-field>
+        <mat-label>{{'payment.receiptNo' | translate}}</mat-label>
+
+        <input matInput formControlName="ReferenceNo" placeholder="">
+
+      </mat-form-field>
+
+
+    </div>
+    <mat-divider></mat-divider>
+    <div class="mr-2" fxLayoutAlign="end" mat-dialog-actions>
+      <button  mat-button mat-dialog-close>{{'common.commands.Cancel' |translate}}</button>
+      <button type="button"
+        mat-raised-button
+        color="primary"
+        (click)="savePayment()"
+      >
+
+         {{'payment.pay'  | translate}}
+
+      </button>
+    </div>
+  </form>
+
+</div>

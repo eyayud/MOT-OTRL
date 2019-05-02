@@ -30,7 +30,7 @@
         <ng-template awWizardStepSymbol>
           <mat-icon class="mt-2">location_on</mat-icon>
         </ng-template>
-        <app-work-address *ngIf="exitStepOne" ></app-work-address>
+        <app-work-address [wizard]="step" *ngIf="exitStepOne" ></app-work-address>
       </aw-wizard-step>
 
 
@@ -43,7 +43,7 @@
       <ng-template awWizardStepSymbol>
         <mat-icon class="mt-2">file_copy</mat-icon>
       </ng-template>
-      <app-required-documents></app-required-documents>
+      <app-required-documents [wizard]="step" *ngIf="exitStepTwo"></app-required-documents>
     </aw-wizard-step>
 
       <!--      step where customer gets payment info-->
@@ -54,8 +54,20 @@
         <ng-template awWizardStepSymbol>
           <mat-icon class="mt-2">attach_money</mat-icon>
         </ng-template>
-        <app-payment></app-payment>
+        <app-payment [wizard]="step" *ngIf="exitStepThree"></app-payment>
       </aw-wizard-step>
+
+
+      <!--      step where customer gets confirmation-->
+      <aw-wizard-completion-step >
+        <ng-template awWizardStepTitle>
+          <span>{{'wizard.confirmation'| translate }}</span>
+        </ng-template>
+        <ng-template awWizardStepSymbol>
+          <mat-icon class="mt-2">verified_user</mat-icon>
+        </ng-template>
+        <app-final-wizard-step *ngIf="exitStepFour"  ></app-final-wizard-step>
+      </aw-wizard-completion-step>
     </aw-wizard>
   </mat-card>
 </div>

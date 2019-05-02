@@ -1,6 +1,6 @@
 import { TestBed } from '@angular/core/testing';
 
-import { FileUploadDialogService } from './file-upload-dialog.service';
+import { FileUploadDialogService } from './file-upload.service';
 
 describe('FileUploadDialogService', () => {
   beforeEach(() => TestBed.configureTestingModule({}));

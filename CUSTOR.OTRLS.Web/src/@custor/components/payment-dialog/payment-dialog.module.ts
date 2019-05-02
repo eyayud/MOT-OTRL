@@ -1,26 +1,26 @@
 import {NgModule} from '@angular/core';
+import {CommonModule} from '@angular/common';
 import {
   MatButtonModule,
-  MatDialogModule, MatDividerModule, MatIconModule,
+  MatDialogModule, MatDividerModule, MatFormFieldModule, MatIconModule, MatInputModule,
   MatLineModule,
   MatProgressBarModule,
   MatToolbarModule
 } from '@angular/material';
-import {FileUploadDialogComponent} from './file-upload-dialog.component';
 import {FlexLayoutModule} from '@angular/flex-layout';
-import {CommonModule} from '@angular/common';
 import {TranslateLoader, TranslateModule} from '@ngx-translate/core';
 import {TranslateLanguageLoader} from '../../services/translation.service';
+import {PaymentDialogComponent} from "./payment-dialog.component";
+import {ReactiveFormsModule} from "@angular/forms";
+
 
 @NgModule({
-  declarations: [
-    FileUploadDialogComponent
-  ],
+  declarations: [PaymentDialogComponent],
   imports: [
     CommonModule,
+    MatFormFieldModule,
     MatDialogModule,
     MatButtonModule,
-    // MatDividerModule,
     MatToolbarModule,
     FlexLayoutModule,
     MatProgressBarModule,
@@ -33,11 +33,13 @@ import {TranslateLanguageLoader} from '../../services/translation.service';
         useClass: TranslateLanguageLoader
       }
     }),
+    ReactiveFormsModule,
+    MatInputModule,
 
   ],
   entryComponents: [
-    FileUploadDialogComponent
+    PaymentDialogComponent
   ]
 })
-export class FileUploadDialogModule {
+export class PaymentDialogModule {
 }

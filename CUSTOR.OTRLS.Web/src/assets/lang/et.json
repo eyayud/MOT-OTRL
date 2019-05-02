@@ -16,12 +16,16 @@
       "Start": "ጀምር",
       "Close": "ዝጋ",
       "End": "ጨርስ",
+      "Finish" : "ጨርስ",
       "Stop": "አቁም",
       "Approve": "አረጋግጥ",
       "Select": "ምረጥ",
       "Unselect": "አይመረጥ",
       "Send": "ላክ",
-      "Exit": "ውጣ"
+      "Exit": "ውጣ",
+      "Upload": "ስቀል",
+      "UploadFile": "ፋይል ስቀል"
+
     },
     "validation": {
       "IsRequired": "{{fieldName}} ባዶ መሆን አይችልም",
@@ -410,7 +414,9 @@
     "checkNo": "የቼክ ቁጥር",
     "totalAmount": "ድምር",
     "totalAmountdescription": "የገንዘቡ ልክ በፊደል",
-    "cashierName": "የገንዘብ ተቀባይ ስምና ፊርማ"
+    "cashierName": "የገንዘብ ተቀባይ ስምና ፊርማ",
+    "goToPayment": "ወደ ክፍያ",
+    "pay": "ክፈል"
   },
   "sector": {
     "header": "ዘረፍ",
@@ -525,6 +531,9 @@
   },
   "subTitle":{
     "fillInformation":"መረጃ መሙያ "
+  },
+  "wizard": {
+    "confirmation": "ማረጋገጫ"
   }
 }
 
