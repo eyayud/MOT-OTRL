@@ -1,0 +1,38 @@
+<div class="page-content">
+<mat-card class="mat-elevation-z8">
+    <mat-card-header>
+        <mat-card-title>Required Document</mat-card-title>
+    </mat-card-header>
+    <mat-card-content>
+      <table mat-table [dataSource]="servicePreList" class="mat-elevation-z8" class="full-width">
+        <ng-container matColumnDef="No" >
+          <mat-header-cell *matHeaderCellDef fxFlex="6"> No </mat-header-cell>
+          <mat-cell *matCellDef="let element; let i = index;" fxFlex="6"> {{i + 1}} </mat-cell>
+        </ng-container>
+        <ng-container matColumnDef="Description" >
+          <mat-header-cell *matHeaderCellDef fxFlex="80"> Description </mat-header-cell>
+          <mat-cell *matCellDef="let element" fxFlex="80"> {{element.ServiceNameEnglish}} </mat-cell>
+        </ng-container>
+        <ng-container matColumnDef="Action" >
+          <mat-header-cell fxFlex="20" *matHeaderCellDef>Action</mat-header-cell>
+          <mat-cell *matCellDef="let element; let i = index;" fxFlex="20">
+            <input hidden class="ng-hide"
+                   id="input-file-id" 
+                   multiple type="file" 
+                   (change)="upload(i,file.files)" />
+            <label for="input-file-id" class="mat-button mat-raised-button mat-primary">Attach</label>
+            <!-- <a> <span class="custom-button">Attach</span> </a>
+            <input #file hidden type="file" multiple (change)="upload(i,file.files)" /> -->
+          </mat-cell>
+        </ng-container>
+        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+      </table>
+    </mat-card-content>
+    <mat-card-actions fxLayoutAlign="center end">
+      <button mat-raised-button color="primary" (click)="saveDocumentInfo()">Save</button>
+      <button mat-raised-button color="warn" (cancel)="cancel()">Cancel</button>
+    </mat-card-actions>
+</mat-card>
+</div>
+
