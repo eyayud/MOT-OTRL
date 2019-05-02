@@ -20,7 +20,7 @@ namespace CUSTOR.OTRLS.Core
 
            
 
-            //create default organization (if there are none) together with warehouse and items
+            //create default customer profile (if there are none) 
             if (!dbContext.CustomerProfile.Any()) await CreateUserProfiles(dbContext);
         }
 
