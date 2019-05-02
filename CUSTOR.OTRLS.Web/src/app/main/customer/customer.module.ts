@@ -24,6 +24,8 @@ import { GeneralInformationComponent } from './business/general-information/gene
 import { WorkAddressComponent } from './business/work-address/work-address.component';
 import { RequiredDocumentsComponent } from './business/required-documents/required-documents.component';
 import { PaymentComponent } from './business/payment/payment.component';
+import {FileUploadDialogModule} from "../../../@custor/components/file-upload-dialog/file-upload-dialog.module";
+
 
 export const routes = [
   {path: '', redirectTo: 'manager-list', pathMatch: 'full'},
@@ -43,7 +45,7 @@ export const routes = [
     GeneralInformationComponent,
     WorkAddressComponent,
     RequiredDocumentsComponent,
-    PaymentComponent
+    PaymentComponent,
     // BusinessComponent,
     // BusinessListComponent
   ],
@@ -62,6 +64,7 @@ export const routes = [
     }),
     LangSwitcherModule,
     AngConfirmDialogModule,
+    FileUploadDialogModule,
     ArchwizardModule
   ],
   providers: [AppTranslationService, LookUpService, AddressService, ManagerService, BusinessApiService]

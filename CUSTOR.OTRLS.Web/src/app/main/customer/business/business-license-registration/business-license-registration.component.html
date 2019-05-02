@@ -9,13 +9,13 @@
 <!--    wizard for implementing business license registration. components except the first step component are initialized-->
 <!--    whenever the preceding ones are done with their logic-->
 
-    <aw-wizard #step  [navBarLayout]="'large-empty-symbols'">
+    <aw-wizard #step  [navBarLayout]="'large-empty-symbols'" navigationMode="free">
 <!--      step where customer fills basic information like company name, capital and sector-->
       <aw-wizard-step stepTitle="Title of step 1">
         <ng-template awWizardStepTitle>
           <span>{{'registration.management.GeneralInformation'| translate }}</span>
         </ng-template>
-        <ng-template awWizardStepSymbol>
+        <ng-template  awWizardStepSymbol>
           <mat-icon class="mt-2" >account_circle</mat-icon>
         </ng-template>
         <app-general-information [wizard]="step" (exitStepOne)="canExitStepOne($event)"></app-general-information>

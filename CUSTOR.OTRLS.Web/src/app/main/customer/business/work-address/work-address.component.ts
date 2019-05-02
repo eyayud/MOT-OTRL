@@ -10,7 +10,7 @@ import {SelectionModel} from "@angular/cdk/collections";
 export class WorkAddressComponent implements OnInit {
 
   addresses: AddressListDTO[];
-  displayedColumns: string[] = ['Select', 'CellPhoneNo', 'TeleNo', 'Email', 'Region', 'Zone', 'Woreda', 'Kebele', 'HouseNo', 'IsMainOffice'];
+  displayedColumns: string[] = ['Select', 'IsMainOffice', 'CellPhoneNo', 'TeleNo', 'Email', 'Region', 'Zone', 'Woreda', 'Kebele', 'HouseNo' ];
   selection = new SelectionModel<AddressListDTO>(true, []);
 
   constructor() {

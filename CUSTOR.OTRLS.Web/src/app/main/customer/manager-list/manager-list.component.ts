@@ -8,7 +8,7 @@ import {ActivatedRoute, Router} from '@angular/router';
 import {ManagerListDTO} from '../models/manager.model';
 import {ManagerService} from '../services/manager.service';
 import {ConfigurationService} from '@custor/services/configuration.service';
- 
+
 
 @Component({
   selector: 'app-manager-list',
@@ -42,9 +42,9 @@ export class ManagerListComponent implements OnInit, AfterViewInit {
   }
 
   ngOnInit() {
- 
+
     this.getManagersByCustomerId();
-   
+
   }
 
 
@@ -108,5 +108,5 @@ export class ManagerListComponent implements OnInit, AfterViewInit {
       this.loadingIndicator = false;
     });
   }
- 
+
 }

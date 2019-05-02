@@ -1,6 +1,6 @@
-<form fxLayout="column" [formGroup]="licenseRegistrationForm" (ngSubmit)="onSubmit(licenseRegistrationForm.value)"
+<form style="" fxLayout="column" [formGroup]="licenseRegistrationForm" (ngSubmit)="onSubmit(licenseRegistrationForm.value)"
 >
-  <mat-card-content class="p-3">
+  <mat-card class="p-3 mt-3 green-top-border" >
 
 
     <div class="input-row" fxLayout="row" fxLayout.lt-md="column" fxLayoutGap="20px" fxLayoutGap.lt-md="0px">
@@ -64,8 +64,8 @@
 
 
     </div>
-
-    <div class="input-row mt-6" fxLayout="row" fxLayout.lt-md="column" fxLayoutGap="20px"
+    <mat-divider class="mt-5" style="position: relative"></mat-divider>
+    <div class="input-row mt-3" fxLayout="row" fxLayout.lt-md="column" fxLayoutGap="20px"
          fxLayoutGap.lt-md="0px">
 
       <mat-form-field fxFlex>
@@ -124,7 +124,7 @@
       <button [disabled]="licenseRegistrationForm.invalid" type="submit" mat-raised-button
               color="primary">{{'common.commands.Next' | translate}}</button>
     </div>
-  </mat-card-content>
+  </mat-card>
 
 
 </form>
