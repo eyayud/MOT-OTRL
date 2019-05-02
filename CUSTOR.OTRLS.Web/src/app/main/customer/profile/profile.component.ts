@@ -7,7 +7,7 @@ import { AddressService } from '../../../common/services/address.service';
 import { ConfigurationService } from '../../../../@custor/services/configuration.service';
 import { AppTranslationService } from '../../../../@custor/services/translation.service';
 import { Gender, LegalStatus, Lookup } from '../../../common/models/lookup.model';
-import { ALPHABET_WITHSPACE_REGEX, GENDERS, LEGAL_STATUSES } from '../../../common/constants/consts';
+import { ALPHABET_WITHSPACE_REGEX, GENDERS, LEGAL_STATUSES, ET_ALPHABET_WITHSPACE_REGEX } from '../../../common/constants/consts';
 import { ToastrService } from 'ngx-toastr';
 import { StaticData, StaticData2 } from '../../../common/models/static-data.model';
 import { ActivatedRoute, Router } from '@angular/router';
@@ -205,24 +205,31 @@ export class ProfileComponent implements OnInit {
   createForm() {
     this.ProfileForm = this.fb.group({
       Tin: ['', [Validators.required, Validators.minLength(10), Validators.maxLength(13)]],
-      FirstName: ['', [Validators.compose([Validators.required, Validators.minLength(2),
-      Validators.pattern(ALPHABET_WITHSPACE_REGEX)])]],
       Title: [''],
-      FirstNameEng: ['', [Validators.compose([Validators.required, Validators.minLength(2),
-      Validators.pattern(ALPHABET_WITHSPACE_REGEX)])]],
-      FirstNameRegion: ['', [Validators.compose([Validators.required, Validators.minLength(2),
-      Validators.pattern(ALPHABET_WITHSPACE_REGEX)])]],
 
-      FatherName: ['', [Validators.required]],
-      FatherNameEng: ['', [Validators.required]],
+      FirstName: ['',[Validators.compose([Validators.required, Validators.minLength(2),
+                     Validators.pattern(ET_ALPHABET_WITHSPACE_REGEX)])]],
+      FirstNameEng: ['', [Validators.compose([Validators.required, Validators.minLength(2),
+                      Validators.pattern(ALPHABET_WITHSPACE_REGEX)])]],
+      FirstNameRegion: ['', Validators.required],
+
+
+      FatherName: ['', [Validators.compose ([Validators.required,
+                  Validators.pattern(ET_ALPHABET_WITHSPACE_REGEX)])]],
+      FatherNameEng: ['', [Validators.compose([Validators.required, Validators.minLength(2),
+                      Validators.pattern(ALPHABET_WITHSPACE_REGEX)])]],
       FatherNameRegion: ['', [Validators.required]],
 
-      GrandName: ['', [Validators.required]],
-      GrandNameEng: ['', [Validators.required]],
+      GrandName: ['', [Validators.compose([Validators.required,
+                  Validators.pattern(ET_ALPHABET_WITHSPACE_REGEX)])]],
+      GrandNameEng: ['', [Validators.compose([Validators.required, Validators.minLength(2),
+                  Validators.pattern(ALPHABET_WITHSPACE_REGEX)])]],
       GrandNameRegion: ['', [Validators.required]],
       
-      MotherName: ['', [Validators.required]],
-      MotherNameEng: ['', [Validators.required]],
+      MotherName: ['', [Validators.compose([Validators.required,
+                    Validators.pattern(ET_ALPHABET_WITHSPACE_REGEX)])]],
+      MotherNameEng: ['', [Validators.compose([Validators.required, Validators.minLength(2),
+                         Validators.pattern(ALPHABET_WITHSPACE_REGEX)])]],
       MotherNameRegion: ['', [Validators.required]],
 
       Nationality: ['', [Validators.required]],

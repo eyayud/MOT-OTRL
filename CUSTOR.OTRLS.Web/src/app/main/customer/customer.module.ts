@@ -31,7 +31,7 @@ export const routes = [
     { path: 'manager/:id', component: ManagerComponent},
     { path: 'profile', component: ProfileComponent},
     { path: 'business', component: BusinessComponent},
-    { path: 'tab', component: RegistrationTabComponent},
+    { path: 'registration-tab', component: RegistrationTabComponent},
   ];
 @NgModule({
     declarations: [
