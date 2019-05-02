@@ -9,13 +9,19 @@ export class UserProfile {
 
        public  FirstNameEng ?: string;
 
+       public  FirstNameRegion  ?: string;
+       
        public  FatherName ?: string;
-
+       
        public  FatherNameEng ?: string;
 
+       public FatherNameRegion?: string;
+       
        public  GrandName ?: string;
-
+       
        public  GrandNameEng?: string;
+
+       public GrandNameRegion ?: string;
 
        public  MotherName?: string;
 
