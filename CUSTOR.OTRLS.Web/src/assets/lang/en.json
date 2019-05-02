@@ -155,6 +155,11 @@
       "FatherNameEng": "Father (English)",
       "MotherNameEng": "Mother (English)",
       "GrandNameEng": "Grand Father (English)",
+
+      "FatherNameRegion": "Father (Region)",
+      "FirstNameRegion": "First Name (Region)",
+      "MotherNameRegion": "Mother (Region)",
+      "GrandNameRegion": "Grand Father (Region)",
       "Nationality": "Nationality",
       "BranchCountry": "Country of Incorporation",
       "CompanyName": "Company Name (Amharic)",

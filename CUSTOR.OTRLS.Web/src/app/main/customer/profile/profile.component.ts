@@ -10,6 +10,7 @@ import { Gender, LegalStatus, Lookup } from '../../../common/models/lookup.model
 import { ALPHABET_WITHSPACE_REGEX, GENDERS, LEGAL_STATUSES } from '../../../common/constants/consts';
 import { ToastrService } from 'ngx-toastr';
 import { StaticData, StaticData2 } from '../../../common/models/static-data.model';
+import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
   selector: 'app-profile',
@@ -36,17 +37,18 @@ export class ProfileComponent implements OnInit {
   userProfile = "";
   isNewUser :boolean;
   loadingIndicator :boolean;
-  constructor(private fb: FormBuilder, private lookUpService: LookUpService,
+  constructor(
+    private fb: FormBuilder, private lookUpService: LookUpService,
     private configService: ConfigurationService,
     private userService: UserService,
     private addressService: AddressService,
     private translationService: AppTranslationService,
-    private toastr: ToastrService) {
-
-    this.currentLang = this.configService.language;
-    this.translationService.changeLanguage(this.configService.language);
+    private toastr: ToastrService, private activatedRoute: ActivatedRoute,)
+     {
 
  // Initializing data
+    this.currentLang = this.configService.language;
+    this.translationService.changeLanguage(this.configService.language);
     const countryLookupType = 8;
     const titleLookupType = 89;
     this.currentLang = this.configService.language;
@@ -54,7 +56,13 @@ export class ProfileComponent implements OnInit {
     this.getCountries(countryLookupType);
 
 // Initializing data
-    this.userService.getUserProfile(2).subscribe(result => {
+   this.getUserData();
+     
+  }
+  getUserData(){
+    //const userId = this.activatedRoute.snapshot.params.id;
+    const userId = 20;
+    this.userService.getUserProfile(userId).subscribe(result => {
       this.user = result;
       console.log(this.user)
       if (result == null) {
@@ -62,11 +70,8 @@ export class ProfileComponent implements OnInit {
       } else {
         this.isNewUser = false;
         this.updateForm();
-        // this.managerId = id;
-        // this.imgPhoto = this.configService.baseUrl + 'photo/Mgr' + this.manager.ManagerId + '.jpg'; // to-do put the path in config
       }
     })
-     
   }
   private getCountries(id: any) {
     this.lookUpService.getLookupByParentId(this.currentLang, id).subscribe(result => {
@@ -205,12 +210,21 @@ export class ProfileComponent implements OnInit {
       Title: [''],
       FirstNameEng: ['', [Validators.compose([Validators.required, Validators.minLength(2),
       Validators.pattern(ALPHABET_WITHSPACE_REGEX)])]],
+      FirstNameRegion: ['', [Validators.compose([Validators.required, Validators.minLength(2),
+      Validators.pattern(ALPHABET_WITHSPACE_REGEX)])]],
+
       FatherName: ['', [Validators.required]],
       FatherNameEng: ['', [Validators.required]],
+      FatherNameRegion: ['', [Validators.required]],
+
       GrandName: ['', [Validators.required]],
       GrandNameEng: ['', [Validators.required]],
+      GrandNameRegion: ['', [Validators.required]],
+      
       MotherName: ['', [Validators.required]],
       MotherNameEng: ['', [Validators.required]],
+      MotherNameRegion: ['', [Validators.required]],
+
       Nationality: ['', [Validators.required]],
       Gender: ['', [Validators.required]],
       CreatedDate: [''],
@@ -223,7 +237,6 @@ export class ProfileComponent implements OnInit {
         KebeleId: new FormControl(),
         OtherAddress: new FormControl(),
         CellPhoneNo: new FormControl(),
-        // SpecificAreaName: new FormControl(),
         HouseNo: new FormControl(),
         TeleNo: new FormControl(),
         Fax: new FormControl(),
@@ -239,28 +252,35 @@ export class ProfileComponent implements OnInit {
       FirstName: this.user.FirstName || '',
       FatherName: this.user.FatherName || '',
       GrandName: this.user.GrandName || '',
+      MotherName: this.user.MotherName || '',
+
       FirstNameEng: this.user.FirstNameEng || '',
       FatherNameEng: this.user.FatherNameEng || '',
       GrandNameEng: this.user.GrandNameEng || '',
-      MotherName: this.user.MotherName || '',
       MotherNameEng: this.user.MotherNameEng || '',
+
+      FirstNameRegion: this.user.FirstNameRegion || '',
+      FatherNameRegion: this.user.FatherNameRegion || '',
+      GrandNameRegion: this.user.GrandNameRegion || '',
+      MotherNameRegion: this.user.MotherNameRegion || '',
+
       BirthDate: this.user.BirthDate || '',
       Nationality: this.user.Nationality == null ? '' : this.user.Nationality.toString(),
       Gender: this.user.Gender == null ? '' : this.user.Gender.toString(),
       Title: this.user.Title || '',
     });
     this.ProfileForm.get('address').patchValue({
-      // RegionId: this.user.RegionId == null ? '' : this.user.RegionId.toString(),
-      // ZoneId: this.user.ZoneId == null ? '' : this.user.ZoneId.toString(),
-      // WoredaId: this.user.WoredaId == null ? '' : this.user.WoredaId.toString(),
-      // KebeleId: this.user.KebeleId == null ? '' : this.user.KebeleId.toString(),
-      // HouseNo: this.user.HouseNo || '',
-      // TeleNo: this.user.TeleNo || '',
-      // Pobox: this.user.Pobox || '',
-      // Fax: this.user.Fax || '',
-      // CellPhoneNo: this.user.CellPhoneNo || '',
-      // Email: this.user.Email || '',
-      // OtherAddress: this.user.OtherAddress || ''
+        RegionId: this.user.RegionId == null ? '' : this.user.RegionId.toString(),
+      //  ZoneId: this.user.ZoneId == null ? '' : this.user.ZoneId.toString(),
+      //  WoredaId: this.user.WoredaId == null ? '' : this.user.WoredaId.toString(),
+      //  KebeleId: this.user.KebeleId == null ? '' : this.user.KebeleId.toString(),
+      //  HouseNo: this.user.HouseNo || '',
+      //  TeleNo: this.user.TeleNo || '',
+      //  Pobox: this.user.Pobox || '',
+      //  Fax: this.user.Fax || '',
+      //  CellPhoneNo: this.user.CellPhoneNo || '',
+      Email: this.user.Email || '',
+      //  OtherAddress: this.user.OtherAddress || ''
     });
   }
   getUserProfileData() {
@@ -271,11 +291,18 @@ export class ProfileComponent implements OnInit {
       FirstName: formModel.FirstName,
       FatherName: formModel.FatherName,
       GrandName: formModel.GrandName,
+      MotherName: formModel.MotherName,
+
       FirstNameEng: formModel.FirstNameEng,
       FatherNameEng: formModel.FatherNameEng,
       GrandNameEng: formModel.GrandNameEng,
-      MotherName: formModel.MotherName,
       MotherNameEng: formModel.MotherNameEng,
+      
+      FirstNameRegion: formModel.FirstNameRegion,
+      FatherNameRegion: formModel.FatherNameRegion,
+      GrandNameRegion: formModel.GrandNameRegion,
+      MotherNameRegion: formModel.MotherNameRegion,
+
       Nationality: formModel.Nationality,
       Gender: formModel.Gender,
       Tin: formModel.Tin,
@@ -348,6 +375,10 @@ export class ProfileComponent implements OnInit {
   get GrandName(){
     return this.ProfileForm.get("GrandName");
   }
+  get MotherName(){
+    return this.ProfileForm.get("MotherName");
+  }
+  
   get FirstNameEng(){
     return this.ProfileForm.get('FirstNameEng');
   }
@@ -357,12 +388,75 @@ export class ProfileComponent implements OnInit {
   get GrandNameEng() {
     return this.ProfileForm.get("GrandNameEng");
   }
+  get MotherNameEng() {
+    return this.ProfileForm.get("MotherNameEng");
+  }
+
+  get FirstNameRegion(){
+    return this.ProfileForm.get('FirstNameRegion');
+  }
+  get FatherNameRegion() {
+    return this.ProfileForm.get('FatherNameRegion');
+  }
+  get GrandNameRegion() {
+    return this.ProfileForm.get("GrandNameRegion");
+  }
+  get MotherNameRegion() {
+    return this.ProfileForm.get("MotherNameRegion");
+  }
+
   get Gender(){
     return this.ProfileForm.get("Gender");
   }
   get Nationality(){
     return this.ProfileForm.get("Nationality");
   }
+  get region() {
+    return this.ProfileForm.get('RegionId');
+  }
+
+  get zone() {
+    return this.ProfileForm.get('ZoneId');
+  }
+
+  get woreda() {
+    return this.ProfileForm.get('WoredaId');
+  }
+
+  get kebele() {
+    return this.ProfileForm.get('KebeleId');
+  }
+
+  get houseNumber() {
+    return this.ProfileForm.get('HouseNo');
+  }
+
+  get phoneDirect() {
+    return this.ProfileForm.get('PhoneDirect');
+  }
+
+  get CellPhoneNo() {
+    return this.ProfileForm.get('CellPhoneNo');
+  }
+
+  get fax() {
+    return this.ProfileForm.get('Fax');
+  }
+
+  get pobox() {
+    return this.ProfileForm.get('POBox');
+  }
+  get Email (){
+    return this.ProfileForm.get('POBox');
+  }
+  get legalStatus() {
+    return this.ProfileForm.get('LegalStatus');
+  }
+
+  get tradeName() {
+    return this.ProfileForm.get('TradeName');
+  }
+
   // get BirthDate(){
   //   return this.ProfileForm.get("BirthDate");
   // }
