@@ -5,6 +5,7 @@ import { UserProfile } from '../models/user.model';
 import { UserService } from '../services/user.service';
 import { AddressService } from '../../../common/services/address.service';
 import { ConfigurationService } from '../../../../@custor/services/configuration.service';
+import { AppTranslationService } from '../../../../@custor/services/translation.service';
 import { Gender, LegalStatus, Lookup } from '../../../common/models/lookup.model';
 import { ALPHABET_WITHSPACE_REGEX, GENDERS, LEGAL_STATUSES } from '../../../common/constants/consts';
 import { ToastrService } from 'ngx-toastr';
@@ -39,8 +40,11 @@ export class ProfileComponent implements OnInit {
     private configService: ConfigurationService,
     private userService: UserService,
     private addressService: AddressService,
+    private translationService: AppTranslationService,
     private toastr: ToastrService) {
 
+    this.currentLang = this.configService.language;
+    this.translationService.changeLanguage(this.configService.language);
 
  // Initializing data
     const countryLookupType = 8;
