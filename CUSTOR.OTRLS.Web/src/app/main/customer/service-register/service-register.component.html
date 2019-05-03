@@ -1,0 +1,146 @@
+<div class="page-content">
+  <mat-card [hidden]="hideService" class="mat-elevation-z8">
+    <mat-card-header>
+      <mat-card-title>{{'investors.editor.BusinessDataCaption' | translate}}</mat-card-title>
+    </mat-card-header>
+    <mat-card-content>
+
+      <mat-form-field>
+        <mat-label>{{'registration.editor.LegalStatus' | translate}}</mat-label>
+        <mat-select [(ngModel)]="StatusId" (selectionChange)="changeLegalStatus(StatusId)" required>
+          <mat-option *ngFor="let status of legalStatus" [value]=status.id>
+            {{status.name}}
+          </mat-option>
+          <!-- <mat-option value="1">Personal</mat-option> -->
+        </mat-select>
+        <mat-error *ngIf="LegalStatus.hasError('required')">
+          {{'common.validation.Required' | translate}}
+        </mat-error>
+      </mat-form-field>
+      <form [formGroup]="serviceCompanyForm" novalidate (ngSubmit)="onSubmit()" fxLayout="column" autocomplete="off">
+        <div fxLayout="row wrap" fxLayoutGap="2em" *ngIf="showCompanyForm">
+          <mat-form-field>
+            <mat-label>{{'investors.editor.CompanyName' | translate}}</mat-label>
+            <input matInput id="CompanyName" formControlName="CompanyName" placeholder="Company Name" />
+            <mat-error *ngIf="CompanyName.hasError('required')">
+              {{'common.validation.Required' | translate}}
+            </mat-error>
+            <mat-error *ngIf="!CompanyName.hasError('required') && !CompanyName.hasError('minlength')
+                                                && CompanyName.hasError('pattern')">
+              {{'common.validation.UseEthiopicOnly' | translate}}
+            </mat-error>
+          </mat-form-field>
+          <mat-form-field>
+            <mat-label>{{'investors.editor.CompanyNameEng' | translate}}</mat-label>
+            <input matInput id="CompanyNameEng" formControlName="CompanyNameEng" placeholder="Company Name English" />
+            <mat-error *ngIf="CompanyNameEng.hasError('required')">
+              {{'common.validation.Required' | translate}}
+            </mat-error>
+            <mat-error *ngIf="!CompanyNameEng.hasError('required') && !CompanyNameEng.hasError('minlength')
+                                                && CompanyNameEng.hasError('pattern')">
+              {{'common.validation.UseLatinOnly' | translate}}
+            </mat-error>
+          </mat-form-field>
+          <mat-form-field>
+            <mat-label>{{'registration.CompanyNameRegional' | translate}}</mat-label>
+            <input matInput id="CompanyNameRegion" formControlName="CompanyNameRegion"
+              placeholder="Company Name Region" />
+            <mat-error *ngIf="CompanyNameRegion.hasError('required')">
+              {{'common.validation.Required' | translate}}
+            </mat-error>
+          </mat-form-field>
+        </div>
+      </form>
+      <form [formGroup]="serviceForm" novalidate (ngSubmit)="onSubmit()" fxLayout="column" autocomplete="off">
+        <div fxLayout="row wrap" fxLayoutAlign="" fxLayoutGap="2em">
+
+          <mat-form-field *ngIf="serviceForm.value.LegalStatus==1">
+            <mat-label>Tin Number</mat-label>
+            <input matInput id="Tin" formControlName="Tin" placeholder="Tin Number" />
+          </mat-form-field>
+        </div>
+
+        <div fxLayout="row wrap" fxLayoutGap="2em" *ngIf="showUserForm">
+          <!--- Name In Amharic Form Section-->
+          <div fxLayout="row wrap" fxLayoutAlign="" fxLayoutGap="2em" class="profile-registration">
+            <mat-form-field>
+              <mat-label>{{'investors.editor.FirstName' | translate}}</mat-label>
+              <input matInput id="FirstName" formControlName="FirstName" required placeholder="Name" />
+            </mat-form-field>
+
+            <mat-form-field>
+              <mat-label>{{'investors.editor.FatherName' | translate}}</mat-label>
+              <input matInput id="FatherName" formControlName="FatherName" required placeholder="Father's Name" />
+            </mat-form-field>
+
+            <mat-form-field>
+              <mat-label>{{'investors.editor.GrandName' | translate}}</mat-label>
+              <input matInput id="GrandName" formControlName="GrandName" required placeholder="Grand Father's Name" />
+            </mat-form-field>
+
+            <mat-form-field>
+              <mat-label>{{'investors.editor.MotherName' | translate}}</mat-label>
+              <input matInput id="MotherName" formControlName="MotherName" required placeholder="Mother's Name" />
+            </mat-form-field>
+          </div>
+          <!---END OF Name In Amharic Form Section-->
+          <!--- NAME In ENGLISH SECTION-->
+          <div fxLayout="row wrap" fxLayoutAlign="" fxLayoutGap="2em" class="profile-registration">
+            <mat-form-field>
+              <mat-label>{{'investors.editor.FirstNameEng' | translate }}</mat-label>
+              <mat-label>FirstName (Eng)</mat-label>
+              <input matInput id="FirstNameEng" formControlName="FirstNameEng" required placeholder="Name" />
+            </mat-form-field>
+
+            <mat-form-field>
+              <mat-label> {{'investors.editor.FatherNameEng' | translate }} </mat-label>
+              <input matInput id="FatherNameEng" formControlName="FatherNameEng" required placeholder="Father's Name" />
+            </mat-form-field>
+
+            <mat-form-field>
+              <mat-label> {{'investors.editor.GrandNameEng' | translate }} </mat-label>
+              <input matInput id="GrandNameEng" formControlName="GrandNameEng" required
+                placeholder="Grand Father's Name" />
+            </mat-form-field>
+
+            <mat-form-field>
+              <mat-label>{{'investors.editor.MotherNameEng' | translate}} </mat-label>
+              <input matInput id="MotherNameEng" formControlName="MotherNameEng" required placeholder="Mother's Name" />
+            </mat-form-field>
+          </div>
+
+          <div fxLayout="row wrap" fxLayoutAlign="" fxLayoutGap="2em" class="profile-registration-region">
+            <mat-form-field>
+              <mat-label>{{'investors.editor.FirstNameRegion' | translate }}</mat-label>
+              <input matInput id="FirstNameEng" formControlName="FirstNameRegion" required placeholder="Name" />
+            </mat-form-field>
+
+            <mat-form-field>
+              <mat-label> {{'investors.editor.FatherNameRegion' | translate }} </mat-label>
+              <input matInput id="FatherNameRegion" formControlName="FatherNameRegion" required
+                placeholder="Father's Name" />
+
+            </mat-form-field>
+            <mat-form-field>
+              <mat-label> {{'investors.editor.GrandNameRegion' | translate }} </mat-label>
+              <input matInput id="GrandNameRegion" formControlName="GrandNameRegion" required
+                placeholder="Grand Father's Name" />
+
+            </mat-form-field>
+            <mat-form-field>
+              <mat-label>{{'investors.editor.MotherNameRegion' | translate}} </mat-label>
+              <input matInput id="MotherNameRegion" formControlName="MotherNameRegion" required
+                placeholder="Mother's Name" />
+            </mat-form-field>
+          </div>
+        </div>
+
+      </form>
+
+    </mat-card-content>
+    <mat-card-actions fxLayoutAlign="center end">
+      <button mat-raised-button color="primary" (click)="saveServiceInfo()">Save</button>
+      <button mat-raised-button color="warn" (cancel)="cancel()">Cancel</button>
+    </mat-card-actions>
+  </mat-card>
+</div>

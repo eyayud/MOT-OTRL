@@ -1,5 +1,5 @@
 .mat-elevation-z8{
-    margin:30px 30px;
+    margin:35px;
 }
 .mat-datepicker-toggle{
     margin-right: -1.5em
@@ -8,3 +8,30 @@
   position: relative !important;
   left: -1.5em !important;
 }
+.profile-registration{
+   margin-bottom: 10px;
+}
+ mat-checkbox {
+//    max-width: 500px;
+//    // margin: 2em auto;
+//    text-align: left;
+//    margin-top: -40px;
+   font-size: small;
+   vertical-align: bottom;
+ }
+
+ mat-label {
+   font-size: smaller;
+ }
+
+ mat-form-field {
+//    max-width: 130px;
+//    margin-right: 10px;
+   font-size: small;
+ }
+ h4{
+    border-bottom: 1px solid #00796b;
+    width: 90%;
+    margin-bottom: 10px;
+    padding-bottom: 1px;
+ }

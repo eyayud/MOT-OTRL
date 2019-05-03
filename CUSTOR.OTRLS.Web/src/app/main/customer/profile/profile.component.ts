@@ -38,12 +38,14 @@ export class ProfileComponent implements OnInit {
   isNewUser :boolean;
   loadingIndicator :boolean;
   constructor(
-    private fb: FormBuilder, private lookUpService: LookUpService,
+    private fb: FormBuilder,
+    private lookUpService: LookUpService,
     private configService: ConfigurationService,
     private userService: UserService,
     private addressService: AddressService,
     private translationService: AppTranslationService,
-    private toastr: ToastrService, private activatedRoute: ActivatedRoute,)
+    private toastr: ToastrService,
+    private activatedRoute: ActivatedRoute)
      {
 
  // Initializing data
