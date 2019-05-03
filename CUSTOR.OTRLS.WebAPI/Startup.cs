@@ -16,8 +16,10 @@ using CUSTOR.OTRLS.Core;
 using CUSTOR.OTRLS.Core.Helpers;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.OpenApi.Models;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Serialization;
+using Swashbuckle.AspNetCore.Swagger;
 
 namespace CUSTOR.OTRLS.API
 {
@@ -85,6 +87,13 @@ namespace CUSTOR.OTRLS.API
             services.AddScoped<WoredaRepository>();
             services.AddScoped<KebeleRepository>();
             services.AddScoped<CustomerProfileRepository>();
+            
+            
+            // Register the Swagger generator, defining 1 or more Swagger documents
+            services.AddSwaggerGen(c =>
+            {
+                c.SwaggerDoc("v1", new OpenApiInfo() {Title = "OTRL API", Version = "v1"});
+            });
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -93,8 +102,20 @@ namespace CUSTOR.OTRLS.API
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
+                     /*Enable middleware to serve generated Swagger as a JSON endpoint.*/
+                    app.UseSwagger();
+
+                // Enable middleware to serve swagger-ui (HTML, JS, CSS, etc.), 
+                // specifying the Swagger JSON endpoint.
+                app.UseSwaggerUI(c =>
+                {
+                    c.SwaggerEndpoint("/swagger/v1/swagger.json", "OTRL-API");
+                });
+
             }
 
+            
+            
             //Configure Cors
             app.UseCors("CorsPolicy");
             app.UseMvc();
