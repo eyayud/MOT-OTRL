@@ -433,11 +433,14 @@
     "no": "No",
     "paymentReason": "Payment Reason",
     "receiptNo": "Receipt No",
+    "PaymentMethod": "Payment Method",
     "amount": "Amount",
     "checkNo": "Check No",
+    "OrderNo": "Order No",
     "totalAmount": "Total Amount",
     "totalAmountdescription": "Amount Description",
-    "cashierName": "Cashier Name"
+    "cashierName": "Cashier Name",
+    "PayerName" :"Company / Person's Name"
   },
   "sector": {
     "header": "Sector Editor",
