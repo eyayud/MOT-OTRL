@@ -279,7 +279,7 @@ export class ProfileComponent implements OnInit {
       Title: this.user.Title || '',
     });
     this.ProfileForm.get('address').patchValue({
-        RegionId: this.user.RegionId == null ? '' : this.user.RegionId.toString(),
+      // RegionId: this.user.RegionId == null ? '' : this.user.RegionId.toString(),
       //  ZoneId: this.user.ZoneId == null ? '' : this.user.ZoneId.toString(),
       //  WoredaId: this.user.WoredaId == null ? '' : this.user.WoredaId.toString(),
       //  KebeleId: this.user.KebeleId == null ? '' : this.user.KebeleId.toString(),
@@ -288,7 +288,7 @@ export class ProfileComponent implements OnInit {
       //  Pobox: this.user.Pobox || '',
       //  Fax: this.user.Fax || '',
       //  CellPhoneNo: this.user.CellPhoneNo || '',
-      Email: this.user.Email || '',
+      // Email: this.user.Email || '',
       //  OtherAddress: this.user.OtherAddress || ''
     });
   }

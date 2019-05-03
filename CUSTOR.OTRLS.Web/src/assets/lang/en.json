@@ -155,7 +155,7 @@
       "FatherNameEng": "Father (English)",
       "MotherNameEng": "Mother (English)",
       "GrandNameEng": "Grand Father (English)",
-
+      "BusinessType": "Business Type",
       "FatherNameRegion": "Father (Region)",
       "FirstNameRegion": "First Name (Region)",
       "MotherNameRegion": "Mother (Region)",
@@ -378,6 +378,7 @@
     },
     "editor": {
       "LegalStatus": "Legal Status",
+      
       "CompanyNameAmharic": "Company Name (Amharic)",
       "CompanyNameEnglish": "Company Name (English)",
       "CompanyNameRegional": "Company Name (Regional)",
@@ -535,6 +536,12 @@
   "letterTemplate": {
     "Header": "Letter Template Editor",
     "LetterType": "Letter Type"
+  },
+  "general":{
+     "PreviousEnrollmentNumber": "Previous Enrollment Number",
+     "ArchiveNumber": "Archive Number",
+     "CompanyName": "Company Name",
+     "SignedCapital": "Signed Capital"
   }
 }
 
