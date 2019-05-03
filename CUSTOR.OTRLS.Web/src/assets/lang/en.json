@@ -436,7 +436,8 @@
     "totalAmountdescription": "Amount Description",
     "cashierName": "Cashier Name",
     "goToPayment": "Go To Payment",
-    "pay" : "Pay"
+    "pay" : "Pay",
+    "Invoice": "Invoice"
   },
   "sector": {
     "header": "Sector Editor",

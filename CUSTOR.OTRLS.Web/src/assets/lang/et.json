@@ -416,7 +416,8 @@
     "totalAmountdescription": "የገንዘቡ ልክ በፊደል",
     "cashierName": "የገንዘብ ተቀባይ ስምና ፊርማ",
     "goToPayment": "ወደ ክፍያ",
-    "pay": "ክፈል"
+    "pay": "ክፈል",
+    "Invoice": "የገቢ ደረሰኝ"
   },
   "sector": {
     "header": "ዘረፍ",

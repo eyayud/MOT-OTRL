@@ -83,7 +83,7 @@
   <div fxLayout="row" fxLayoutAlign="end" fxLayoutGap="10px" class="mt-3">
     <button mat-raised-button color="warn" awPreviousStep>  {{'common.commands.Back' | translate}}</button>
 <!--    TODO: pass selected address to api -->
-    <button [disabled]="false" type="button" (click)="saveAddresses('selectedAddress')"    mat-raised-button
+    <button [disabled]="selection.selected.length===0" type="button" (click)="saveAddresses('selectedAddress')"    mat-raised-button
             color="primary">{{'common.commands.Next' | translate}}</button>
   </div>
 </mat-card-content>

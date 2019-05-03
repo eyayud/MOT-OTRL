@@ -10,7 +10,7 @@ import {FileUploadService} from '../../services/file-upload/file-upload.service'
 })
 export class FileUploadDialogComponent {
   @ViewChild('file') file;
-  public fileTobeUploaded = {};
+  public fileTobeUploaded:any;
   progress;
   canBeClosed = true;
   primaryButtonText = 'Upload';

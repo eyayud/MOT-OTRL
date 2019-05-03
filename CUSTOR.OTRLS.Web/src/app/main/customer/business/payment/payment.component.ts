@@ -2,22 +2,23 @@ import {Component, Input, OnChanges, OnInit, SimpleChanges} from '@angular/core'
 import {PayOutsModel} from '../../models/payment.model';
 import {MatDialog, MatDialogRef} from '@angular/material';
 import {PaymentDialogComponent} from '../../../../../@custor/components/payment-dialog/payment-dialog.component';
-import {FileUploadDialogComponent} from "../../../../../@custor/components/file-upload-dialog/file-upload-dialog.component";
-import {WizardComponent} from "angular-archwizard";
-import {ArcWizardService} from "../../services/arc-wizard/arc-wizard.service";
+import {WizardComponent} from 'angular-archwizard';
+import {ArcWizardService} from '../../services/arc-wizard/arc-wizard.service';
 
 @Component({
-  selector: 'app-payment',
+  // TODO: change selector name to PaymentComponent
+  selector: 'app-payment-for-registration',
   templateUrl: './payment.component.html',
   styleUrls: ['./payment.component.scss']
 })
-export class PaymentComponent implements OnInit, OnChanges {
+
+// TODO: change class name to PaymentComponent
+export class PaymentForRegistrationComponent implements OnInit, OnChanges {
 
   // load instance of wizard component for programmatically do navigation
   @Input() wizard: WizardComponent;
   payouts: Array<PayOutsModel>;
   paymentDialogRef: MatDialogRef<PaymentDialogComponent>;
-  displayedColumns: string[] = ['position', 'serviceType', 'price'];
 
   constructor(public dialog: MatDialog, private arcWizardService: ArcWizardService) {
     // dummy pay out
@@ -53,7 +54,7 @@ export class PaymentComponent implements OnInit, OnChanges {
       {
         disableClose: false,
         width: '399px',
-        height: '226px',
+        height: '265px',
       });
   }
 

@@ -1,4 +1,4 @@
-<div style="margin: -25px; width:400px">
+<div >
   <form [formGroup]="paymentForm">
     <mat-toolbar color="primary">
       <mat-toolbar-row>
@@ -6,7 +6,11 @@
       </mat-toolbar-row>
     </mat-toolbar>
     <div mat-dialog-content style="font-size: 14px;margin: 20px;">
+      <h3>{{'registration.editor.Tin' | translate}} : 634563465</h3>
 
+      <h3>{{'payment.totalAmount'|translate}} <span>: 870 Birr</span></h3>
+
+      <mat-divider></mat-divider>
       <mat-form-field>
         <mat-label>{{'payment.receiptNo' | translate}}</mat-label>
 
@@ -19,7 +23,7 @@
     <mat-divider></mat-divider>
     <div class="mr-2" fxLayoutAlign="end" mat-dialog-actions>
       <button  mat-button mat-dialog-close>{{'common.commands.Cancel' |translate}}</button>
-      <button type="button"
+      <button type="button" [disabled]="paymentForm.invalid"
         mat-raised-button
         color="primary"
         (click)="savePayment()"

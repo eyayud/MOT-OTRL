@@ -25,10 +25,11 @@ import {BusinessComponent} from './business/business.component';
 import {RegistrationTabComponent} from './registration-tab/registration-tab.component';
 import {RegistrationDocumentComponent} from './registration-document/registration-document.component';
 import {GeneralComponent} from './general/general.component';
-import {PaymentComponent} from './business/payment/payment.component';
+import {PaymentForRegistrationComponent} from './business/payment/payment.component';
 import {PaymentDialogModule} from '../../../@custor/components/payment-dialog/payment-dialog.module';
-import { FinalWizardStepComponent } from './business/final-wizard-step/final-wizard-step.component';
-// import {PaymentComponent} from "./payment/payment.component";
+import {FinalWizardStepComponent} from './business/final-wizard-step/final-wizard-step.component';
+import {PaymentComponent} from './payment/payment.component';
+import {InvoiceDialogModule} from '../../../@custor/components/invoice-dialog/invoice-dialog.module';
 
 
 export const routes = [
@@ -56,7 +57,7 @@ export const routes = [
     // business license registration components
     BusinessLicenseRegistrationComponent,
     GeneralInformationComponent,
-    // PaymentComponent,
+    PaymentForRegistrationComponent,
     RequiredDocumentsComponent,
     WorkAddressComponent,
     FinalWizardStepComponent,
@@ -77,6 +78,7 @@ export const routes = [
     AngConfirmDialogModule,
     FileUploadDialogModule,
     PaymentDialogModule,
+    InvoiceDialogModule,
     ArchwizardModule,
   ],
   providers: [AppTranslationService,

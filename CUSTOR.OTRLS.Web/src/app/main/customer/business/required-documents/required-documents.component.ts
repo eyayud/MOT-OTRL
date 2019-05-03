@@ -31,7 +31,9 @@ export class RequiredDocumentsComponent implements OnInit {
   openFileUploadDialog() {
     this.uploadFileDialogRef = this.dialog.open(FileUploadDialogComponent,
       {
-        disableClose: false
+        disableClose: false,
+        width: '399px',
+        height: '226px',
       });
   }
 

@@ -1,9 +1,15 @@
 <div fxLayout="row" class="p-5 mt-5">
   <mat-card fxFlex="100" class="mt-5">
-    <mat-card-header>
-      <div mat-card-avatar></div>
-      <mat-card-title>{{'pageHeader.businessLicense' | translate}}</mat-card-title>
-      <mat-card-subtitle>{{'subTitle.fillInformation' | translate}}</mat-card-subtitle>
+    <mat-card-header fxLayout="row">
+      <div fxFlex="40">
+        <mat-card-title>{{'pageHeader.businessLicense' | translate}}</mat-card-title>
+        <mat-card-subtitle>{{'subTitle.fillInformation' | translate}}</mat-card-subtitle>
+
+      </div>
+      <div fxFlex fxLayoutAlign="end">
+        <p >{{'registration.editor.Tin' | translate}}: 634563465</p>
+      </div>
+
     </mat-card-header>
 
 <!--    wizard for implementing business license registration. components except the first step component are initialized-->
@@ -54,7 +60,7 @@
         <ng-template awWizardStepSymbol>
           <mat-icon class="mt-2">attach_money</mat-icon>
         </ng-template>
-        <app-payment  *ngIf="exitStepThree"></app-payment>
+        <app-payment-for-registration  *ngIf="exitStepThree"></app-payment-for-registration>
       </aw-wizard-step>
 
 
