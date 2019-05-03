@@ -20,7 +20,7 @@ import { ManagerService } from './services/manager.service';
 import { AngConfirmDialogModule } from '../../../@custor/components/confirm-dialog/confirm-dialog.module';
 import { BreadcrumbComponent } from '../../../@custor/components/breadcrumb/breadcrumb.component';
 import { ProfileComponent } from './profile/profile.component';
-import { BusinessComponent } from './business/business.component';
+import { ServiceRegisterComponent } from './service-register/service-register.component';
 import { RegistrationTabComponent } from './registration-tab/registration-tab.component';
 import { RegistrationDocumentComponent } from './registration-document/registration-document.component';
 import { PaymentComponent } from './payment/payment.component';
@@ -30,8 +30,8 @@ export const routes = [
     { path: 'manager-list', component: ManagerListComponent},
     { path: 'manager/:id', component: ManagerComponent},
     { path: 'profile', component: ProfileComponent},
-    { path: 'business', component: BusinessComponent},
-    { path: 'tab', component: RegistrationTabComponent},
+    { path: 'service-register', component: ServiceRegisterComponent},
+    { path: 'registration-tab', component: RegistrationTabComponent},
   ];
 @NgModule({
     declarations: [
@@ -39,7 +39,7 @@ export const routes = [
         ManagerListComponent,
         BreadcrumbComponent,
         ProfileComponent,
-        BusinessComponent,
+        ServiceRegisterComponent,
         RegistrationTabComponent,
         RegistrationDocumentComponent,
         PaymentComponent,
