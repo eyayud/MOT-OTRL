@@ -9,7 +9,7 @@
 <!--    wizard for implementing business license registration. components except the first step component are initialized-->
 <!--    whenever the preceding ones are done with their logic-->
 
-    <aw-wizard #step  [navBarLayout]="'large-empty-symbols'" navigationMode="free">
+    <aw-wizard #wizard  [navBarLayout]="'large-empty-symbols'">
 <!--      step where customer fills basic information like company name, capital and sector-->
       <aw-wizard-step stepTitle="Title of step 1">
         <ng-template awWizardStepTitle>
@@ -18,7 +18,7 @@
         <ng-template  awWizardStepSymbol>
           <mat-icon class="mt-2" >account_circle</mat-icon>
         </ng-template>
-        <app-general-information [wizard]="step" (exitStepOne)="canExitStepOne($event)"></app-general-information>
+        <app-general-information [wizard]="wizard" ></app-general-information>
 
       </aw-wizard-step>
 
@@ -43,7 +43,7 @@
       <ng-template awWizardStepSymbol>
         <mat-icon class="mt-2">file_copy</mat-icon>
       </ng-template>
-      <app-required-documents [wizard]="step" *ngIf="exitStepTwo"></app-required-documents>
+      <app-required-documents  *ngIf="exitStepTwo"></app-required-documents>
     </aw-wizard-step>
 
       <!--      step where customer gets payment info-->
@@ -54,7 +54,7 @@
         <ng-template awWizardStepSymbol>
           <mat-icon class="mt-2">attach_money</mat-icon>
         </ng-template>
-        <app-payment [wizard]="step" *ngIf="exitStepThree"></app-payment>
+        <app-payment  *ngIf="exitStepThree"></app-payment>
       </aw-wizard-step>
 
 
