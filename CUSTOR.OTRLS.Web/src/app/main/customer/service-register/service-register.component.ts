@@ -11,7 +11,7 @@ import { ALPHABET_WITHSPACE_REGEX, GENDERS, LEGAL_STATUSES, ET_ALPHABET_WITHSPAC
 import { ActivatedRoute, Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { UserProfile } from '../models/user.model';
-import { AppTranslationService } from '../../../../@custor/services/translation.service';
+// import { AppTranslationService } from '../../../../@custor/services/translation.service';
 import { UserService } from '../services/user.service';
 @Component({
   selector: 'app-service-register',
