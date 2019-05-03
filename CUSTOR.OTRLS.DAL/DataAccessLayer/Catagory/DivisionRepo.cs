@@ -14,14 +14,14 @@ namespace CUSTOR.OTRLS.Core
         {
             context = _context;
         }
-        public async Task<List<DivisionViewModel>> GetDivisionByMajorDivisionid(int MajorDivisionid)
+        public async Task<List<DivisionDTO>> GetDivisionByMajorDivisionid(int MajorDivisionid)
         {
             try
             {
 
                 return await context.Division
                     .Where(md => md.Parent == MajorDivisionid)
-                    .Select(md => new DivisionViewModel()
+                    .Select(md => new DivisionDTO()
                     {
                         Code = md.Code,
                         Description = md.Description

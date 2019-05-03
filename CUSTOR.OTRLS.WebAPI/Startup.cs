@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Builder;
@@ -87,12 +88,26 @@ namespace CUSTOR.OTRLS.API
             services.AddScoped<WoredaRepository>();
             services.AddScoped<KebeleRepository>();
             services.AddScoped<CustomerProfileRepository>();
+            services.AddScoped<RegistrationRepository>();
+            services.AddScoped<RegistrationCatagoryRepository>();
+            services.AddScoped<MajorDivisionRepository>();
+            services.AddScoped<LegalStatusRepository>();
+
+            services.AddScoped<DivisionRepository>();
+            services.AddScoped<GroupRepository>();
+            services.AddScoped<MajorGroupRepository>();
+            services.AddScoped<SubGroupRepository>();
+            services.AddScoped<BusinessRepository>();
             
             
             // Register the Swagger generator, defining 1 or more Swagger documents
             services.AddSwaggerGen(c =>
             {
                 c.SwaggerDoc("v1", new OpenApiInfo() {Title = "OTRL API", Version = "v1"});
+                // Set the comments path for the Swagger JSON and UI.
+                var xmlFile = $"{Assembly.GetExecutingAssembly().GetName().Name}.xml";
+                var xmlPath = Path.Combine(AppContext.BaseDirectory, xmlFile);
+                c.IncludeXmlComments(xmlPath);
             });
         }
 

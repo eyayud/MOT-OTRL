@@ -14,14 +14,14 @@ namespace CUSTOR.OTRLS.Core
         {
             context = _context;
         }
-        public async Task<List<GroupViewModel>> GetGroupByMajorGroupCode(int MajorGroupCode)
+        public async Task<List<GroupDTO>> GetGroupByMajorGroupCode(int MajorGroupCode)
         {
             try
             {
 
                 return await context.Group
                     .Where(md => md.Parent == MajorGroupCode)
-                    .Select(md => new GroupViewModel()
+                    .Select(md => new GroupDTO()
                     {
                         Code = md.Code,
                         Description = md.Description

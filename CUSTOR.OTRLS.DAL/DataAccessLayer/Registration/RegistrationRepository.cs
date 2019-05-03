@@ -13,6 +13,7 @@ namespace CUSTOR.OTRLS.Core
             context = _context;
         }
 
+        
         public async Task<Registration> GetRecord(object registrationID)
         {
             Registration registration = null;
@@ -68,7 +69,7 @@ namespace CUSTOR.OTRLS.Core
             //postedRegistration.BusinessNameRegionalSort = objGeez.GetSortValueU(postedRegistration.BusinessNameRegional);
 
             postedRegistration.DateRegistered = DateTime.Now;
-            postedRegistration.CancilationDate = DateTime.Now;
+            postedRegistration.CancellationDate = DateTime.Now;
             postedRegistration.EventDateTime = DateTime.Now;
             postedRegistration.PreviousRegDate = DateTime.Now;
             postedRegistration.RegDate = DateTime.Now;
@@ -114,7 +115,7 @@ namespace CUSTOR.OTRLS.Core
             //editedRegistration.BusinessNameRegionalSort = objGeez.GetSortValueU(editedRegistration.BusinessNameRegional);
 
             editedRegistration.DateRegistered = DateTime.Now;
-            editedRegistration.CancilationDate = DateTime.Now;
+            editedRegistration.CancellationDate = DateTime.Now;
             editedRegistration.EventDateTime = DateTime.Now;
             editedRegistration.PreviousRegDate = DateTime.Now;
             editedRegistration.RegDate = DateTime.Now;

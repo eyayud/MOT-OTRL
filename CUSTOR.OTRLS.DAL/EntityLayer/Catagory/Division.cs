@@ -32,9 +32,9 @@ namespace CUSTOR.OTRLS.Core
         public string DescriptionSoundX { get; set; }
     }
 
-    public partial class DivisionViewModel
+    public partial class DivisionDTO
     {
-        public DivisionViewModel()
+        public DivisionDTO()
         {
         }
 

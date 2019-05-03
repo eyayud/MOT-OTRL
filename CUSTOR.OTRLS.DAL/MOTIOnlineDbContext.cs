@@ -447,8 +447,28 @@ namespace CUSTOR.OTRLS.Core
             
            
             modelBuilder.Entity<CustomerProfile>().ToTable("CustomerProfile");
-           
 
+            modelBuilder.Entity<Registration>().ToTable("Registration");
+
+            modelBuilder.Entity<RegistrationCatagory>().ToTable("RegistrationCategory");
+
+            modelBuilder.Entity<LegalStatus>().ToTable("LegalStatus");
+
+            modelBuilder.Entity<Business>().ToTable("Business");
+
+            modelBuilder.Entity<BusinessLicensingGroup>().ToTable("BusinessLicensingGroup");
+
+            modelBuilder.Entity<Division>().ToTable("Division");
+
+            modelBuilder.Entity<Group>().ToTable("Group");
+
+            modelBuilder.Entity<MajorDivision>().ToTable("MajorDivision");
+
+            modelBuilder.Entity<MajorGroup>().ToTable("MajorGroup");
+
+            modelBuilder.Entity<SubGroup>().ToTable("SubGroup");
+            
+            
             base.OnModelCreating(modelBuilder);
         }
     }

@@ -32,9 +32,9 @@ namespace CUSTOR.OTRLS.Core
         public string DescriptionSoundX { get; set; }
 
     }
-    public partial class GroupViewModel
+    public partial class GroupDTO
     {
-        public GroupViewModel()
+        public GroupDTO()
         {
         }
 

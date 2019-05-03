@@ -4,14 +4,16 @@ using CUSTOR.OTRLS.Core;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace CUSTOR.OTRLS.API.Migrations
 {
     [DbContext(typeof(OTRLSDbContext))]
-    partial class OTRLSDbContextModelSnapshot : ModelSnapshot
+    [Migration("20190503084100_registration, business, businessLicensingGroup etc.. models")]
+    partial class registrationbusinessbusinessLicensingGroupetcmodels
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
