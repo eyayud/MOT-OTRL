@@ -541,7 +541,8 @@
      "PreviousEnrollmentNumber": "Previous Enrollment Number",
      "ArchiveNumber": "Archive Number",
      "CompanyName": "Company Name",
-     "SignedCapital": "Signed Capital"
+     "SignedCapital": "Signed Capital",
+     "BusinessType": "Business Type"
   }
 }
 

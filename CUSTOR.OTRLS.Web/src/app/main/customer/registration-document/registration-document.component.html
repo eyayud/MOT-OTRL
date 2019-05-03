@@ -29,9 +29,9 @@
         <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
       </table>
     </mat-card-content>
-    <mat-card-actions fxLayoutAlign="center end">
-      <button mat-raised-button color="primary" (click)="saveDocumentInfo()">Save</button>
+    <mat-card-actions fxLayoutAlign="end end">
       <button mat-raised-button color="warn" (cancel)="cancel()">Cancel</button>
+      <button mat-raised-button color="primary" (click)="saveDocumentInfo()">Save</button>
     </mat-card-actions>
 </mat-card>
 </div>
