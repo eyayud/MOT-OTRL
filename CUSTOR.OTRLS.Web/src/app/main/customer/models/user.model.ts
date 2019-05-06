@@ -10,17 +10,25 @@ export class UserProfile {
 
   public FirstNameEng ?: string;
 
+  public FirstNameRegion  ?: string;
+
   public FatherName ?: string;
 
   public FatherNameEng ?: string;
+
+  public FatherNameRegion?: string;
 
   public GrandName ?: string;
 
   public GrandNameEng?: string;
 
+  public GrandNameRegion ?: string;
+
   public MotherName?: string;
 
   public MotherNameEng?: string;
+
+  public MotherNameRegion?: string;
 
   public IdentificationNumber?: string;
 

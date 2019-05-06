@@ -24,7 +24,7 @@ export class UserService extends EndpointFactory {
     }
      getUserProfile(userId: any) {
         //  const endpointUrl = `${this.userProfileUrl}${userId}`;
-        const endpointUrl ="http://localhost:60330/api/customerProfile/2"
+         const endpointUrl = "http://localhost:60330/api/customerProfile/" + userId
         console.log(endpointUrl);
          return this.httpClient.get<UserProfile>(endpointUrl).pipe(
                 map(usr => {

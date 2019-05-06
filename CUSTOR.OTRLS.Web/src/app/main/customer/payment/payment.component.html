@@ -1,49 +1,66 @@
 <div class="page-content">
   <mat-card>
     <mat-card-header>
-      <mat-card-title>Payment</mat-card-title>
+      <!-- <mat-card-title>Payment</mat-card-title> -->
       <!-- <mat-card-subtitle>Subtitle</mat-card-subtitle> -->
     </mat-card-header>
     <mat-card-content>
+      <div fxLayout="row wrap" fxLayoutAlign="" fxLayoutGap="2em">
+        <mat-form-field>
+          <mat-label>{{'payment.paymentReason'| translate}}</mat-label>
+          <input matInput disabled placeholder="Service Type" />
+        </mat-form-field>
+        <mat-form-field>
+          <mat-label>{{'payment.PayerName'| translate}}</mat-label>
+          <input matInput disabled placeholder="Payer Name" />
+        </mat-form-field>
+         <mat-form-field>
+           <mat-label>{{'payment.Tin'| translate}}</mat-label>
+           <input matInput disabled placeholder="Tin Number" />
+         </mat-form-field>
+        <mat-form-field>
+          <mat-label>{{'payment.totalAmount'| translate}}</mat-label>
+          <input matInput disabled [(ngModel)]="servicePaymentInfo.TotalAmount" placeholder="Total Amount" />
+        </mat-form-field>
+          <!-- <mat-form-field>
+            <mat-label>{{'payment.OrderNumber' | translate}}</mat-label>
+            <input matInput id="" [(ngModel)]="servicePaymentInfo.OrderNumber" placeholder="Order Number" />
+          </mat-form-field> -->
+      </div>
       <form [formGroup]="paymentForm" novalidate (ngSubmit)="onSubmit()" fxLayout="column" autocomplete="off">
+
         <div fxLayout="row wrap" fxLayoutAlign="" fxLayoutGap="2em">
+          
           <mat-form-field>
-            <!-- <mat-label>{{'registration.editor.ServiceNumber' | translate}}</mat-label> -->
-            <mat-label>Legal Status</mat-label>
-            <input matInput id="OrderNumber" formControlName="OrderNumber" placeholder="Order Number" />
+            <mat-label>{{'payment.receiptNo' | translate}}</mat-label>
+            <input matInput id="ReceiptNumber" formControlName="ReceiptNumber" placeholder="Receipt Number" />
+            <mat-error *ngIf="ReceiptNumber.hasError('required')">
+              {{'common.validation.Required' | translate}}
+            </mat-error>
           </mat-form-field>
           <mat-form-field>
-            <!-- <mat-label>{{'registration.editor.ServiceNumber' | translate}}</mat-label> -->
-            <mat-label>Invoice number</mat-label>
-            <input matInput id="InvoiceNumber" formControlName="InvoiceNumber" placeholder="Invoice Number" />
-          </mat-form-field>
-          <mat-form-field>
-            <!-- <mat-label>{{'registration.editor.ServiceNumber' | translate}}</mat-label> -->
-            <mat-label>Payment Method</mat-label>
+            <mat-label>{{'payment.PaymentMethod' | translate}}</mat-label>
             <mat-select formControlName="PaymentMethod" required>
-              <mat-option value="0">Cash</mat-option>
-              <mat-option value="1">Check</mat-option>
-              <mat-option value="2">Bank Receipt</mat-option>
-              <mat-option value="3">Bank Transfer</mat-option>
+              <mat-option *ngFor="let payment of paymentTypes" [value]="payment.id">{{payment.name}}</mat-option>
             </mat-select>
-            <!-- <input matInput id="InvoiceNumber" formControlName="InvoiceNumber" placeholder="Invoice Number" /> -->
+            <mat-error *ngIf="PaymentMethod.hasError('required')">
+              {{'common.validation.Required' | translate}}
+            </mat-error>
           </mat-form-field>
-          <mat-form-field>
-            <!-- <mat-label>{{'registration.editor.ServiceNumber' | translate}}</mat-label> -->
-            <mat-label>Check Number</mat-label>
+          <mat-form-field *ngIf="paymentForm.value.PaymentMethod==2">
+            <mat-label>{{'payment.checkNo' | translate}}</mat-label>
             <input matInput id="CheckNumber" formControlName="CheckNumber" placeholder="Check Number" />
+            <mat-error *ngIf="CheckNumber.hasError('required')">
+              {{'common.validation.Required' | translate}}
+            </mat-error>
           </mat-form-field>
-          <mat-form-field>
-            <!-- <mat-label>{{'registration.editor.ServiceNumber' | translate}}</mat-label> -->
-            <mat-label>Total Payment</mat-label>
-            <input matInput id="TotalPayment" formControlName="TotalPayment" placeholder="Total Payment" />
-          </mat-form-field>
+       
         </div>
       </form>
     </mat-card-content>
-    <mat-card-actions fxLayoutAlign="center end">
-      <button mat-raised-button color="primary" (click)="savePaymentInfo()">Save</button>
+    <mat-card-actions fxLayoutAlign="end end">
       <button mat-raised-button color="warn" (cancel)="cancel()">Cancel</button>
+      <button mat-raised-button color="primary" (click)="savePaymentInfo()">Save</button>
     </mat-card-actions>
   </mat-card>
 </div>
