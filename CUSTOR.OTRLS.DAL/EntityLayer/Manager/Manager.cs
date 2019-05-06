@@ -28,6 +28,9 @@ namespace CUSTOR.OTRLS.Core
         //public DateTime DateOfBirth { get; set; }
         public int Gender { get; set; }
         public int Nationality { get; set; }
+
+        [NotMapped]
+        public string NationalityDisplay { get; set; }
         public int Origin { get; set; }
         public string Remark { get; set; }
         public int? AddressId { get; set; }

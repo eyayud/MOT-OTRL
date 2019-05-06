@@ -2,21 +2,24 @@
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System.Net;
+using System.Net.Http;
 using System.Threading.Tasks;
 using CUSTOR.API.ExceptionFilter;
+using CUSTOR.API.ModelValidationAttribute;
 using CUSTOR.OTRLS.Core;
 using Microsoft.AspNetCore.Cors;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
-
-
+using Microsoft.AspNetCore.Mvc.ModelBinding;
 
 namespace CUSTOR.OTRLS.API.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    [ServiceFilter(typeof(ApiExceptionFilter))]
+    [ServiceFilter(typeof(ApiExceptionFilter), Order = 2)]
+    [ServiceFilter(typeof(ModelValidationAttribute), Order = 1)]
     [EnableCors("CorsPolicy")]
     public class ManagerController : ControllerBase
     {
@@ -37,7 +40,7 @@ namespace CUSTOR.OTRLS.API.Controllers
         public async Task<ManagerDTO> PostManager([FromBody] ManagerDTO managerDTO)
         {
             ManagerDTO mgr = null;
-
+            
             try
             {
                 mgr = await mRepository.SaveManager(managerDTO);
@@ -69,13 +72,23 @@ namespace CUSTOR.OTRLS.API.Controllers
             return mgr;
         }
 
-        [HttpGet("GetManagerByCustomerId/{id}")]
-        public async Task<List<ManagerListDTO>> GetManagerByCustomerId([FromRoute] int id)
+        [HttpGet("GetManagerByCustomerId")]
+        public async Task<PagedResult<ManagerListDTO>> GetManagerByCustomerId([FromQuery] QueryParameters queryParameters)
         {
-            return await mRepository.GetManagerByCustomerId(id);
 
+            //ModelState.AddModelError("Error 1", "Error 1");
+            //ModelState.AddModelError("Error 2", "Error 2");
+            //var message = string.Join(" | ", ModelState.Values
+            //                                .SelectMany(v => v.Errors)
+            //                                .Select(e => e.ErrorMessage));
+            //if (!ModelState.IsValid)
+            //throw new Exception("Hi. This is custom error");
+
+            return await mRepository.GetManagerByCustomerId2(queryParameters);
+       
         }
-
+      
+     
         [HttpDelete("{id}")]
         public async Task<bool> DeleteManager(int id)
         {

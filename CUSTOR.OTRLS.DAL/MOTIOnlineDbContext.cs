@@ -20,6 +20,8 @@ namespace CUSTOR.OTRLS.Core
         public virtual DbSet<Lookup> Lookup { get; set; }
         public virtual DbSet<Manager> Manager { get; set; }
         
+        public virtual DbSet<ManagerListDTO> ManagerListDTO { get; set; }
+
         public virtual DbSet<Nationality> Nationality { get; set; }
         public virtual DbSet<Region> Region { get; set; }
         public virtual DbSet<Woreda> Woreda { get; set; }

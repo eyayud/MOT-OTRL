@@ -1,10 +1,10 @@
 import {Component, Input, OnInit} from '@angular/core';
-import {AddressListDTO} from '../../models/address.model';
+import {AddressListDTO} from '../../../models/address.model';
 import {SelectionModel} from '@angular/cdk/collections';
-import {ArcWizardService} from '../../services/arc-wizard/arc-wizard.service';
+import {ArcWizardService} from '../../../services/arc-wizard/arc-wizard.service';
 import {WizardComponent} from 'angular-archwizard';
-import {BusinessApiService} from '../../services/business.api.service';
-import {ProgressBarService} from '../../../../../@custor/services/progress-bar/progress-bar.service';
+import {BusinessApiService} from '../../../services/business.api.service';
+import {ProgressBarService} from '../../../../../../@custor/services/progress-bar/progress-bar.service';
 
 @Component({
   selector: 'app-work-address',
@@ -15,7 +15,7 @@ export class WorkAddressComponent implements OnInit {
   // load instance of wizard component for programmatically do navigation
   @Input() wizard: WizardComponent;
   addresses: AddressListDTO[];
-  displayedColumns: string[] = ['Select', 'IsMainOffice', 'CellPhoneNo', 'TeleNo', 'Email', 'Region', 'Zone', 'Woreda', 'Kebele', 'HouseNo'];
+  displayedColumns: string[] = ['Select', 'IsMainOffice', 'CellPhoneNo', 'Region', 'Zone', 'Woreda', 'Kebele', 'HouseNo'];
   selection = new SelectionModel<AddressListDTO>(true, []);
 
 

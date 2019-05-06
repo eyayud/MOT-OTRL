@@ -1,7 +1,9 @@
 import {Component} from '@angular/core';
-import {AppTranslationService} from '../../../../../@custor/services/translation.service';
 import {ConfigurationService} from '../../../../../@custor/services/configuration.service';
-import {ArcWizardService} from "../../services/arc-wizard/arc-wizard.service";
+import {ArcWizardService} from '../../services/arc-wizard/arc-wizard.service';
+import {TranslationLoaderService} from '../../../../../@custor/services/translation-loader.service';
+import { locale as langEnglish } from '../../../lang/en';
+import { locale as langEthiopic } from '../../../lang/et';
 
 
 @Component({
@@ -10,18 +12,21 @@ import {ArcWizardService} from "../../services/arc-wizard/arc-wizard.service";
   styleUrls: ['./business-license-registration.component.scss']
 })
 export class BusinessLicenseRegistrationComponent {
-
+  currentLang = '';
   exitStepOne: boolean;
   exitStepTwo: boolean;
   exitStepThree: boolean;
   exitStepFour: boolean;
 
   constructor(
-    private translationService: AppTranslationService,
+    private translationLoaderService: TranslationLoaderService,
     public configService: ConfigurationService,
     public arcWizardService: ArcWizardService
   ) {
-    this.translationService.changeLanguage(this.configService.language);
+    this.translationLoaderService.loadTranslations(langEnglish, langEthiopic);
+
+    this.currentLang = this.configService.language;
+
 
     // listen to wizard navigation steps
     arcWizardService.exitStepOneTriggered$.subscribe(res => {

@@ -88,7 +88,18 @@ export class ManagerModel {
 export class ManagerListDTO {
   constructor() {
   }
-  public ManagerId: number;
+  public ManagerId = 0;
   public FullName: string = null;
   public FullNameEng: string = null;
+  public Gender =0;
+  public Nationality: string = null;
+}
+
+export class ManagerParameters {
+  constructor() {
+  }
+  public CustomerId: number;
+  public Lang: string;
+  public PageIndex: number;
+  public PageSize: number;
 }

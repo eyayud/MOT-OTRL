@@ -51,8 +51,12 @@ namespace CUSTOR.OTRLS.Core
         public ManagerListDTO()
         {
         }
+        public int CustomerId { get; set; }
+        [Key]
         public int ManagerId { get; set; }
         public string FullName { get; set; }
         public string FullNameEng { get; set; }
+        public int Gender { get; set; }
+        public string Nationality { get; set; }
     }
 }

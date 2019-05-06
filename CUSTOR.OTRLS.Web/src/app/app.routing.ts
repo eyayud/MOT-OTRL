@@ -1,8 +1,6 @@
 import { Routes, RouterModule, PreloadAllModules  } from '@angular/router';
 import { ModuleWithProviders } from '@angular/core';
-// import { MainComponent } from './main/main.component';
  
-
 export const routes: Routes = [
         {
                 path: '',
@@ -16,13 +14,11 @@ export const routes: Routes = [
                 path: 'main',
                 loadChildren: './main/main.module#MainModule'
         },
-        // {
-        //         path: '',
-        //         component: MainComponent, children: [
-        //                 { path: 'dashboard', loadChildren: './main/dashboard/dashboard.module#DashboardModule'}
-        //         ]
-
-        // }
+        {
+                path: 'denied',
+                loadChildren: './common/denied/denied.module#DeniedModule'
+        },
+        { path: '**',  loadChildren: './common/not-found/not-found.module#NotFoundModule'},
 ];
 
 

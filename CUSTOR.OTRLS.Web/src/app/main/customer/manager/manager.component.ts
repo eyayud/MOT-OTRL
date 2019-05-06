@@ -12,11 +12,14 @@ import {AddressService} from '../../../common/services/address.service';
 import {Utilities} from '@custor/helpers/utilities';
 import {ManagerDTO} from '../models/manager.model';
 import {ManagerService} from '../services/manager.service';
-import {AppTranslationService} from '@custor/services/translation.service';
 
 import {determineId} from '@custor/helpers/compare';
 // import { Region, Zone, Woreda, Kebele } from 'app/common/models/address.model';
 import { StaticData, StaticData2} from 'app/common/models/static-data.model';
+
+import { locale as langEnglish } from '../../lang/en';
+import { locale as langEthiopic } from '../../lang/et';
+import { TranslationLoaderService } from '@custor/services/translation-loader.service';
 
 @Component({
   selector: 'app-manager',
@@ -64,19 +67,18 @@ export class ManagerComponent implements OnInit {
               private lookUpService: LookUpService,
               private addressService: AddressService,
               private managerService: ManagerService,
-              private configService: ConfigurationService,
-              private translationService: AppTranslationService,
+              private configService: ConfigurationService, private translationLoaderService: TranslationLoaderService,
               private toastr: ToastrService,
               private fb: FormBuilder) {
+                this.translationLoaderService.loadTranslations(langEnglish, langEthiopic);
 
-    this.currentLang = this.configService.language;
-    this.translationService.changeLanguage(this.configService.language);
+                this.currentLang = this.configService.language;
 
     // create an empty object from the manager model
-    this.manager = {} as ManagerDTO;
-   
+                this.manager = {} as ManagerDTO;
+
     // initialize the form
-    this.initForm();
+                this.initForm();
   }
 
   ngOnInit() {
@@ -112,8 +114,10 @@ export class ManagerComponent implements OnInit {
             this.managerId = id;
             this.imgPhoto = this.configService.baseUrl + 'photo/Mgr' + this.manager.ManagerId + '.jpg'; // to-do put the path in config
           }
-        },
-        error => this.toastr.error(error));
+        }
+        // ,
+        // error => this.toastr.error(error)
+        );
     this.loadingIndicator = false;
   }
 
@@ -333,7 +337,6 @@ export class ManagerComponent implements OnInit {
     const add = this.managerForm.get('address').value;
     this.customerId = 1; // hard coded for now
     return {
-     
       ManagerId: this.isNewManager ? 0 : this.manager.ManagerId,
       CustomerId: this.customerId,
       FirstName: formModel.cFirstName,

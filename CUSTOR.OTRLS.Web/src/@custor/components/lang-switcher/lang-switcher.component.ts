@@ -3,6 +3,7 @@ import { Component, ViewEncapsulation, ChangeDetectionStrategy, NgModule, Input,
 import { CommonModule } from '@angular/common';
 import { MatSelectModule, MatMenuModule, MatMenuTrigger, MatButtonModule, MatIconModule, MatTooltipModule } from '@angular/material';
 import { ConfigurationService } from '../../services/configuration.service';
+import { TranslateService } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-lang-switcher',
@@ -19,7 +20,7 @@ export class LangSwitcher {
     { name: 'English', locale: 'en' },
     { name: 'አማርኛ', locale: 'et' },
   ];
-  constructor(private config: ConfigurationService) {
+  constructor(private config: ConfigurationService, private translationService: TranslateService) {
     config.configurationImported$.subscribe(() => this.setLang(this.currentLang));
     this.selectedLanguage = this.currentLang;
     this.selectedLanguageName = this.getLangName(this.selectedLanguage);
@@ -33,6 +34,7 @@ export class LangSwitcher {
       this.config.language = lang;
       this.selectedLanguage = lang;
       this.selectedLanguageName = this.getLangName(lang);
+      this.translationService.use(lang);
     }
   }
   private getLangName(locale: string): string {

@@ -1,14 +1,17 @@
 import {AfterViewInit, Component, OnInit, ViewChild} from '@angular/core';
-import {MatDialog, MatDialogRef, MatPaginator, MatSort, MatTableDataSource} from '@angular/material';
+import {MatDialog, MatDialogRef, MatPaginator, MatSort, MatTableDataSource, PageEvent} from '@angular/material';
 import {ToastrService} from 'ngx-toastr';
 import {AngConfirmDialogComponent} from '@custor/components/confirm-dialog/confirm-dialog.component';
-import {AppTranslationService} from '@custor/services/translation.service';
 import {Utilities} from '@custor/helpers/utilities';
 import {ActivatedRoute, Router} from '@angular/router';
-import {ManagerListDTO} from '../models/manager.model';
+import {ManagerListDTO, ManagerParameters} from '../models/manager.model';
 import {ManagerService} from '../services/manager.service';
 import {ConfigurationService} from '@custor/services/configuration.service';
-
+import { PaginationService } from '@custor/services/pagination.service';
+import {KeyConverstorService} from 'app/common/services/key-convertor.service';
+import { locale as langEnglish } from '../../lang/en';
+import { locale as langEthiopic } from '../../lang/et';
+import { TranslationLoaderService } from '@custor/services/translation-loader.service';
 
 @Component({
   selector: 'app-manager-list',
@@ -16,63 +19,77 @@ import {ConfigurationService} from '@custor/services/configuration.service';
   styleUrls: ['./manager-list.component.scss']
 })
 export class ManagerListComponent implements OnInit, AfterViewInit {
-
-
+  pageEvent: PageEvent;
+  totalCount = 0;
   managers: ManagerListDTO[];
   @ViewChild(MatPaginator) paginator: MatPaginator;
   @ViewChild(MatSort) sort: MatSort;
   isInvestor: boolean;
-  displayedColumns = ['FullName', 'FullNameEng', 'actions'];
+  displayedColumns = ['ManagerId', 'FullName', 'FullNameEng', 'Gender', 'Nationality', 'Actions'];
   dataSource: MatTableDataSource<ManagerListDTO>;
 
   loadingIndicator: boolean;
   dialogRef: any;
   confirmDialogRef: MatDialogRef<AngConfirmDialogComponent>;
-
+  
 
   constructor(private managerService: ManagerService,
-              private toastr: ToastrService, private translationService: AppTranslationService,
-              public dialog: MatDialog,
+              private toastr: ToastrService,
+              public dialog: MatDialog,  private translationLoaderService: TranslationLoaderService,
               private router: Router, private configService: ConfigurationService,
+              public paginationService: PaginationService,  private convertorService: KeyConverstorService,
               private route: ActivatedRoute) {
-
-    // Assign the data to the data source for the table to render
-    this.dataSource = new MatTableDataSource();
-    this.translationService.changeLanguage(this.configService.language);
+                  this.translationLoaderService.loadTranslations(langEnglish, langEthiopic);
   }
 
   ngOnInit() {
-
     this.getManagersByCustomerId();
-
   }
-
-
+ getGender(val: any){
+      return this.convertorService.getGender(val);
+   
+}
+  switchPage(event: PageEvent) {
+    this.paginationService.change(event);
+    this.getManagersByCustomerId();
+}
   getManagersByCustomerId() {
-    const customerId = 1; // hard-coded for now
     this.loadingIndicator = true;
-    this.managerService.getManagers(customerId)
-      .subscribe(result => {
+   
+    this.managerService.getManagers(this.getManagerParameters())
+      .subscribe((result: any) => {
           console.log(result);
-          this.managers = result;
+          this.managers = result.Items;
           if (!this.managers) {
             this.toastr.error('No records were found to list', 'Error', {
               closeButton: true,
             });
           } else {
-            this.dataSource.data = this.managers;
+            this.dataSource = new MatTableDataSource( this.managers);
+            if (this.totalCount === 0) {
+                this.totalCount = result.ItemsCount;
+            }
           }
-        },
-        error => {
-          this.toastr.error(`Error: "${Utilities.getHttpResponseMessage(error)}"`);
-        });
+        }
+        // ,
+        // error => {
+        //   this.toastr.error(`Error: "${Utilities.getHttpResponseMessage(error)}"`);
+        // }
+        );
     this.loadingIndicator = false;
   }
 
+  private getManagerParameters(): ManagerParameters {
+      const params = new ManagerParameters();
+      params.CustomerId = 1, // hardcoded for now
+      params.PageIndex = this.paginationService.page;
+      params.PageSize = this.paginationService.pageCount;
+      params.Lang = this.configService.language;
+      return params;
+  }
 
   ngAfterViewInit() {
-    this.dataSource.paginator = this.paginator;
-    this.dataSource.sort = this.sort;
+//
   }
 
   editManager(manager: ManagerListDTO) {
@@ -98,15 +115,16 @@ export class ManagerListComponent implements OnInit, AfterViewInit {
               this.loadingIndicator = false;
               this.dataSource.data = this.dataSource.data.filter(item => item !== manager);
             },
-            error => {
-              // tslint:disable-next-line:max-line-length
-              this.toastr.error(
-                `An error occured whilst deleting the manager.\r\nError: "${Utilities.getHttpResponseMessage(error)}"`,
-                'Delete Error');
-            });
+            // error => {
+            //   // tslint:disable-next-line:max-line-length
+            //   this.toastr.error(
+            //     `An error occured whilst deleting the manager.\r\nError: "${Utilities.getHttpResponseMessage(error)}"`,
+            //     'Delete Error');
+            // }
+            );
       }
       this.loadingIndicator = false;
     });
   }
-
+ 
 }

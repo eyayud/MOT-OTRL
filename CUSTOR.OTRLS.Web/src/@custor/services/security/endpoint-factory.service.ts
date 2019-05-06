@@ -57,17 +57,24 @@ export class EndpointFactory {
   }
 
   protected getRequestHeaders(): { headers: HttpHeaders | { [header: string]: string | string[]; } } {
-    //    alert (this.authService.accessToken);
-    const headers = new HttpHeaders({
-      'Authorization': 'Bearer ' + this.authService.accessToken,
+    const rHeaders = new HttpHeaders({
+      Authorization: 'Bearer ' + this.authService.accessToken,
       'Content-Type': 'application/json',
-      'Accept': `application/vnd.iman.v${EndpointFactory.apiVersion}+json, application/json, text/plain, */*`,
+      Accept: `application/vnd.iman.v${EndpointFactory.apiVersion}+json, application/json, text/plain, */*`,
       'App-Version': ConfigurationService.appVersion
     });
-    // console.log('Headers ' + headers);
-    return { headers: headers };
-  }
 
+    return {headers: rHeaders};
+  }
+  protected getRequestHeaders2(): any {
+    const rHeaders = new HttpHeaders()
+                                .append('Authorization', 'Bearer ' + this.authService.accessToken)
+                                .append( 'Content-Type', 'application/json')
+                                // tslint:disable-next-line:max-line-length
+                                .append('Accept',  `application/vnd.iman.v${EndpointFactory.apiVersion}+json, application/json, text/plain, */*`)
+                                .append('App-Version', ConfigurationService.appVersion);
+    return rHeaders;
+  }
   protected handleError(error, continuation: () => Observable<any>) {
     if (error.status === 401) {
       if (this.isRefreshingLogin) {

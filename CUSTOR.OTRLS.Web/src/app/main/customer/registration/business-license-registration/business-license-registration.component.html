@@ -7,7 +7,7 @@
 
       </div>
       <div fxFlex fxLayoutAlign="end">
-        <p >{{'registration.editor.Tin' | translate}}: 634563465</p>
+<!--        <p >{{'registration.editor.Tin' | translate}}: 634563465</p>-->
       </div>
 
     </mat-card-header>
@@ -24,8 +24,8 @@
         <ng-template  awWizardStepSymbol>
           <mat-icon class="mt-2" >account_circle</mat-icon>
         </ng-template>
-        <app-general-information [wizard]="wizard" ></app-general-information>
 
+        <app-general-information [wizard]="wizard" ></app-general-information>
       </aw-wizard-step>
 
 <!--      step where customer selects address that are registered during trade registration-->
@@ -36,7 +36,7 @@
         <ng-template awWizardStepSymbol>
           <mat-icon class="mt-2">location_on</mat-icon>
         </ng-template>
-        <app-work-address [wizard]="step" *ngIf="exitStepOne" ></app-work-address>
+        <app-work-address  *ngIf="exitStepOne" ></app-work-address>
       </aw-wizard-step>
 
 

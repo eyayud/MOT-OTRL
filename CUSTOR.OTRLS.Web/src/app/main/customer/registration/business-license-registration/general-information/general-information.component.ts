@@ -1,25 +1,23 @@
-import {
-  AfterContentInit,
-  Component, EventEmitter,
-  Input, OnChanges,
-  OnInit, Output,
-  SimpleChanges,
-} from '@angular/core';
+import {Component, Input, OnChanges, SimpleChanges, } from '@angular/core';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
-import {UserNameDTO} from '../../models/user.model';
-import {AppTranslationService} from '../../../../../@custor/services/translation.service';
-import {BusinessApiService} from '../../services/business.api.service';
-import {UserService} from '../../services/user.service';
-import {ProgressBarService} from '../../../../../@custor/services/progress-bar/progress-bar.service';
+import {UserNameDTO} from '../../../models/user.model';
+import {AppTranslationService} from '../../../../../../@custor/services/translation.service';
+import {BusinessApiService} from '../../../services/business.api.service';
+import {UserService} from '../../../services/user.service';
+import {ProgressBarService} from '../../../../../../@custor/services/progress-bar/progress-bar.service';
 import {ToastrService} from 'ngx-toastr';
-import {ConfigurationService} from '../../../../../@custor/services/configuration.service';
+import {ConfigurationService} from '../../../../../../@custor/services/configuration.service';
 import {
   ALPHABET_WITHSPACE_REGEX,
   ET_ALPHABET_WITHSPACE_REGEX,
   NUMERIC_WITHPERIOD_REGEX
-} from '../../../../common/constants/consts';
-import {MovingDirection, WizardComponent, WizardStepComponent} from 'angular-archwizard';
-import {ArcWizardService} from "../../services/arc-wizard/arc-wizard.service";
+} from '../../../../../common/constants/consts';
+import {WizardComponent} from 'angular-archwizard';
+import {ArcWizardService} from '../../../services/arc-wizard/arc-wizard.service';
+import {TranslationLoaderService} from '../../../../../../@custor/services/translation-loader.service';
+import { locale as langEnglish } from '../../../../lang/en';
+import { locale as langEthiopic } from '../../../../lang/et';
+
 
 
 @Component({
@@ -27,11 +25,10 @@ import {ArcWizardService} from "../../services/arc-wizard/arc-wizard.service";
   templateUrl: './general-information.component.html',
   styleUrls: ['./general-information.component.scss']
 })
-export class GeneralInformationComponent  implements OnChanges{
+export class GeneralInformationComponent implements OnChanges {
 
   // load instance of wizard component for programmatically do navigation
   @Input() wizard: WizardComponent;
-
 
 
   // declare variable for dummy sectors
@@ -48,9 +45,11 @@ export class GeneralInformationComponent  implements OnChanges{
   // declare manger for getting default company name
   customerName: UserNameDTO;
 
+  currentLang = '';
+
 
   constructor(
-    private translationService: AppTranslationService,
+    private translationLoaderService: TranslationLoaderService,
     private formBuilder: FormBuilder,
     private apiService: BusinessApiService,
     private userService: UserService,
@@ -59,7 +58,9 @@ export class GeneralInformationComponent  implements OnChanges{
     private configService: ConfigurationService,
     private arcWizardService: ArcWizardService
   ) {
-    this.translationService.changeLanguage(this.configService.language);
+    this.translationLoaderService.loadTranslations(langEnglish, langEthiopic);
+
+    this.currentLang = this.configService.language;
 
     // build the form
     this.initForm();
@@ -75,7 +76,7 @@ export class GeneralInformationComponent  implements OnChanges{
 
   }
 
- // check if wizard component instance  is well received and pass it to service
+  // check if wizard component instance  is well received and pass it to service
   ngOnChanges(changes: SimpleChanges) {
     if (typeof changes.wizard !== 'undefined') {
       console.log('wizard well received');

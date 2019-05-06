@@ -1,11 +1,11 @@
 import {Component, Input, OnInit} from '@angular/core';
-import {FileUploadService} from '../../../../../@custor/services/file-upload/file-upload.service';
+import {FileUploadService} from '../../../../../../@custor/services/file-upload/file-upload.service';
 import {MatDialog, MatDialogRef} from '@angular/material';
-import {FileUploadDialogComponent} from '../../../../../@custor/components/file-upload-dialog/file-upload-dialog.component';
-import {WizardComponent} from "angular-archwizard";
-import {ArcWizardService} from "../../services/arc-wizard/arc-wizard.service";
-import {BusinessApiService} from "../../services/business.api.service";
-import {ProgressBarService} from "../../../../../@custor/services/progress-bar/progress-bar.service";
+import {FileUploadDialogComponent} from '../../../../../../@custor/components/file-upload-dialog/file-upload-dialog.component';
+import {WizardComponent} from 'angular-archwizard';
+import {ArcWizardService} from '../../../services/arc-wizard/arc-wizard.service';
+import {BusinessApiService} from '../../../services/business.api.service';
+import {ProgressBarService} from '../../../../../../@custor/services/progress-bar/progress-bar.service';
 
 @Component({
   selector: 'app-required-documents',
@@ -29,6 +29,7 @@ export class RequiredDocumentsComponent implements OnInit {
   }
 
   openFileUploadDialog() {
+    console.log("hello");
     this.uploadFileDialogRef = this.dialog.open(FileUploadDialogComponent,
       {
         disableClose: false,

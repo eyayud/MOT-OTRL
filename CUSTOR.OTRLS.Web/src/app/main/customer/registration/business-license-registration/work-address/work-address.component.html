@@ -23,8 +23,12 @@
     <ng-container matColumnDef="IsMainOffice">
       <mat-header-cell *matHeaderCellDef></mat-header-cell>
       <mat-cell *matCellDef="let row">
-        <button mat-button mat-raised-button color="primary"
-                *ngIf="row.IsMainOffice">{{'registrationAddress.editor.IsMainOffice'|translate}}</button>
+<!--        <button mat-button mat-raised-button color="primary"-->
+<!--                *ngIf="row.IsMainOffice">{{'registrationAddress.editor.IsMainOffice'|translate}}</button>-->
+<!--     -->
+
+                <mat-icon *ngIf="row.IsMainOffice" color="primary">check_circle_outline</mat-icon>
+
       </mat-cell>
     </ng-container>
     <!-- Phone Column -->
@@ -34,16 +38,16 @@
     </ng-container>
 
     <!-- Tele No. Column -->
-    <ng-container matColumnDef="TeleNo">
-      <mat-header-cell *matHeaderCellDef> {{'registrationAddress.editor.PhoneDirect'|translate}}</mat-header-cell>
-      <mat-cell *matCellDef="let element"> {{element.TeleNo}} </mat-cell>
-    </ng-container>
+<!--    <ng-container matColumnDef="TeleNo">-->
+<!--      <mat-header-cell *matHeaderCellDef> {{'registrationAddress.editor.PhoneDirect'|translate}}</mat-header-cell>-->
+<!--      <mat-cell *matCellDef="let element"> {{element.TeleNo}} </mat-cell>-->
+<!--    </ng-container>-->
 
     <!-- Email Column -->
-    <ng-container matColumnDef="Email">
-      <mat-header-cell *matHeaderCellDef> {{'registrationAddress.editor.Email'|translate}}</mat-header-cell>
-      <mat-cell *matCellDef="let element"> {{element.Email}} </mat-cell>
-    </ng-container>
+<!--    <ng-container matColumnDef="Email">-->
+<!--      <mat-header-cell *matHeaderCellDef> {{'registrationAddress.editor.Email'|translate}}</mat-header-cell>-->
+<!--      <mat-cell *matCellDef="let element"> {{element.Email}} </mat-cell>-->
+<!--    </ng-container>-->
 
     <!-- Region Column -->
     <ng-container matColumnDef="Region">

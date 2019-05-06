@@ -1,6 +1,5 @@
-import {Component, OnInit, ViewChild} from '@angular/core';
+import {Component, ViewChild} from '@angular/core';
 import {MatDialog, MatDialogRef} from '@angular/material';
-import {forkJoin} from 'rxjs';
 import {FileUploadService} from '../../services/file-upload/file-upload.service';
 
 @Component({
@@ -10,7 +9,7 @@ import {FileUploadService} from '../../services/file-upload/file-upload.service'
 })
 export class FileUploadDialogComponent {
   @ViewChild('file') file;
-  public fileTobeUploaded:any;
+  public fileTobeUploaded = {};
   progress;
   canBeClosed = true;
   primaryButtonText = 'Upload';
@@ -18,15 +17,13 @@ export class FileUploadDialogComponent {
   uploading = false;
   uploadSuccessful = false;
 
-  // public dialogRef: MatDialogRef<FileUploadDialogComponent>
 
-  constructor(private fileUploadService: FileUploadService, public dialog: MatDialog, public dialogRef: MatDialogRef<FileUploadDialogComponent>,) {
+  constructor(private fileUploadService: FileUploadService, public dialog: MatDialog, public dialogRef: MatDialogRef<FileUploadDialogComponent>, ) {
 
   }
 
   onFilesAdded() {
     const file = this.file.nativeElement.files[0];
-    console.log(file);
     this.fileTobeUploaded = file;
   }
 

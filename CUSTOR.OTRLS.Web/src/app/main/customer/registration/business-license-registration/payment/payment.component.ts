@@ -1,9 +1,9 @@
 import {Component, Input, OnChanges, OnInit, SimpleChanges} from '@angular/core';
-import {PayOutsModel} from '../../models/payment.model';
+import {PayOutsModel} from '../../../models/payment.model';
 import {MatDialog, MatDialogRef} from '@angular/material';
-import {PaymentDialogComponent} from '../../../../../@custor/components/payment-dialog/payment-dialog.component';
+import {PaymentDialogComponent} from '../../../../../../@custor/components/payment-dialog/payment-dialog.component';
 import {WizardComponent} from 'angular-archwizard';
-import {ArcWizardService} from '../../services/arc-wizard/arc-wizard.service';
+import {ArcWizardService} from '../../../services/arc-wizard/arc-wizard.service';
 
 @Component({
   // TODO: change selector name to PaymentComponent
