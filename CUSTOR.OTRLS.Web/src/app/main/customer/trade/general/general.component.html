@@ -1,0 +1,110 @@
+<div class="page-content">
+  <mat-card>
+    <mat-card-header>
+      <mat-card-title>Business</mat-card-title>
+    </mat-card-header>
+    <mat-card-content>
+      <!-- <div fxLayout="row wrap" fxLayoutAlign="" fxLayoutGap="2em">
+
+      </div> -->
+      <div fxLayout="row wrap" fxLayoutAlign="" fxLayoutGap="2em">
+        <mat-form-field>
+          <mat-label>Previous registration date</mat-label>
+          <input matInput [matDatepicker]="PreviousRegistrationDate" 
+            placeholder="Choose a date">
+          <mat-datepicker-toggle matSuffix [for]="PreviousRegistrationDate"></mat-datepicker-toggle>
+          <mat-datepicker #RegistrationDate></mat-datepicker>
+        </mat-form-field>
+        <mat-form-field>
+          <mat-label>{{'general.PreviousEnrollmentNumber' | translate }}</mat-label>
+          <input matInput id="PreviousEnrollmentNumber" 
+            placeholder="Previous Enrollment Number" />
+        </mat-form-field>
+        <mat-form-field>
+          <mat-label>{{'general.ArchiveNumber' | translate }}</mat-label>
+          <input matInput id=""  placeholder="Archive Number" />
+        </mat-form-field>
+        <mat-form-field>
+          <mat-label>Registration date</mat-label>
+          <input matInput [matDatepicker]="RegistrationDate" 
+            placeholder="Choose a date">
+          <mat-datepicker-toggle matSuffix [for]="RegistrationDate"></mat-datepicker-toggle>
+          <mat-datepicker #RegistrationDate></mat-datepicker>
+        </mat-form-field>
+      </div>
+      <div fxLayout="row wrap" fxLayoutAlign="" fxLayoutGap="2em">
+        <mat-form-field>
+          <mat-label>{{'investors.editor.CompanyName' | translate }}</mat-label>
+          <input matInput id="CompanyName"  placeholder="Company Name" />
+        </mat-form-field>
+        <mat-form-field>
+          <mat-label>{{'investors.editor.CompanyNameEng' | translate }}</mat-label>
+          <input matInput id="CompanyNameEng"  placeholder="Company Name English" />
+        </mat-form-field>
+        <mat-form-field>
+          <mat-label>{{'registration.editor.CompanyNameRegional' | translate }}</mat-label>
+          <input matInput id="CompanyNameRegion"
+            placeholder="Company Name Regional" />
+        </mat-form-field>
+      </div>
+      <form [formGroup]="generalBusinessForm" novalidate (ngSubmit)="onSubmit()" fxLayout="column" autocomplete="off">
+        <div fxLayout="row wrap" fxLayoutAlign="" fxLayoutGap="2em">
+          <mat-form-field>
+            <mat-label>{{'general.SignedCapital' | translate }}</mat-label>
+            <input matInput id="SignedCapital" formControlName="SignedCapital" required placeholder="Signed Capital" />
+            <mat-error *ngIf="SignedCapital.hasError('required')">
+              {{'common.validation.Required' | translate}}
+            </mat-error>
+          </mat-form-field>
+          <mat-form-field>
+            <mat-label>{{'investors.editor.PaidCapital' | translate }}</mat-label>
+            <input matInput id="PaidCapital" formControlName="PaidCapital" placeholder="Paid Capital" />
+            <mat-error *ngIf="PaidCapital.hasError('required')">
+              {{'common.validation.Required' | translate}}
+            </mat-error>
+          </mat-form-field>
+          <mat-form-field>
+            <mat-label>{{'registration.editor.SingleShareValue' | translate }}</mat-label>
+            <input matInput id="SingleShareValue" formControlName="SingleShareValue" placeholder="Single Share Value" />
+          </mat-form-field>
+        </div>
+        <div fxLayout="row wrap" fxLayoutAlign="" fxLayoutGap="2em">
+          <mat-form-field>
+            <mat-label>{{'registration.editor.EthiopiansShare' | translate }}</mat-label>
+            <input matInput id="EthiopiansShare" formControlName="EthiopiansShare"
+              placeholder="EthiopiansShare People" />
+          </mat-form-field>
+          <mat-form-field>
+            <mat-label>{{'registration.editor.BudgetCatagory' | translate }}</mat-label>
+            <input matInput id="BudgetCategory" formControlName="BudgetCategory" placeholder="Budget Category" />
+          <mat-error *ngIf="BudgetCategory.hasError('required')">
+            {{'common.validation.Required' | translate}}
+          </mat-error>
+          </mat-form-field>
+          <mat-form-field>
+            <mat-label>{{'registration.editor.RegistrationStatus' | translate }}</mat-label>
+            <input matInput id="RegistrationStatus" formControlName="RegistrationStatus" placeholder="Status" />
+            <mat-error *ngIf="RegistrationStatus.hasError('required')">
+              {{'common.validation.Required' | translate}}
+            </mat-error>
+          </mat-form-field>
+        </div>
+        <br>
+        <div fxLayout="row wrap" fxLayoutAlign="start stretch" fxLayoutGap="1">
+          <mat-label fxFlex="100">{{'general.BusinessType' | translate }}</mat-label>
+          <label *ngFor="let business of businessTypes;index as i" fxFlex="50">
+            <mat-checkbox [checked]="business.checked" (change)="addBusinessCategory($event,business.id,i)">
+              {{ business.name }}
+            </mat-checkbox>
+          </label>
+        </div>
+
+      </form>
+    </mat-card-content>
+    <mat-card-actions fxLayoutAlign="end end">
+      <button mat-raised-button color="warn" (cancel)="cancel()">Cancel</button>
+      <button mat-raised-button color="primary" (click)="saveBusiness()">Save</button>
+    </mat-card-actions>
+
+  </mat-card>
+</div>

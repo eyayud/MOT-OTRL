@@ -16,11 +16,11 @@ import {ManagerService} from './services/manager.service';
 import {AngConfirmDialogModule} from '../../../@custor/components/confirm-dialog/confirm-dialog.module';
 import {BreadcrumbComponent} from '../../../@custor/components/breadcrumb/breadcrumb.component';
 import {ProfileComponent} from './profile/profile.component';
-import {ServiceRegisterComponent} from './service-register/service-register.component';
-import {RegistrationTabComponent} from './registration-tab/registration-tab.component';
-import {RegistrationDocumentComponent} from './registration-document/registration-document.component';
-import {PaymentComponent} from './payment/payment.component';
-import {GeneralComponent} from './general/general.component';
+import { ServiceRegisterComponent } from './trade/service-register/service-register.component';
+import { RegistrationTabComponent } from './trade/registration-tab/registration-tab.component';
+import { RegistrationDocumentComponent } from './trade/registration-document/registration-document.component';
+import { PaymentComponent } from './trade/payment/payment.component';
+import { GeneralComponent } from './trade/general/general.component';
 import {BusinessApiService} from './services/business.api.service';
 import {PaginationService} from '../../../@custor/services/pagination.service';
 import {KeyConverstorService} from '../../common/services/key-convertor.service';
@@ -34,6 +34,7 @@ import {RequiredDocumentsComponent} from './registration/business-license-regist
 import {PaymentForRegistrationComponent} from './registration/business-license-registration/payment/payment.component';
 import {GeneralInformationComponent} from './registration/business-license-registration/general-information/general-information.component';
 import {BusinessLicenseRegistrationComponent} from './registration/business-license-registration/business-license-registration.component';
+
 
 export const routes = [
   {path: '', redirectTo: 'manager-list', pathMatch: 'full'},
