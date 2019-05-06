@@ -31,9 +31,19 @@ $theme: mat-light-theme($primary, $accent, $warn);
 }
 
 mat-divider {
+    position: relative;
     margin-bottom: 10px;
     border-top-color:mat-color($primary) !important;
 }
+
+.green-top-border{
+  border-top: 3px solid #349f92 !important;
+}
 .mat-tab-body.mat-tab-body-active {
   min-height: 300px;
+}
+
+//dialog styles
+.mat-dialog-container{
+  padding: 0 !important;
 }

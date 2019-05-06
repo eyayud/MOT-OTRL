@@ -1,0 +1,55 @@
+export const locale = {
+    lang: 'en',
+    data: {
+        investors: {
+            management: {
+              InvestorName: 'Investor Name'
+            },
+            editor: {
+              LegalStatus: 'Legal Status',
+              FirstName: 'First Name (Amharic)',
+              FatherName: 'Father (Amharic)',
+              GrandName: 'Grand Father (Amharic)',
+              FirstNameEng: 'First Name (English)',
+              Title: 'Title',
+              FatherNameEng: 'Father (English)',
+              GrandNameEng: 'Grand Father (English)',
+              Nationality: 'Nationality',
+              BranchCountry: 'Country of Incorporation',
+              CompanyName: 'Company Name (Amharic)',
+              CompanyNameEng: 'Company Name (English)',
+              Gender: 'Gender',
+              IsDiaspora: 'Diaspora?',
+              IsEthiopianOrigin: 'Ethiopian Origin?',
+              Tin: 'TIN',
+              OtherAddress: 'Other Address',
+              RegNumber: 'Registration Number',
+              RegDate: 'Registration Date',
+              TradeNameEng: 'Trade Name (English)',
+              TradeName: 'Trade Name (Amharic)',
+              Region: 'Region',
+              Zone: 'Zone',
+              WoredaAmharic: 'Wereda(Amharic)',
+              WoredaEnglish: 'Wereda(English)',
+              KebeleAmharic: 'Kebele(Amharic)',
+              KebeleEnglish: 'Kebele(English)',
+              HouseNo: 'House Number',
+              PhoneDirect: 'Telephine (Direct)',
+              PhoneMobile: 'Telephine (Mobile)',
+              Fax: 'Fax',
+              Pobox: 'P.O.Box',
+              Email: 'Email',
+              InvestorProfileCaption: 'Owner/Business Data',
+              AddressCaption: 'Address in Ethiopia',
+              BusinessDataCaption: 'Commercial Registration Data',
+              'Responsibility ': 'Responsibility',
+              MangerProfile: 'Manager Profile',
+              Photo: 'Photo',
+              MangerAddress: 'Manager Address',
+              PaidCapital: 'Paid Capital',
+              SighnedCapital: 'Signed Capital',
+              FormOfOwnership: 'Form Of Ownership'
+            }
+          },
+    }
+};

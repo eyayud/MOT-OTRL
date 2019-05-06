@@ -1,8 +1,7 @@
 import { Injectable } from '@angular/core';
-
+import { TranslateService } from '@ngx-translate/core';
 import { Subject } from 'rxjs';
 
-import { AppTranslationService } from './translation.service';
 import { LocalStoreManager } from './storeManager.service';
 import { settingKeys } from '../helpers/settingKeys';
 import { Utilities } from '../helpers/utilities';
@@ -19,7 +18,7 @@ export class ConfigurationService {
 
   constructor(
     private localStorage: LocalStoreManager,
-    private translationService: AppTranslationService,
+    private translationService: TranslateService
   ) {
     this.loadLocalChanges();
   }
@@ -27,7 +26,7 @@ export class ConfigurationService {
   set language(value: string) {
     this._language = value;
     this.saveToLocalStore(value, settingKeys.LANGUAGE);
-    this.translationService.changeLanguage(value);
+    this.translationService.setDefaultLang(value);
   }
   get language() {
     return this._language || ConfigurationService.defaultLanguage;
@@ -71,7 +70,7 @@ export class ConfigurationService {
   private loadLocalChanges() {
     if (this.localStorage.exists(settingKeys.LANGUAGE)) {
       this._language = this.localStorage.getDataObject<string>(settingKeys.LANGUAGE);
-      this.translationService.changeLanguage(this._language);
+      this.translationService.setDefaultLang(this._language);
     } else {
       this.resetLanguage();
     }
@@ -137,12 +136,7 @@ export class ConfigurationService {
   }
 
   private resetLanguage() {
-    const language = this.translationService.useBrowserLanguage();
-
-    if (language) {
-      this._language = language;
-    } else {
-      this._language = this.translationService.changeLanguage();
-    }
+    // const language = this.translationService.useBrowserLanguage();
+    this.translationService.setDefaultLang(this._language);
   }
 }

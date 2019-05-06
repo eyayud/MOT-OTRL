@@ -28,7 +28,6 @@ namespace CUSTOR.OTRLS.API.Controllers
         /// Get:api/customerProfile/{id}
         /// Retrieves user profile with given user id
         /// </summary>
-       
         /// <returns>the user profile </returns>
         [HttpGet("{id}")]
         public async Task<CustomerProfileDTO> GetProfileByUserId(int id)

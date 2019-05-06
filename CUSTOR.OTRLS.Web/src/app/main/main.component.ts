@@ -1,15 +1,19 @@
-import {Component, ChangeDetectorRef, ViewChild, ViewEncapsulation, OnInit, OnDestroy, ElementRef} from '@angular/core';
-import {MediaMatcher} from '@angular/cdk/layout';
-import {Router, NavigationStart} from '@angular/router';
-import {MatExpansionPanel, MatDialog, MatDialogRef, MAT_DIALOG_DATA} from '@angular/material';
-import {AccountService} from '@custor/services/security/account.service';
-import {AuthService} from '@custor/services/security/auth.service';
-import {ConfigurationService} from '@custor/services/configuration.service';
-import {Permission} from '@custor/models/permission.model';
-import {AppTranslationService} from '@custor/services/translation.service';
-import {CUSTOMER_ROUTES} from '../common/navigation/sidebar-customer';
-import {RouteInfo} from '../common/navigation/route-interface';
+import { Component, ChangeDetectorRef, ViewChild, ViewEncapsulation, OnInit, OnDestroy, ElementRef } from '@angular/core';
+import { MediaMatcher } from '@angular/cdk/layout';
+import { Router, NavigationStart } from '@angular/router';
+import { MatExpansionPanel, MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
+import { AccountService } from '@custor/services/security/account.service';
+import { AuthService } from '@custor/services/security/auth.service';
+import {  ConfigurationService } from '@custor/services/configuration.service';
+import { Permission } from '@custor/models/permission.model';
+// import { AppTranslationService } from '@custor/services/translation.service';
+import { TranslateService } from '@ngx-translate/core';
 
+import { locale as langEnglish } from './lang/et';
+import { locale as langEthiopic } from './lang/en';
+import { TranslationLoaderService } from '@custor/services/translation-loader.service';
+import {RouteInfo} from "../common/navigation/route-interface";
+import {CUSTOMER_ROUTES} from "../common/navigation/sidebar-customer";
 @Component({
   selector: 'app-main',
   templateUrl: './main.component.html',
@@ -27,13 +31,12 @@ export class MainComponent implements OnInit, OnDestroy {
   appTitle = 'OTRLS';
   appLogo = '';
   public menuItems: RouteInfo[];
-
   mobileQuery: MediaQueryList;
 
-  constructor(private translationService: AppTranslationService,
+  constructor(private translationService: TranslateService,
               private accountService: AccountService,
               private authService: AuthService,
-              public configService: ConfigurationService,
+              public configService: ConfigurationService, private translationLoaderService: TranslationLoaderService,
               public router: Router,
               changeDetectorRef: ChangeDetectorRef,
               media: MediaMatcher) {
@@ -41,16 +44,13 @@ export class MainComponent implements OnInit, OnDestroy {
     this._mobileQueryListener = () => changeDetectorRef.detectChanges();
     this.mobileQuery.addListener(this._mobileQueryListener);
 
-    // this.translationService.addLanguages(['en', 'et']);
-    // this.configService.language = 'et';
-    this.translationService.changeLanguage(this.configService.language);
+    this.translationLoaderService.loadTranslations(langEnglish, langEthiopic);
+    // if user is customer
+    this.menuItems = CUSTOMER_ROUTES;
   }
 
   ngOnInit() {
     this.isUserLoggedIn = true; // this.authService.isLoggedIn;
-
-    //if user is customer
-    this.menuItems = CUSTOMER_ROUTES;
     // this.customerExpander.open();
     this.router.events.subscribe(event => {
       if (event instanceof NavigationStart) {

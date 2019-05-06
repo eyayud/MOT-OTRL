@@ -7,13 +7,27 @@ import { AddressService } from '../../../../common/services/address.service';
 
 import { ConfigurationService } from '../../../../../@custor/services/configuration.service';
 import { AppTranslationService } from '../../../../../@custor/services/translation.service';
-import { ALPHABET_WITHSPACE_REGEX, GENDERS, LEGAL_STATUSES, 
-  ET_ALPHABET_WITHSPACE_REGEX } from '../../../../common/constants/consts';
+// import { ALPHABET_WITHSPACE_REGEX, GENDERS, LEGAL_STATUSES, 
+//   ET_ALPHABET_WITHSPACE_REGEX } from '../../../../common/constants/consts';
+
+import {
+  ALPHABET_WITHSPACE_REGEX,
+  ET_ALPHABET_WITHSPACE_REGEX,
+  NUMERIC_WITHPERIOD_REGEX
+} from '../../../../common/constants/consts';
+
+import { TranslationLoaderService } from '../../../../../@custor/services/translation-loader.service';
+
+
+  
 import { ActivatedRoute, Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { UserProfile } from '../../models/user.model';
-// import { AppTranslationService } from '../../../../@custor/services/translation.service';
 import { UserService } from '../../services/user.service';
+
+import { locale as langEnglish } from '../../../../lang/en';
+import { locale as langEthiopic } from '../../../../lang/et';
+
 @Component({
   selector: 'app-service-register',
   templateUrl: './service-register.component.html',
@@ -29,11 +43,12 @@ export class ServiceRegisterComponent implements OnInit {
   showUserForm: boolean = true;
   constructor(private fb: FormBuilder,
     private configService: ConfigurationService,
-    private translationService: AppTranslationService,
+    private translationLoaderService: TranslationLoaderService,
     private userService: UserService,
-    private toastr: ToastrService) {
+    private toastr: ToastrService
+    ) {
     this.currentLang = this.configService.language;
-    this.translationService.changeLanguage(this.configService.language);
+    this.translationLoaderService.loadTranslations(langEnglish, langEthiopic);
     this.getUserData();
   }
 
@@ -82,14 +97,12 @@ export class ServiceRegisterComponent implements OnInit {
   createForm() {
     this.serviceCompanyForm = this.fb.group({
       CompanyName: ['', [Validators.compose([Validators.required, Validators.minLength(2),
-      Validators.pattern(ET_ALPHABET_WITHSPACE_REGEX)])]],
-
-
+        Validators.pattern(ET_ALPHABET_WITHSPACE_REGEX)])]],
       CompanyNameEng: ['', [Validators.compose([Validators.required, Validators.minLength(2),
       Validators.pattern(ALPHABET_WITHSPACE_REGEX)])]],
-
       CompanyNameRegion: ['', Validators.required],
     })
+
     this.serviceForm = this.fb.group({
       LegalStatus: ['', [Validators.required]],
       Tin: new FormControl(),

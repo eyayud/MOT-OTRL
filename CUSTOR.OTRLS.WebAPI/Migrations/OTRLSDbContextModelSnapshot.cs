@@ -119,6 +119,72 @@ namespace CUSTOR.OTRLS.API.Migrations
                     b.ToTable("Address");
                 });
 
+            modelBuilder.Entity("CUSTOR.OTRLS.Core.Business", b =>
+                {
+                    b.Property<int>("ID")
+                        .ValueGeneratedOnAdd()
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<decimal>("Capital");
+
+                    b.Property<string>("CreatedBy");
+
+                    b.Property<DateTime>("CreatedDate");
+
+                    b.Property<DateTime?>("DateRegistered");
+
+                    b.Property<string>("LicenceNumber");
+
+                    b.Property<string>("OwnerTIN");
+
+                    b.Property<string>("SiteID");
+
+                    b.Property<string>("TradeNameAmh");
+
+                    b.Property<string>("TradeNameRegional");
+
+                    b.Property<string>("TradeNameRegionalSort");
+
+                    b.Property<string>("TradeNameRegionalSoundeX");
+
+                    b.Property<string>("TradeNameSort");
+
+                    b.Property<string>("TradeNameSoundex");
+
+                    b.Property<string>("TradesName");
+
+                    b.Property<string>("UpdatedBy");
+
+                    b.Property<DateTime?>("UpdatedDate");
+
+                    b.HasKey("ID");
+
+                    b.ToTable("Business");
+                });
+
+            modelBuilder.Entity("CUSTOR.OTRLS.Core.BusinessLicensingGroup", b =>
+                {
+                    b.Property<int>("BusinessLicensingId")
+                        .ValueGeneratedOnAdd()
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<int>("BGroup");
+
+                    b.Property<int>("BusinessId");
+
+                    b.Property<int>("Division");
+
+                    b.Property<int>("MajorDivision");
+
+                    b.Property<int>("MajorGroup");
+
+                    b.Property<int>("SubGroup");
+
+                    b.HasKey("BusinessLicensingId");
+
+                    b.ToTable("BusinessLicensingGroup");
+                });
+
             modelBuilder.Entity("CUSTOR.OTRLS.Core.CustomerProfile", b =>
                 {
                     b.Property<int>("Id")
@@ -137,10 +203,16 @@ namespace CUSTOR.OTRLS.API.Migrations
                     b.Property<string>("FatherNameEng")
                         .HasMaxLength(30);
 
+                    b.Property<string>("FatherNameRegion")
+                        .HasMaxLength(30);
+
                     b.Property<string>("FirstName")
                         .HasMaxLength(30);
 
                     b.Property<string>("FirstNameEng")
+                        .HasMaxLength(30);
+
+                    b.Property<string>("FirstNameRegion")
                         .HasMaxLength(30);
 
                     b.Property<int>("Gender");
@@ -149,6 +221,9 @@ namespace CUSTOR.OTRLS.API.Migrations
                         .HasMaxLength(30);
 
                     b.Property<string>("GrandNameEng")
+                        .HasMaxLength(30);
+
+                    b.Property<string>("GrandNameRegion")
                         .HasMaxLength(30);
 
                     b.Property<int>("IdentificationId");
@@ -163,6 +238,9 @@ namespace CUSTOR.OTRLS.API.Migrations
                     b.Property<string>("MotherNameEng")
                         .HasMaxLength(30);
 
+                    b.Property<string>("MotherNameRegion")
+                        .HasMaxLength(30);
+
                     b.Property<int>("Nationality");
 
                     b.Property<string>("Tin");
@@ -174,6 +252,72 @@ namespace CUSTOR.OTRLS.API.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("CustomerProfile");
+                });
+
+            modelBuilder.Entity("CUSTOR.OTRLS.Core.Division", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<int>("Code");
+
+                    b.Property<string>("Description");
+
+                    b.Property<string>("DescriptionSort");
+
+                    b.Property<string>("DescriptionSoundX");
+
+                    b.Property<string>("DivisionAfanOromo");
+
+                    b.Property<string>("DivisionAfar");
+
+                    b.Property<string>("DivisionArabic");
+
+                    b.Property<string>("DivisionSomali");
+
+                    b.Property<string>("DivisionTigrigna");
+
+                    b.Property<string>("EnglishDescription");
+
+                    b.Property<int>("Parent");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Division");
+                });
+
+            modelBuilder.Entity("CUSTOR.OTRLS.Core.Group", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<int>("Code");
+
+                    b.Property<string>("Description");
+
+                    b.Property<string>("DescriptionSort");
+
+                    b.Property<string>("DescriptionSoundX");
+
+                    b.Property<string>("EnglishDescription");
+
+                    b.Property<string>("GroupAfanOromo");
+
+                    b.Property<string>("GroupAfar");
+
+                    b.Property<string>("GroupArabic");
+
+                    b.Property<string>("GroupSomali");
+
+                    b.Property<string>("GroupTigrigna");
+
+                    b.Property<int>("Parent");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Group");
                 });
 
             modelBuilder.Entity("CUSTOR.OTRLS.Core.Kebele", b =>
@@ -225,6 +369,43 @@ namespace CUSTOR.OTRLS.API.Migrations
                     b.HasIndex("WoredaId");
 
                     b.ToTable("Kebele");
+                });
+
+            modelBuilder.Entity("CUSTOR.OTRLS.Core.LegalStatus", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<int>("Code");
+
+                    b.Property<DateTime>("EventDate");
+
+                    b.Property<string>("LegalStatusNameAfanOromo");
+
+                    b.Property<string>("LegalStatusNameAfar");
+
+                    b.Property<string>("LegalStatusNameAmh");
+
+                    b.Property<string>("LegalStatusNameAmhSource");
+
+                    b.Property<string>("LegalStatusNameArabic");
+
+                    b.Property<string>("LegalStatusNameEng");
+
+                    b.Property<string>("LegalStatusNameSomali");
+
+                    b.Property<string>("LegalStatusNameTigrigna");
+
+                    b.Property<DateTime>("UpdatedEventDate");
+
+                    b.Property<string>("UpdatedUserName");
+
+                    b.Property<string>("UserName");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("LegalStatus");
                 });
 
             modelBuilder.Entity("CUSTOR.OTRLS.Core.LookUpType", b =>
@@ -342,6 +523,70 @@ namespace CUSTOR.OTRLS.API.Migrations
                     b.HasIndex("LookUpTypeId");
 
                     b.ToTable("Lookup");
+                });
+
+            modelBuilder.Entity("CUSTOR.OTRLS.Core.MajorDivision", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<int>("Code");
+
+                    b.Property<string>("Description");
+
+                    b.Property<string>("DescriptionSort");
+
+                    b.Property<string>("DescriptionSoundX");
+
+                    b.Property<string>("EnglishDescription");
+
+                    b.Property<string>("MajorDivAfanOromo");
+
+                    b.Property<string>("MajorDivAfar");
+
+                    b.Property<string>("MajorDivArabic");
+
+                    b.Property<string>("MajorDivSomali");
+
+                    b.Property<string>("MajorDivTigrigna");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("MajorDivision");
+                });
+
+            modelBuilder.Entity("CUSTOR.OTRLS.Core.MajorGroup", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<int>("Code");
+
+                    b.Property<string>("Description");
+
+                    b.Property<string>("DescriptionSort");
+
+                    b.Property<string>("DescriptionSoundX");
+
+                    b.Property<string>("EnglishDescription");
+
+                    b.Property<string>("MajorGroupAfanOromo");
+
+                    b.Property<string>("MajorGroupAfar");
+
+                    b.Property<string>("MajorGroupArabic");
+
+                    b.Property<string>("MajorGroupSomali");
+
+                    b.Property<string>("MajorGroupTigrigna");
+
+                    b.Property<int>("Parent");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("MajorGroup");
                 });
 
             modelBuilder.Entity("CUSTOR.OTRLS.Core.Manager", b =>
@@ -543,6 +788,171 @@ namespace CUSTOR.OTRLS.API.Migrations
                     b.HasKey("RegionId");
 
                     b.ToTable("Region");
+                });
+
+            modelBuilder.Entity("CUSTOR.OTRLS.Core.Registration", b =>
+                {
+                    b.Property<int>("ID")
+                        .ValueGeneratedOnAdd()
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<decimal>("ApprovedCapital");
+
+                    b.Property<string>("BudgetYearCode");
+
+                    b.Property<string>("BusinessName");
+
+                    b.Property<string>("BusinessNameAmh");
+
+                    b.Property<string>("BusinessNameRegional");
+
+                    b.Property<string>("BusinessNameRegionalSort");
+
+                    b.Property<string>("BusinessNameRegionalSoundX");
+
+                    b.Property<string>("BusinessNameSort");
+
+                    b.Property<string>("BusinessNameSoundX");
+
+                    b.Property<DateTime>("CancellationDate");
+
+                    b.Property<DateTime>("DateRegistered");
+
+                    b.Property<DateTime>("EventDateTime");
+
+                    b.Property<string>("FileNumber");
+
+                    b.Property<string>("GrantorCountry");
+
+                    b.Property<string>("GrantorCountryEng");
+
+                    b.Property<string>("GrantorMainAddress");
+
+                    b.Property<string>("GrantorMainAddressEng");
+
+                    b.Property<string>("GrantorManagerName");
+
+                    b.Property<string>("GrantorManagerNameEng");
+
+                    b.Property<string>("GrantorName");
+
+                    b.Property<string>("GrantorNameEng");
+
+                    b.Property<bool>("IsPreviousRegistered");
+
+                    b.Property<bool>("IsSharedWithForeigner");
+
+                    b.Property<int>("LegalCondition");
+
+                    b.Property<decimal>("LocalPersonCapital");
+
+                    b.Property<string>("MainCancellationReason");
+
+                    b.Property<Guid>("MainGuid");
+
+                    b.Property<decimal>("PaidUpCapital");
+
+                    b.Property<Guid>("ParentGuid");
+
+                    b.Property<string>("PersonCancelledRegistration");
+
+                    b.Property<DateTime>("PreviousRegDate");
+
+                    b.Property<string>("PreviousRegNumber");
+
+                    b.Property<DateTime>("RegDate");
+
+                    b.Property<string>("RegNo");
+
+                    b.Property<string>("Remark");
+
+                    b.Property<decimal>("SignedCapital");
+
+                    b.Property<decimal>("SingleShareAmount");
+
+                    b.Property<string>("SiteID");
+
+                    b.Property<int>("Status");
+
+                    b.Property<string>("Tin");
+
+                    b.Property<string>("TradeNameAmh");
+
+                    b.Property<string>("TradeNameRegional");
+
+                    b.Property<string>("TradeNameRegionalSort");
+
+                    b.Property<string>("TradeNameRegionalSoundeX");
+
+                    b.Property<string>("TradeNameSort");
+
+                    b.Property<string>("TradeNameSoundex");
+
+                    b.Property<string>("TradeNameStatus");
+
+                    b.Property<string>("TradesName");
+
+                    b.Property<int>("TransferReason");
+
+                    b.Property<DateTime>("UpdatedEventDatetime");
+
+                    b.Property<string>("UpdatedUsername");
+
+                    b.Property<string>("Username");
+
+                    b.HasKey("ID");
+
+                    b.ToTable("Registration");
+                });
+
+            modelBuilder.Entity("CUSTOR.OTRLS.Core.RegistrationCatagory", b =>
+                {
+                    b.Property<int>("RegistrationCatagoryId")
+                        .ValueGeneratedOnAdd()
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<Guid>("MainGuid");
+
+                    b.Property<string>("MajorCatagoryCode");
+
+                    b.Property<string>("Tin");
+
+                    b.HasKey("RegistrationCatagoryId");
+
+                    b.ToTable("RegistrationCategory");
+                });
+
+            modelBuilder.Entity("CUSTOR.OTRLS.Core.SubGroup", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<int>("Code");
+
+                    b.Property<string>("Description");
+
+                    b.Property<string>("DescriptionSort");
+
+                    b.Property<string>("DescriptionSoundX");
+
+                    b.Property<string>("EnglishDescription");
+
+                    b.Property<int>("Parent");
+
+                    b.Property<string>("SubGroupAfanOromo");
+
+                    b.Property<string>("SubGroupAfar");
+
+                    b.Property<string>("SubGroupArabic");
+
+                    b.Property<string>("SubGroupSomali");
+
+                    b.Property<string>("SubGroupTigrigna");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("SubGroup");
                 });
 
             modelBuilder.Entity("CUSTOR.OTRLS.Core.Woreda", b =>

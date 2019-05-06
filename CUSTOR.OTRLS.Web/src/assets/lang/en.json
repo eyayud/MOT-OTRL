@@ -16,12 +16,15 @@
       "Start": "Start",
       "Close": "Close",
       "End": "End",
+      "Finish": "Finish",
       "Stop": "Stop",
       "Approve": "Approve",
       "Select": "Select",
       "Unselect": "Unselect",
       "Send": "Send",
-      "Exit": "Exit"
+      "Exit": "Exit",
+      "Upload": "Upload",
+      "UploadFile": "Upload File"
     },
     "validation": {
       "IsRequired": "{{fieldName}} is required",
@@ -192,7 +195,7 @@
       "Photo": "Photo",
       "MangerAddress": "Manager Address",
       "PaidCapital": "Paid Capital",
-      "SighnedCapital": "Signed Capital",
+      "SignedCapital": "Signed Capital",
       "FormOfOwnership": "Form Of Ownership"
     }
   },
@@ -374,11 +377,11 @@
   },
   "registration": {
     "management": {
-      "RegistrationName": "Trade Information"
+      "RegistrationName": "Trade Information",
+      "GeneralInformation" : "General Information"
     },
     "editor": {
       "LegalStatus": "Legal Status",
-      
       "CompanyNameAmharic": "Company Name (Amharic)",
       "CompanyNameEnglish": "Company Name (English)",
       "CompanyNameRegional": "Company Name (Regional)",
@@ -429,6 +432,7 @@
     }
   },
   "payment": {
+    "Header": "Payment",
     "investorName": "Investor Name",
     "paymentDate": "Payment Date",
     "no": "No",
@@ -441,7 +445,9 @@
     "totalAmount": "Total Amount",
     "totalAmountdescription": "Amount Description",
     "cashierName": "Cashier Name",
-    "PayerName" :"Company / Person's Name"
+    "goToPayment": "Go To Payment",
+    "pay" : "Pay",
+    "Invoice": "Invoice"
   },
   "sector": {
     "header": "Sector Editor",
@@ -458,6 +464,23 @@
     "DescriptionAlias": "Description Alias",
     "DescriptionEnglish": "Description English",
     "DescriptionEnglishAlias": "Description English Alias"
+  },
+  "section": {
+    "header": "Section",
+    "Description": "Description",
+    "DescriptionAlias": "Description Alias",
+    "DescriptionEnglish": "Description English",
+    "DescriptionEnglishAlias": "Description English Alias"
+  },
+  "subsection": {
+    "header": "Sub-Section",
+    "Description": "Description",
+    "DescriptionAlias": "Description Alias",
+    "DescriptionEnglish": "Description English",
+    "DescriptionEnglishAlias": "Description English Alias"
+  },
+  "classificationLens": {
+    "header": "Classification Lens"
   },
   "activity": {
     "Sector": "Sector",
@@ -541,8 +564,16 @@
      "PreviousEnrollmentNumber": "Previous Enrollment Number",
      "ArchiveNumber": "Archive Number",
      "CompanyName": "Company Name",
+
      "SignedCapital": "Signed Capital",
      "BusinessType": "Business Type"
+  },
+ "subTitle":{
+    "fillInformation":"Fill Information "
+  },
+  "wizard": {
+    "confirmation": "Confirmation"
+
   }
 }
 
