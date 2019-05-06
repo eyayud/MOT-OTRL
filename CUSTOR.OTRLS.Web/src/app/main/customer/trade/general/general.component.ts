@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
-import { BusinessService } from '../services/business.service';
-import { BusinessDTO } from '../models/bussiness.model';
+import { BusinessService } from '../../services/business.service';
+import { BusinessDTO } from '../../models/bussiness.model';
 import { ToastrService } from 'ngx-toastr';
 @Component({
   selector: 'app-general',

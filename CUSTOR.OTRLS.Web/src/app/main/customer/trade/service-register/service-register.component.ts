@@ -1,18 +1,19 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, FormBuilder, Validators } from '@angular/forms';
 
-import { BusinessDTO } from '../models/bussiness.model';
-import { BusinessService } from '../services/business.service';
-import { AddressService } from '../../../common/services/address.service';
+import { BusinessDTO } from '../../models/bussiness.model';
+import { BusinessService } from '../../services/business.service';
+import { AddressService } from '../../../../common/services/address.service';
 
-import { ConfigurationService } from '../../../../@custor/services/configuration.service';
-import { AppTranslationService } from '../../../../@custor/services/translation.service';
-import { ALPHABET_WITHSPACE_REGEX, GENDERS, LEGAL_STATUSES, ET_ALPHABET_WITHSPACE_REGEX } from '../../../common/constants/consts';
+import { ConfigurationService } from '../../../../../@custor/services/configuration.service';
+import { AppTranslationService } from '../../../../../@custor/services/translation.service';
+import { ALPHABET_WITHSPACE_REGEX, GENDERS, LEGAL_STATUSES, 
+  ET_ALPHABET_WITHSPACE_REGEX } from '../../../../common/constants/consts';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
-import { UserProfile } from '../models/user.model';
+import { UserProfile } from '../../models/user.model';
 // import { AppTranslationService } from '../../../../@custor/services/translation.service';
-import { UserService } from '../services/user.service';
+import { UserService } from '../../services/user.service';
 @Component({
   selector: 'app-service-register',
   templateUrl: './service-register.component.html',

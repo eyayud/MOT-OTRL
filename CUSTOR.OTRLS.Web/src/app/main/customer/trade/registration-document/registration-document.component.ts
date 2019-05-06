@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators, FormControl } from '@angular/forms';
-import { PrerequisiteService } from '../services/prerequisite.service'
+import { PrerequisiteService } from '../../services/prerequisite.service'
 
 @Component({
   selector: 'app-registration-document',

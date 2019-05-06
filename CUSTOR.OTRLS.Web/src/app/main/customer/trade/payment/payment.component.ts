@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, FormBuilder, Validators } from '@angular/forms';
-import { Payment , PaymentType} from '../models/payment.model'
-import { PaymentService } from '../services/payment.service';
+import { Payment , PaymentType} from '../../models/payment.model'
+import { PaymentService } from '../../services/payment.service';
 @Component({
   selector: 'app-payment',
   templateUrl: './payment.component.html',

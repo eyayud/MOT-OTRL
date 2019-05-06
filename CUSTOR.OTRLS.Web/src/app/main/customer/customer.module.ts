@@ -20,11 +20,11 @@ import { ManagerService } from './services/manager.service';
 import { AngConfirmDialogModule } from '../../../@custor/components/confirm-dialog/confirm-dialog.module';
 import { BreadcrumbComponent } from '../../../@custor/components/breadcrumb/breadcrumb.component';
 import { ProfileComponent } from './profile/profile.component';
-import { ServiceRegisterComponent } from './service-register/service-register.component';
-import { RegistrationTabComponent } from './registration-tab/registration-tab.component';
-import { RegistrationDocumentComponent } from './registration-document/registration-document.component';
-import { PaymentComponent } from './payment/payment.component';
-import { GeneralComponent } from './general/general.component';
+import { ServiceRegisterComponent } from './trade/service-register/service-register.component';
+import { RegistrationTabComponent } from './trade/registration-tab/registration-tab.component';
+import { RegistrationDocumentComponent } from './trade/registration-document/registration-document.component';
+import { PaymentComponent } from './trade/payment/payment.component';
+import { GeneralComponent } from './trade/general/general.component';
 export const routes = [
     { path: '', redirectTo: 'manager-list', pathMatch: 'full'},
     { path: 'manager-list', component: ManagerListComponent},
