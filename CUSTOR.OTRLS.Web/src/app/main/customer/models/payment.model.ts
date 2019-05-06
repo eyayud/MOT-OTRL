@@ -13,3 +13,8 @@ export class PaymentType {
     id: number;
     name: string;
 }
+
+export interface PayOutsModel {
+  ServiceType: string;
+  Price: number;
+}

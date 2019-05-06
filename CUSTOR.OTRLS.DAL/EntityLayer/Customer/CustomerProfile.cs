@@ -28,14 +28,21 @@ namespace CUSTOR.OTRLS.Core
         
         [MaxLength(30)] public string FirstNameEng { get; set; }
         
+        [MaxLength(30)] public string FirstNameRegion { get; set; }
+        
         [MaxLength(30)] public string FatherName { get; set; }
         
         [MaxLength(30)] public string FatherNameEng { get; set; }
         
+        [MaxLength(30)] public string FatherNameRegion { get; set; }
         [MaxLength(30)] public string GrandName { get; set; }
         [MaxLength(30)] public string GrandNameEng { get; set; }
+        
+        [MaxLength(30)] public string GrandNameRegion { get; set; }
         [MaxLength(30)] public string MotherName { get; set; }
         [MaxLength(30)] public string MotherNameEng { get; set; }
+        
+        [MaxLength(30)] public string MotherNameRegion { get; set; }
 
         public DateTime BirthDate { get; set; }
 
@@ -126,18 +133,26 @@ namespace CUSTOR.OTRLS.Core
         public string FirstName { get; set; }
 
         public string FirstNameEng { get; set; }
+        
+        public string FirstNameRegion { get; set; }
 
         public string FatherName { get; set; }
 
         public string FatherNameEng { get; set; }
+        
+        public string FatherNameRegion { get; set; }
 
         public string GrandName { get; set; }
 
         public string GrandNameEng { get; set; }
+        
+        public string GrandNameRegion { get; set; }
 
         public string MotherName { get; set; }
 
         public string MotherNameEng { get; set; }
+        
+        public string MotherNameRegion { get; set; }
 
         #endregion
     }

@@ -1,51 +1,70 @@
 export class UserProfile {
-    constructor() {
-    }
-       public  Tin?: string;
+  constructor() {
+  }
 
-       public  Title?: string;
+  public Tin?: string;
 
-       public  FirstName ?: string;
+  public Title?: string;
 
-       public  FirstNameEng ?: string;
+  public FirstName ?: string;
 
-       public  FirstNameRegion  ?: string;
-       
-       public  FatherName ?: string;
-       
-       public  FatherNameEng ?: string;
+  public FirstNameEng ?: string;
 
-       public FatherNameRegion?: string;
-       
-       public  GrandName ?: string;
-       
-       public  GrandNameEng?: string;
+  public FirstNameRegion  ?: string;
 
-       public GrandNameRegion ?: string;
+  public FatherName ?: string;
 
-       public  MotherName?: string;
+  public FatherNameEng ?: string;
 
-       public  MotherNameEng?: string;
+  public FatherNameRegion?: string;
 
-       public MotherNameRegion?: string;
+  public GrandName ?: string;
 
-       public  IdentificationNumber?: string;
+  public GrandNameEng?: string;
 
-       public  BirthDate?: string;
+  public GrandNameRegion ?: string;
 
-       public  Gender?: string;
+  public MotherName?: string;
 
-       public Nationality?: string;
-      //public ZoneId: string = null;
-    //   public WoredaId: string = null;
-    //   public KebeleId: string = null;
-    //   public HouseNo: string = null;
-    //   public TeleNo: string = null;
-    //   public Pobox: string = null;
-    //   public Fax: string = null;
-    //   public CellPhoneNo: string = null;
-    //  // public OtherAddress: string = null;
-    //   public AddressId = 0;
-    //   public UserName: string = null;
+  public MotherNameEng?: string;
+
+  public MotherNameRegion?: string;
+
+  public IdentificationNumber?: string;
+
+  public BirthDate?: string;
+
+  public Gender?: string;
+
+  public Nationality?: string;
+
+}
+
+
+export class UserNameDTO {
+  public FirstName: string;
+
+  public FirstNameEng: string;
+
+  public FirstNameRegion: string;
+
+  public FatherName: string;
+
+  public FatherNameEng: string;
+
+  public FatherNameRegion: string;
+
+  public GrandName: string;
+
+  public GrandNameEng: string;
+
+  public GrandNameRegion: string;
+
+  public MotherName: string;
+
+  public MotherNameEng: string;
+
+  public MotherNameRegion: string;
+
 
 }

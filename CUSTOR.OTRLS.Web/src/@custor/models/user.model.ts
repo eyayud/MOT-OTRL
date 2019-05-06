@@ -1,6 +1,6 @@
 export class User {
     constructor(id?: string, userName?: string, fullName?: string, email?: string, tin?: string,
-        phoneNumber?: string, roles?: string[], siteCode?: string) {
+                phoneNumber?: string, roles?: string[], siteCode?: string) {
         this.Id = id;
         this.UserName = userName;
         this.FullName = fullName;

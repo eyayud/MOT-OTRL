@@ -16,12 +16,16 @@
       "Start": "ጀምር",
       "Close": "ዝጋ",
       "End": "ጨርስ",
+      "Finish" : "ጨርስ",
       "Stop": "አቁም",
       "Approve": "አረጋግጥ",
       "Select": "ምረጥ",
       "Unselect": "አይመረጥ",
       "Send": "ላክ",
-      "Exit": "ውጣ"
+      "Exit": "ውጣ",
+      "Upload": "ስቀል",
+      "UploadFile": "ፋይል ስቀል"
+
     },
     "validation": {
       "IsRequired": "{{fieldName}} ባዶ መሆን አይችልም",
@@ -114,7 +118,7 @@
     "projectDetail": "Project Detail",
     "customerRegistration": "Customer Registration",
     "applicationList": "All Application List",
-    "businessLicense": "Business License Registration"
+    "businessLicense": "አዲስ ንግድ ፍቃድ ምዝገባ"
   },
   "investors": {
     "management": {
@@ -155,7 +159,7 @@
       "AddressCaption": "አድራሻ",
       "BusinessDataCaption": "የንግድ ምዝገባ መረጃ",
       "PaidCapital": "የተከፈለ ካፒታል",
-      "SighnedCapital": "የተፈረመ ካፒታል",
+      "SignedCapital": "የተፈረመ ካፒታል",
       "FormOfOwnership": "Form Of Ownership"
     }
   },
@@ -346,7 +350,8 @@
   },
   "registration": {
     "management": {
-      "RegistrationName": "የ ነጋዴው መረጃ"
+      "RegistrationName": "የ ነጋዴው መረጃ",
+      "GeneralInformation" : "ጠቅላላ መረጃ"
     },
     "editor": {
       "LegalStatus": "ህጋዊ አቋም",
@@ -380,7 +385,7 @@
   },
   "registrationAddress": {
     "management": {
-      "RegistrationAddressName": "Address"
+      "RegistrationAddressName": "አድራሻ"
     },
     "editor": {
       "Region": "ክልል",
@@ -399,6 +404,7 @@
     }
   },
   "payment": {
+    "Header": "ክፍያ",
     "investorName": "ስም",
     "paymentDate": "የክፍያ ቀን",
     "no": "ተ.ቁ",
@@ -408,7 +414,10 @@
     "checkNo": "የቼክ ቁጥር",
     "totalAmount": "ድምር",
     "totalAmountdescription": "የገንዘቡ ልክ በፊደል",
-    "cashierName": "የገንዘብ ተቀባይ ስምና ፊርማ"
+    "cashierName": "የገንዘብ ተቀባይ ስምና ፊርማ",
+    "goToPayment": "ወደ ክፍያ",
+    "pay": "ክፈል",
+    "Invoice": "የገቢ ደረሰኝ"
   },
   "sector": {
     "header": "ዘረፍ",
@@ -418,13 +427,30 @@
     "DescriptionEnglishAlias": "መግለጫ በእንግሊዘኛ በአጭሩ",
     "EconomicSectorCode": "ኢኮኖሚክ ሴክተር ኮድ"
   },
-  "subbsector": {
+  "subsector": {
     "sector": "ዘረፍ",
     "header": "ዋና ዘረፍ",
     "Description": "መግለጫ",
     "DescriptionAlias": "መግለጫ በአጭሩ",
     "DescriptionEnglish": "መግለጫ በእንግሊዘኛ",
     "DescriptionEnglishAlias": "መግለጫ በእንግሊዘኛ በአጭሩ"
+  },
+  "section": {
+    "header": "ክፍል",
+    "Description": "መግለጫ",
+    "DescriptionAlias": "መግለጫ በአጭሩ",
+    "DescriptionEnglish": "መግለጫ በእንግሊዘኛ",
+    "DescriptionEnglishAlias": "መግለጫ በእንግሊዘኛ በአጭሩ"
+  },
+  "subsection": {
+    "header": "ንዑስ ክፍል",
+    "Description": "መግለጫ",
+    "DescriptionAlias": "መግለጫ በአጭሩ",
+    "DescriptionEnglish": "መግለጫ በእንግሊዘኛ",
+    "DescriptionEnglishAlias": "መግለጫ በእንግሊዘኛ በአጭሩ"
+  },
+  "classificationLens": {
+    "header": "ፍቃድ ፈርጅ"
   },
   "invActivity": {
     "sector": "ዘረፍ",
@@ -503,6 +529,12 @@
   "letterTemplate": {
     "Header": "Letter Template",
     "LetterType": "Letter Type"
+  },
+  "subTitle":{
+    "fillInformation":"መረጃ መሙያ "
+  },
+  "wizard": {
+    "confirmation": "ማረጋገጫ"
   }
 }
 

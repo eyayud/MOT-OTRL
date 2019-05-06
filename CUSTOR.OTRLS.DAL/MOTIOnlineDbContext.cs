@@ -20,6 +20,8 @@ namespace CUSTOR.OTRLS.Core
         public virtual DbSet<Lookup> Lookup { get; set; }
         public virtual DbSet<Manager> Manager { get; set; }
         
+        public virtual DbSet<ManagerListDTO> ManagerListDTO { get; set; }
+
         public virtual DbSet<Nationality> Nationality { get; set; }
         public virtual DbSet<Region> Region { get; set; }
         public virtual DbSet<Woreda> Woreda { get; set; }
@@ -27,7 +29,19 @@ namespace CUSTOR.OTRLS.Core
         public virtual DbSet<Address> Address { get; set; }
         public virtual DbSet<CustomerProfile> CustomerProfile { get; set; }
         
-        
+        public virtual DbSet<Registration> Registration { get; set; }
+        public virtual DbSet<RegistrationCatagory> RegistrationCatagory { get; set; }
+        public DbSet<MajorDivision> MajorDivision { get; set; }
+        public DbSet<LegalStatus> LegalStatus { get; set; }
+
+
+        public virtual DbSet<Business> Business { get; set; }
+        public virtual DbSet<BusinessLicensingGroup> BusinessLicensingGroup { get; set; }
+        public virtual DbSet<SubGroup> SubGroup { get; set; }
+        public virtual DbSet<MajorGroup> MajorGroup { get; set; }
+        public virtual DbSet<Group> Group { get; set; }
+        public virtual DbSet<Division> Division { get; set; }
+
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
@@ -435,8 +449,28 @@ namespace CUSTOR.OTRLS.Core
             
            
             modelBuilder.Entity<CustomerProfile>().ToTable("CustomerProfile");
-           
 
+            modelBuilder.Entity<Registration>().ToTable("Registration");
+
+            modelBuilder.Entity<RegistrationCatagory>().ToTable("RegistrationCategory");
+
+            modelBuilder.Entity<LegalStatus>().ToTable("LegalStatus");
+
+            modelBuilder.Entity<Business>().ToTable("Business");
+
+            modelBuilder.Entity<BusinessLicensingGroup>().ToTable("BusinessLicensingGroup");
+
+            modelBuilder.Entity<Division>().ToTable("Division");
+
+            modelBuilder.Entity<Group>().ToTable("Group");
+
+            modelBuilder.Entity<MajorDivision>().ToTable("MajorDivision");
+
+            modelBuilder.Entity<MajorGroup>().ToTable("MajorGroup");
+
+            modelBuilder.Entity<SubGroup>().ToTable("SubGroup");
+            
+            
             base.OnModelCreating(modelBuilder);
         }
     }

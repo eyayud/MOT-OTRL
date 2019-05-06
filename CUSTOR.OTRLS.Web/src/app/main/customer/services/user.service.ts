@@ -1,5 +1,5 @@
 import { Injectable, Injector } from '@angular/core';
-import { UserProfile } from '../models/user.model';
+import {UserNameDTO, UserProfile} from '../models/user.model';
 import { BusinessesType } from '../mock-data/business';
 import { Observable, of } from 'rxjs';
 import { ConfigurationService } from '../../../../@custor/services/configuration.service';
@@ -34,6 +34,17 @@ export class UserService extends EndpointFactory {
                 }),
             );
     }
+
+  getUserNameProfile(userId: any) {
+    //  const endpointUrl = `${this.userProfileUrl}${userId}`;
+    const endpointUrl = 'http://localhost:60330/api/customerProfile/name/1';
+    console.log(endpointUrl);
+    return this.httpClient.get<UserNameDTO>(endpointUrl).pipe(
+      map(usr => {
+        return usr;
+      }),
+    );
+  }
    
     saveProfile(user: UserProfile){
         console.log(user);
